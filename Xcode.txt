@@ -1,0 +1,12 @@
+Scheme: Different variations of your app that you can run in simulator
+    Ex: iPhone vs Watch, or different iPhone screen sizes
+
+Storyboards: What building of the UI.
+    LaunchScreen storyboard: what you see when you launch
+    Main: The rest of the app.
+    Canvas: where your GUI goes
+    Scenes: Views
+
+Make button that says hello in a label:
+    Go to object library in the bottom right of xcoce
+
