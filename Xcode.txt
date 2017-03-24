@@ -8,5 +8,4 @@ Storyboards: What building of the UI.
     Scenes: Views
 
 Make button that says hello in a label:
-    Go to object library in the bottom right of xcoce
-
+    Go to object library in the bottom right of xcode: you can add these to your scene
