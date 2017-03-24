@@ -7,5 +7,17 @@ Storyboards: What building of the UI.
     Canvas: where your GUI goes
     Scenes: Views
 
+Inspectors: Inspect different elements of your code or storyboard objects
+    File
+    Quick help
+    identity
+    Attributes: different attributes of the object you can change. (size font color for ex.)
+    Size
+    Connections
+
+
+
+### Tutorial WWDC Xcode 2016 ###
 Make button that says hello in a label:
     Go to object library in the bottom right of xcode: you can add these to your scene
+    Place button at center of scene, name it: "Say Hello"
