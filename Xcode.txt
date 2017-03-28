@@ -32,6 +32,11 @@ Size: you can view how your view looks at different sizes.
         Allign: set rules for when the screen size or orientation swithces.
         Add contraints: Set auto layout contraint, based on other objects.
 
+Code:
+    Option click: see some description of classes/function
+    Command click: goto declaration
+    Search: for full descrition and methods/attributes.
+
 
 ### Tutorial WWDC Xcode 2016 ###
 Make button that says hello in a label:
@@ -41,6 +46,14 @@ Make button that says hello in a label:
     Make the button both horizontally and vertically alligned.
         Error lable: y pos: contrain it or pin it to be above the button.
         Check if it worked by rotating in simulator.
-    Add code to say hello when clicking the button
-        edit the file that your view controller is refferencing (ViewController.swift)
-        Use Assitant editor.
+    Add attributes to the viewcontroller file for the label and button.
+        Edit the file that your view controller is refferencing (ViewController.swift)
+        Use Assitant editor
+        Control-drag the label to top of ViewController class.
+            Make it an action name it sayHello
+        Do for label as well.
+            Make it an outlet (refference you can manipulate)
+    Add code to the action atribute of the button to do stuff
+        The Label is an instance of UIlabel, which has a text attribute
+        Code: If button is clicked (action) set label.text to "hello"
+
