@@ -7,6 +7,8 @@ Storyboards: What building of the UI.
     Canvas: where your GUI goes
     Scenes: Views
 
+View Controller Scene: How your view is controlled. Look for red error messages.
+
 Inspectors: Inspect different elements of your code or storyboard objects
     File
     Quick help
@@ -15,9 +17,18 @@ Inspectors: Inspect different elements of your code or storyboard objects
     Size
     Connections
 
-
+Size: you can view how your view looks at different sizes.
+    Scaling rules: use the buttons on the bottem right.
+        Allign: set rules for when the screen size or orientation swithces.
+        Add contraints: Set auto layout contraint, based on other objects.
 
 ### Tutorial WWDC Xcode 2016 ###
 Make button that says hello in a label:
     Go to object library in the bottom right of xcode: you can add these to your scene
     Place button at center of scene, name it: "Say Hello"
+    Add Label above button and allign it horizontally.
+    Make the button both horizontally and vertically alligned.
+        Error lable: y pos: contrain it or pin it to be above the button.
+        Check if it worked by rotating in simulator.
+
+    Add code to say hello when clicking the button
