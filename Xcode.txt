@@ -5,14 +5,16 @@ Storyboards: What building of the UI.
     LaunchScreen storyboard: what you see when you launch
     Main: The rest of the app.
     Canvas: where your GUI goes
-    Scenes: Views
+    Scenes: Views and the code to manipulate them.
+        Each scene references some viewcontroller class (ex: ViewController.swift)
+        Look in the identity inspector to see which one.
 
 View Controller Scene: How your view is controlled. Look for red error messages.
 
 Inspectors: Inspect different elements of your code or storyboard objects
     File
     Quick help
-    identity
+    identity: info about the id of object, what class it's inheriting from or refferencing.
     Attributes: different attributes of the object you can change. (size font color for ex.)
     Size
     Connections
@@ -22,13 +24,16 @@ Size: you can view how your view looks at different sizes.
         Allign: set rules for when the screen size or orientation swithces.
         Add contraints: Set auto layout contraint, based on other objects.
 
+
 ### Tutorial WWDC Xcode 2016 ###
 Make button that says hello in a label:
     Go to object library in the bottom right of xcode: you can add these to your scene
-    Place button at center of scene, name it: "Say Hello"
-    Add Label above button and allign it horizontally.
+        Place button at center of scene, name it: "Say Hello"
+        Add Label above button and allign it horizontally.
     Make the button both horizontally and vertically alligned.
         Error lable: y pos: contrain it or pin it to be above the button.
         Check if it worked by rotating in simulator.
-
     Add code to say hello when clicking the button
+        edit the file that your view controller is refferencing (ViewController.swift)
+
+
