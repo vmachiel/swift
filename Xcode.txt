@@ -11,6 +11,14 @@ Storyboards: What building of the UI.
 
 View Controller Scene: How your view is controlled. Look for red error messages.
 
+Editors:
+    Standard
+    Assistant: Shows to files: one primary and one that it relates or refferences. Will
+               pick it's relation automatically, but can be set manually.
+    Version: sees file and previous versions side by side.
+
+Jump Bar: Jump to file instantly.
+
 Inspectors: Inspect different elements of your code or storyboard objects
     File
     Quick help
@@ -35,5 +43,4 @@ Make button that says hello in a label:
         Check if it worked by rotating in simulator.
     Add code to say hello when clicking the button
         edit the file that your view controller is refferencing (ViewController.swift)
-
-
+        Use Assitant editor.
