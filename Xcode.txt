@@ -56,4 +56,4 @@ Make button that says hello in a label:
     Add code to the action atribute of the button to do stuff
         The Label is an instance of UIlabel, which has a text attribute
         Code: If button is clicked (action) set label.text to "hello"
-
+        Run in simulator.
