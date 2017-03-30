@@ -22,4 +22,17 @@ let label = "The width is "
 let width = 94
 let widthLabel = label + String(width)
 
-// You can 
+// You can simply do it with backslash as well (kinda like f-strings in python)
+
+let apples = 3
+let oranges = 5
+print("I have \(apples) apples, and I have \(apples + oranges) pieces of fruit")
+print("Hello there: \(implicitDouble) + \(Double(explicitFloat))") // Look at this!!
+
+
+/*Arrays and Dicts are declared with [] any are both ordered.
+  Acces them with indecis, and a comma is allowed at the end. 
+  Again, types are inferred */
+
+var shoppingList = ["Bananas", "Yogurt", "More stuff",]
+var ammountOfCash = ["Wallet": 42, "Bank": 152]
