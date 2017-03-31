@@ -36,3 +36,9 @@ print("Hello there: \(implicitDouble) + \(Double(explicitFloat))") // Look at th
 
 var shoppingList = ["Bananas", "Yogurt", "More stuff",]
 var ammountOfCash = ["Wallet": 42, "Bank": 152]
+
+// Create empty ones with the following syntax, both specified types and inferred:
+let emptyArray = [String]()  // init empty array consisting of strings
+var shoppingList2 = []
+let emptyDictionary = [String: Float]
+var occupations = [:]
