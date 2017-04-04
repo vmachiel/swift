@@ -40,3 +40,7 @@ var ammountOfCash = ["Wallet": 42, "Bank": 152]
 // Create empty ones with the following syntax.
 let emptyArray = [String]()  // init empty array consisting of strings
 let emptyDictionary = [String: Float]()
+
+// empty existing ones like:
+shoppingList = []
+ammountOfCash = [:]

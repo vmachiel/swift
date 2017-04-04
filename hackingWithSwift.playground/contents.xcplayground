@@ -3,5 +3,6 @@
     <pages>
         <page name='Operators and Interpolation'/>
         <page name='Variables and Constants'/>
+        <page name='Control Flow'/>
     </pages>
 </playground>

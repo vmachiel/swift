@@ -10,3 +10,22 @@ for score in individualScores {
     }
 }
 print(teamScore)
+
+// You can also use optionals: values that are either "there" or nil. 
+// State in the declaration if the variable is optional.
+var optionalString: String? = "Hello"
+print(optionalString == nil)  // false
+if let greeting = optionalString{
+    print("You greeted me, thanks!")
+} else {
+    print("You jerk!)")
+}
+optionalString = nil
+if let greeting = optionalString{
+    print("You greeted me, thanks!")
+} else {
+    print("You jerk!)")
+}
+
+// You can also provide a default using ?? If the optional value is missing
+// the default one is used.
