@@ -3,5 +3,7 @@
     <pages>
         <page name='Control FLOW'/>
         <page name='Variables and Data Types'/>
+        <page name='Functions and Closures'/>
+        <page name='Classes and Objects'/>
     </pages>
 </playground>
