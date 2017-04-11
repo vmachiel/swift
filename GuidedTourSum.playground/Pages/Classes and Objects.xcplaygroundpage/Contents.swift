@@ -85,6 +85,38 @@ var triangle = EquilateralTriangle(sideLength: 3.1, name: "a triangle")
 print(triangle.perimeter)  // = 3.0 * sidelength
 triangle.perimeter = 9.9  // divide by 3.0 gives:
 print(triangle.sideLength)
+
+// Property observers are called everytime the property is set, even if the same value
+// willSet is called before, and didSet is called after
+class TriangleAndSquare {
+    var triangle:EquilateralTriangle {  // remember, variables can be self made objects
+        // the following is run when the var triangle is set (first, new or same value)
+        willSet {
+            square.sideLength = newValue.sideLength  // Reversed of below
+        }
+    }
+    var square: Square {
+        // When square is set to a new, same of first value:
+        willSet {
+            triangle.sideLength = newValue.sideLength  // New value = Square(sideLenght: 50, 
+            // name: "larger square"
+            // so the triangle.sideLength is set to the same value as the new square.sideLength
+        }
+    }
+    // So square and triangle are instances of Square and Equiblabla
+    // When they are initialized, they are both passed a size and a name but before they are
+    init(size: Double, name: String) {
+        square = Square(sideLength: size, name: name)
+        triangle = EquilateralTriangle(sideLength: size, name: name)
+    }
+}
+var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
+print(triangleAndSquare.square.sideLength)
+print(triangleAndSquare.triangle.sideLength)
+triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
+print(triangleAndSquare.triangle.sideLength)  // So if one gets set, the willSet method takes that 
+// new value and sets it to the other, so they're te same!!!!
+
 // Another example to better show explicitly stating names newVal instead of newValue
 class family {
     var _members:Int = 2
@@ -102,12 +134,9 @@ class family {
     }
 }
 
-
-
-
-
-
-
+// optional values work ond self defined classes as well:
+let optionalSquare: Square? = Square(sideLength: 4.4, name: "optional square")
+let sidelength = optionalSquare?.sideLength // does it exist? than assign.
 
 
 
