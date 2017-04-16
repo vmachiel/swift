@@ -134,31 +134,38 @@ let someClosure: (Int, Int) -> Int = { (num, num2) in
 }
 // You can also pass closures to functions. Here's the function declaration 
 // that accepts a parameter closure that accepts 2 integers and returns an integer:
-func something(closure: (Int, Int) -> Int) -> String {
+// it also takes one more interger and finally returns a string.
+func usingClosures(closure: (Int, Int) -> Int, devider: Int) -> String {
     //other stff
-    closure //the closure is executed here
+    let sum = closure(4, 5) //the closure is executed here
+    let final = sum / devider
+    return "The final product is \(final)"
 }
+usingClosures(closure: someClosure, devider: 3)
+
+
+
 // When you call the function, you can basically write the closure inside the parameter. 
 // Closures must be inside curly braces, unless it's a trailing closure.
-something({ num1, num2 in
-return num1 + num2
-})
+//something({ num1, num2 in
+//return num1 + num2
+//})
 
-//Trailing closure works if the closure is the last or only parameter
-something() { num1, num2 in
-    return num1 + num2
-}
-// These are dumb examples, but a good use of a closure is when you're making an 
+// Trailing closure works if the closure is the last or only parameter
+//something2() { num1, num2 in
+//    return num1 + num2
+//}
+// These are dumb examples, but a good use of a closure is when you're making an
 // API call and want part of code to execute ONLY if the data call works. For example:
-func makeAPICall(using: String, completion: () -> Void) {
+// func makeAPICall(using: String, completion: () -> Void) {
     //Run some call asynchronously using NSURLSession
     //Reach this point if it worked
-    completion
-}
+    // completion
+// }
 // And when you call the function, you can use a trailing closure to tell it what to do.
 
-makeAPICall(linkString) { in
+// makeAPICall(linkString) { in
     //code in here will run only if the api call succeeds
     //Like updating the view
-}
+// }
 
