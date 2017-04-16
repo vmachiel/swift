@@ -121,3 +121,44 @@ let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
 
 
+
+// A closure is basically a portable function. For example, the following function 
+// that adds 2 numbers.
+func add(num: Int, num2: Int) -> Int {
+    return num + num2
+}
+// If you were to declare a closure like above, it would be like this.
+// Notice the type of the closure. It accepts 2 integers that return an integer.
+let someClosure: (Int, Int) -> Int = { (num, num2) in
+    return num + num2
+}
+// You can also pass closures to functions. Here's the function declaration 
+// that accepts a parameter closure that accepts 2 integers and returns an integer:
+func something(closure: (Int, Int) -> Int) -> String {
+    //other stff
+    closure //the closure is executed here
+}
+// When you call the function, you can basically write the closure inside the parameter. 
+// Closures must be inside curly braces, unless it's a trailing closure.
+something({ num1, num2 in
+return num1 + num2
+})
+
+//Trailing closure works if the closure is the last or only parameter
+something() { num1, num2 in
+    return num1 + num2
+}
+// These are dumb examples, but a good use of a closure is when you're making an 
+// API call and want part of code to execute ONLY if the data call works. For example:
+func makeAPICall(using: String, completion: () -> Void) {
+    //Run some call asynchronously using NSURLSession
+    //Reach this point if it worked
+    completion
+}
+// And when you call the function, you can use a trailing closure to tell it what to do.
+
+makeAPICall(linkString) { in
+    //code in here will run only if the api call succeeds
+    //Like updating the view
+}
+
