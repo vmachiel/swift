@@ -97,6 +97,8 @@ func lessThanTen(number: Int) -> Bool {
 var numbers = [44, 66, 23, 1, 69, 349]
 hasAnyMatches(list: numbers, condition: lessThanTen)
 
+
+
 // Function are special closures. Closures have access to variables and function in
 // the scope they were created in, as well as their own, even if they are in a different scope
 // when executed!!
@@ -119,6 +121,8 @@ print(mappedNumbers)
 // And even shorter if the closure is the only function argument
 let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
+
+
 
 
 
