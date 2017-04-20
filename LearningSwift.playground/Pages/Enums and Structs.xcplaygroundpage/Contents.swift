@@ -167,7 +167,3 @@ let cardDescription = theAceOfSpace.simpleDescription()
 
 
 
-
-
-
-

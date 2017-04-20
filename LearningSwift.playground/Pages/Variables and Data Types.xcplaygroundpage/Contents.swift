@@ -1,7 +1,7 @@
 // Hello world is easy, complete with autonewline!
 
 print("Hello World")
-
+print("😃")  // Unicode friendly! 
 /* Variables are declared once with "var" and constants with "let
  When you assign a new value to a variable it needs to be of the same type */
 
@@ -23,7 +23,6 @@ let width = 94
 let widthLabel = label + String(width)
 
 // You can simply do it with backslash as well (kinda like f-strings in python)
-
 let apples = 3
 let oranges = 5
 print("I have \(apples) apples, and I have \(apples + oranges) pieces of fruit")
@@ -33,7 +32,6 @@ print("Hello there: \(implicitDouble) + \(Double(explicitFloat))") // Look at th
 /*Arrays and Dicts are declared with [] any are both ordered.
   Acces them with indecis, and a comma is allowed at the end. 
   Again, types are inferred */
-
 var shoppingList = ["Bananas", "Yogurt", "More stuff",]
 var ammountOfCash = ["Wallet": 42, "Bank": 152]
 
@@ -44,6 +42,11 @@ let emptyDictionary = [String: Float]()
 // empty existing ones like:
 shoppingList = []
 ammountOfCash = [:]
+
+
+
+
+
 
 
 
@@ -84,23 +87,34 @@ stayOutTooLate = true
 var missABeat: Bool
 missABeat = false
 
+
 // Arrays are created like this. They are accessable by index
 var evenNumber = [2, 4, 6, 8]
 var songs = ["Snor", "Barry", "Henk", "Fred"]
 songs[0]
 songs[2]
 type(of: songs)
+// Append/change items like this:
+evenNumber.append(10)
+evenNumber.append(contentsOf: [12, 14, 16])
+songs[2] = "HenkBert"
+// Change items using ranges. You can even change a certain range to a range
+// of different lenght
+songs[0...2] = ["Snorsex", "Barrynac", "HenkBert2"]
+songs[2...3] = ["Freddy", "Snorrie", "Lorry"]  // change the last 2 items into 3
+// items, changing the lenght of the array.
+print(songs)
 
 // They can be stated explicitely to hold only one datatype, or you can state
 // they should hold mixed
 var songs2: [String] = ["Shake it Off", "You Belong with Me", "Back to December"]
 var songs3: [Any] = ["Shake it Off", "You Belong with Me", "Back to December", 3]
-
 // Creating empty arrays. This won't work because it's not initialized.
 var songs4: [String]                                    // --> see!!
 // You can do them like this (second one is mostly used)
 var songs5: [String] = []
 var songs6 = [String]()
+
 
 // Dictionaries: key: value. Can't access by index.
 var person = [
@@ -110,9 +124,14 @@ var person = [
     "month": "December",
     "website": "taylorswift.com"
 ]
-person["last"]
-
-
+person["last"]  // retrieve value for key
+person["first"] = "Barry"  // change value
+person["age"] = "25" // has to be string
+// optional value of dictionary, maybe there is one, maybe there isn't
+let personDay: String? = person["day"]
+if personDay == nil {
+    print("no day was found")
+}
 
 
 

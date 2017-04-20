@@ -6,15 +6,21 @@ func greet(person: String, day: String) -> String {
 greet(person: "Bob", day: "Wednesday")
 
 // You can use custom parameter tags, so you can use a different parameter name inside
-// the function, and a different tag when you call the function for clarity. 
+// the function, and a different tag when you call the function for clarity. (2nd parameter)
 // You can also add a _ before the parameter definition if you want to be able to 
-// omit it when you call the function. THIS IS ALL FOR CLARITY!
-// Example: 'person' can be omitted, and day is used inside the function and called
-// 'on' when calling the function:
-func greet (_ person: String, on day: String) -> String {
-    return "Hi \(person) today is \(day)"
+// omit it when you call the function. THIS IS ALL FOR CLARITY! (1st parameter)
+// Also, default values work similar to python (3rd parameter)
+// Example: 'person' can be omitted, and day is used inside the function and is labelled
+// 'on' when calling the function. shouting has a default of false
+func greet (_ person: String, on day: String, shouting: Bool = false) -> String {
+    var message = "Hi \(person) today is \(day)"
+    if shouting {
+        message = message.uppercased()
+    }
+    return message
 }
-greet("Henk", on:"Wednesday")  // easy to read later! 
+greet("Henk", on:"Wednesday")  // easy to read later! : no person label, on instea of day,
+// and shouting can be omitted because of the default
 
 // Return multiple values using a tuple. They can be adressed with both name and index
 // Also assign the return value(s) to a variable
@@ -48,6 +54,33 @@ func sumOf(numbers: Int...) -> Int {
 sumOf()  // called with 0 argumens
 sumOf(numbers: 4, 6, 123, 23)  // called with 4 arguments
 
+// Optinal return types: write a ? after one or more of the return types to indicate it
+// might be nill. See this example, which returns a string if one string of the array has
+// the desired prefix, and returns nil if none are found.
+func firstString(havingPrefix prefix: String, within strings: [String]) -> String? {
+    for string in strings {
+        if string.hasPrefix(prefix) {
+            return string
+        }
+    }
+    return nil
+}
+firstString(havingPrefix: "snor", within: ["Hallo", "Snorsex", "snorsex",])
+firstString(havingPrefix: "barry", within: ["Hallo", "Snorsex", "snorsex",])
+// You can call functions with optional return types in a if let statement, since those
+// check wether the value is there of if it's nill
+var guests = ["Barry", "Harry", "Larry", "Darry"]
+if let bGuest = firstString(havingPrefix: "B", within: guests) {
+    print("Guest with B was found: \(bGuest)")
+} else {
+    print("No Guest with B was found")
+}
+
+
+
+
+
+// CLOSURE EXP 1
 // Nested functions: inner functions have access to variables of the outer.
 func returnFifteen() -> Int {
     var y = 10
@@ -125,7 +158,7 @@ print(sortedNumbers)
 
 
 
-
+// CLOSURE EXP 2
 // A closure is basically a portable function. For example, the following function 
 // that adds 2 numbers.
 func add(num: Int, num2: Int) -> Int {
@@ -141,7 +174,7 @@ let someClosure: (Int, Int) -> Int = { (num, num2) in
 // it also takes one more interger and finally returns a string.
 func usingClosures(closure: (Int, Int) -> Int, devider: Int) -> String {
     //other stff
-    let sum = closure(4, 5) //the closure is executed here
+    let sum = closure(16, 5) //the closure is executed here
     let final = sum / devider
     return "The final product is \(final)"
 }
