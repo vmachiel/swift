@@ -12,7 +12,7 @@ greet(person: "Bob", day: "Wednesday")
 // Also, default values work similar to python (3rd parameter)
 // Example: 'person' can be omitted, and day is used inside the function and is labelled
 // 'on' when calling the function. shouting has a default of false
-func greet (_ person: String, on day: String, shouting: Bool = false) -> String {
+func greet(_ person: String, on day: String, shouting: Bool = false) -> String {
     var message = "Hi \(person) today is \(day)"
     if shouting {
         message = message.uppercased()
@@ -80,7 +80,7 @@ if let bGuest = firstString(havingPrefix: "B", within: guests) {
 
 
 
-// CLOSURE EXP 1
+
 // Nested functions: inner functions have access to variables of the outer.
 func returnFifteen() -> Int {
     var y = 10
@@ -113,6 +113,9 @@ var incrementer2 = incrementBy(adder: 4)
 incrementer2(5)
 
 // Functions can take functions as one of their arguments, like the condition argument. 
+// You don't include () when passing a function: you're not executed it, just passing it
+// to the main function so it can use and execute it.
+
 // So for each item in the list, pas it to condition. If one of them returns true, return true
 // The lessThanTen function is passed, so each number in the list gets checked, if one
 // is smaller than 10, the whole thing returns true
@@ -129,8 +132,27 @@ func lessThanTen(number: Int) -> Bool {
 }
 var numbers = [44, 66, 23, 1, 69, 349]
 hasAnyMatches(list: numbers, condition: lessThanTen)
+// Another example here is a function that checks if a number is divisible by two:
+func divisibleByTwo(_ number: Int) -> Bool {
+    return number % 2 == 0
+}
+// And this function takes a list of numbers and a criteria, and any number that meets
+// the criteria gets added to a list that gets returned.
+func filterInts(_ numbers: [Int], _ includeNumber: (Int) -> Bool) -> [Int] {
+    var result: [Int] = []
+    for number in numbers {
+        if includeNumber(number) {
+            result.append(number)
+        }
+    }
+    return result
+}
+let evenNumbers = filterInts(numbers, divisibleByTwo)
 
 
+
+
+// Closure 1: closure expressions 1
 
 // Function are special closures. Closures have access to variables and function in
 // the scope they were created in, as well as their own, even if they are in a different scope
@@ -147,18 +169,32 @@ numbers.map({ (number: Int) -> Int in
 numbers.map({ (number:Int) -> Bool in
     return number % 2 == 0
 })
-// And a more consice way if the return type is already known.
+// And a more consice way if the argument type or return type is already known.
+// Also, it's only 1 return statement so return can be omitted.
 numbers = [4, 99, 23, 22, 0, 64]
 let mappedNumbers = numbers.map({ number in 3 * number })
 print(mappedNumbers)
-// And even shorter if the closure is the only function argument
+// And even shorter if the closure is the only function argument: no parans
 let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
 
+// Here is the filterInts function from before, but with the the divisibleByTwo function
+// as a closure expression. You don't need that as a function a lot:
+let numbers2 = [44, 32, 11, 49491, 0, 94]
+var evenNumbers2 = filterInts(numbers2, {(number: Int) -> Bool in return number % 2 == 0})
+evenNumbers2
+// you can again! write it more conceice (however you spell that)
+evenNumbers2 = filterInts(numbers2, {(number) in return number % 2 == 0})
+// and shorter again, if it's only one return statement:
+evenNumbers2 = filterInts(numbers2, {(number) in number % 2 == 0})
+// and shorter again by using $0 for the first argument $1 for the second etc:
+evenNumbers2 = filterInts(numbers2, {$0 % 2 == 0})
+// or write it outside the parenthasis when it's the last argument: trailer closure:
+evenNumbers2 = filterInts(numbers2) {$0 % 2 == 0}
 
 
 
-// CLOSURE EXP 2
+// CLOSURE 2
 // A closure is basically a portable function. For example, the following function 
 // that adds 2 numbers.
 func add(num: Int, num2: Int) -> Int {

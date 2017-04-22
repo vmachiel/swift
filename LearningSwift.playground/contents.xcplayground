@@ -8,5 +8,6 @@
         <page name='Enums and Structs'/>
         <page name='Protocols'/>
         <page name='Error Handeling'/>
+        <page name='Generics'/>
     </pages>
 </playground>
