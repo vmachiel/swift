@@ -166,4 +166,50 @@ let cardDescription = theAceOfSpace.simpleDescription()
 
 
 
+// More struct examples, if a stuct properties have default values, initializing with
+// () is possible:
+struct Rectangle {
+    var height: Int
+    var width: Int
+}
+var rectangle = Rectangle(height: 10, width: 12)
+
+struct Rectangle2 {
+    var height = 10
+    var width = 12
+}
+var rectangle2 = Rectangle2()
+// Stucts can have competed properties, which are caculatedo on the fly when you need 
+// them, and can depend on other properties
+struct Rectangle3 {
+    var height: Int
+    var width: Int
+    var area: Int {
+        return width * height
+    }
+}
+var rectangle3 = Rectangle3(height: 3, width: 5)
+print("The area of this rectangle is \(rectangle3.area)")
+
+// You can also have generic structs which elements whose type is specified later
+// Usefull for tableview
+struct NamedArray<Element> {
+    var name: String
+    var items: [Element]
+}
+// You don't have to write the type of Element if you don't want.
+let boardGames = NamedArray<String>(name: "Board Games", items: ["Backgammon, Chess"])
+let primes = NamedArray(name: "Prime Numbers", items: [2, 3, 5, 7, 11])
+
+
+
+
+
+
+
+
+
+
+
+
 

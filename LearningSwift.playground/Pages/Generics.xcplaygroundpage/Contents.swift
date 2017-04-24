@@ -47,7 +47,20 @@ func filter<Element>(_ source: [Element], _ includeElement: (Element) -> Bool) -
 let numbers = [43, 235, 234, 1, 34, 100]
 let names = ["Snorsex", "Henk", "Barry", "Ike", "BlaBlaBla"]
 let evenNumbers = filter(numbers, divisibleByTwo)
+// or
+let evenNumbers2 = filter(numbers) {$0 % 2 == 0}
+// And:
 let shortNames = filter(names, shortName)
+// or
+let shortNames2 = filter(names) {$0.characters.count < 5}
+print(shortNames, shortNames2)
+
+
+// filter is actually a method which can be called on arrays containing standard
+// lib types. Map as well, both take closures as arguments see Functions and Closures. 
+
+
+
 
 
 

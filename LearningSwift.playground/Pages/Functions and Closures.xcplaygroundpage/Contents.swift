@@ -175,6 +175,8 @@ numbers = [4, 99, 23, 22, 0, 64]
 let mappedNumbers = numbers.map({ number in 3 * number })
 print(mappedNumbers)
 // And even shorter if the closure is the only function argument: no parans
+let mappedNumbers2 = numbers.map { number in 3 * number }
+// Or resplace the arguments with $0, $1 etc
 let sortedNumbers = numbers.sorted { $0 > $1 }
 print(sortedNumbers)
 
@@ -216,8 +218,6 @@ func usingClosures(closure: (Int, Int) -> Int, devider: Int) -> String {
 }
 usingClosures(closure: someClosure, devider: 3)
 
-
-
 // When you call the function, you can basically write the closure inside the parameter. 
 // Closures must be inside curly braces, unless it's a trailing closure.
 //something({ num1, num2 in
@@ -241,4 +241,21 @@ usingClosures(closure: someClosure, devider: 3)
     //code in here will run only if the api call succeeds
     //Like updating the view
 // }
+
+
+// Example of the filter method: generic method that can be called on the arrays
+// of standard lib types. It takes a closure as an argument
+let names = ["snor", "barry", "Machiel", "kaljdflkasdjf", "kees"]
+let shortnames = names.filter{$0.characters.count < 5}
+shortnames
+
+// Example of the map method: it maps a given closure to each element of the array:
+let upperCaseNames = names.map {name in name.uppercased()}
+upperCaseNames
+// Or do them both, with . syntax
+let bothFilters = names.filter {$0.characters.count < 5}.map {name in name.uppercased()}
+bothFilters
+
+
+
 

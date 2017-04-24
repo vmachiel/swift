@@ -6,8 +6,10 @@
         <page name='Functions and Closures'/>
         <page name='Classes and Objects'/>
         <page name='Enums and Structs'/>
+        <page name='Value vs Reference Types'/>
+        <page name='Generics'/>
+        <page name='Extensions'/>
         <page name='Protocols'/>
         <page name='Error Handeling'/>
-        <page name='Generics'/>
     </pages>
 </playground>
