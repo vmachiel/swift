@@ -16,4 +16,4 @@ extension Rectangle {
     }
 }
 
-// You can extend standlib, foundation etc. 
+// You can extend standlib, foundation etc. See protocols as well. 

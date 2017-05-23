@@ -1,62 +1,3 @@
-// Basic operators:
-var a = 10
-a = a + 1
-a = a - 1
-a = a * 2
-a = a / 2
-
-var b = 13 / 3 // floor devision, won't do float automatically because strong typing!
-b = b % 3  // modulus or remain
-
-// Like python, you can shorten the x = x + 10 thing
-b = 10
-b += 10
-b -= 10
-
-// adding doubles
-var c = 1.1
-var d = 2.2
-var e = c + d
-
-// String concatination
-var name1 = "Machiel van Dorst"
-var name2 = "Annabel Dellebeke"
-var bothNames = name1 + " en " + name2
-
-// comparison operators that return Booleans:
-e > 3
-e < 3
-e <= 3
-e >= 3
-e == 3
-e != 3
-name1 == "Machiel van Dorst" // true!
-
-// Use the ! operator before any Boolean to flip it:
-var stayOutTooLate = true // true
-!stayOutTooLate // false
-
-// Interpolation: basically python f-strings. Do in place calculations and manipulation of
-// variables and convert them into String, and print out the whole thing.
-// More efficient than concatinating, and allows for calculations
-var name = "Machiel van Dorst"
-"Your name is \(name)"
-// Another example:
-var age = 29
-var latitude = 51.16643
-print("Your name is \(name) and your age is \(age) and you're at latitude \(latitude)")
-print("In three years time, you'll be \(age + 3) years old")
-
-// Array operation:
-var songs = ["Shake it Off", "You Belong with Me", "Back to December"]
-var songs2 = ["Today was a Fairytale", "Welcome to New York", "Fifteen"]
-var both = songs + songs2
-
-songs += ["Snorsex"]
-
-
-
-
 // Standard controll flow: If, else, for. If must be a Boolean, no implicit comparisons
 let individualScores = [41, 53, 78, 84, 39]
 var teamScore = 0
@@ -96,6 +37,26 @@ for i in 0...5 {  // for i = 0, 1, 2, 3, 4, 5 so six times.
     sum += 1
 }
 print(sum)
+// Finally: use _ if you don't need to use the counter:
+for _ in 1...5 {
+    print("hello")
+}
+// Half closed ranges are great for looping over two arrays at once using an index
+// This is because arrays count from 0
+var people = ["Barry", "Larry", "Harry"]
+var actions = ["bli bli bli", "lie lie lie", "hie hie hie"]
+for i in 0..<people.count {
+    print("\(people[i]) is gonna \(actions[i])")
+}
+// or loops inside loops
+for i in 0..<people.count{
+    var str = "\(people[i]) is gonna "
+    
+    for _ in 0...4 {
+        str += "\(actions[i]) "
+    }
+    print(str)
+}
 
 
 // while loops: you can do them in two ways:
@@ -111,6 +72,25 @@ repeat {
     m *= 2
 } while m < 100
 print(m)
+// Keep looping until you hit a break
+var counter = 0
+while true {
+    counter += 1
+    print("The counter is now \(counter)")
+    if counter == 21 {
+        break
+    }
+}
+
+// continue skips just exits this iteration of the for or while loop and moves to the next one.
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print("The odd numbers are: ")
+for x in numbers {
+    if x % 2 == 0 {
+        continue
+    }
+    print(x)
+}
 
 
 // You can also use optionals: values that are either "there" or nil. 
@@ -140,6 +120,8 @@ let fullName: String = "Machiel van Dorst"
 let informalGreeting = "Hi \(nickName ?? fullName)" // nickName is empty so fullName is used
 
 
+
+
 // Switch statements aren't bound to one variable type, or true/false, ints only etc. 
 // They need to be exhaustive: include a default case! If a match is found, the code after 
 // the : is executed and the program exits the switch block.
@@ -158,6 +140,7 @@ default:
     print("Everything tastes good in soup.")
 }
 // You can also use ranges
+var age = 29
 switch age{
 case 1:
     print("Happy first birthday")

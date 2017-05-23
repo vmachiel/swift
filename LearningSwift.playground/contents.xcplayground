@@ -2,7 +2,8 @@
 <playground version='6.0' target-platform='ios' display-mode='raw'>
     <pages>
         <page name='Variables and Data Types'/>
-        <page name='Control Flow and Operators'/>
+        <page name='Operators'/>
+        <page name='Control Flow'/>
         <page name='Functions and Closures'/>
         <page name='Classes and Objects'/>
         <page name='Enums and Structs'/>
