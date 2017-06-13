@@ -5,6 +5,7 @@
         <page name='Operators'/>
         <page name='Control Flow'/>
         <page name='Functions and Closures'/>
+        <page name='Optionals and Optional Chaining'/>
         <page name='Classes and Objects'/>
         <page name='Enums and Structs'/>
         <page name='Value vs Reference Types'/>

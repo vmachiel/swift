@@ -54,28 +54,6 @@ func sumOf(numbers: Int...) -> Int {
 sumOf()  // called with 0 argumens
 sumOf(numbers: 4, 6, 123, 23)  // called with 4 arguments
 
-// Optinal return types: write a ? after one or more of the return types to indicate it
-// might be nill. See this example, which returns a string if one string of the array has
-// the desired prefix, and returns nil if none are found.
-func firstString(havingPrefix prefix: String, within strings: [String]) -> String? {
-    for string in strings {
-        if string.hasPrefix(prefix) {
-            return string
-        }
-    }
-    return nil
-}
-firstString(havingPrefix: "snor", within: ["Hallo", "Snorsex", "snorsex",])
-firstString(havingPrefix: "barry", within: ["Hallo", "Snorsex", "snorsex",])
-// You can call functions with optional return types in a if let statement, since those
-// check wether the value is there of if it's nill
-var guests = ["Barry", "Harry", "Larry", "Darry"]
-if let bGuest = firstString(havingPrefix: "B", within: guests) {
-    print("Guest with B was found: \(bGuest)")
-} else {
-    print("No Guest with B was found")
-}
-
 
 
 
