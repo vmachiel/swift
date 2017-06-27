@@ -6,9 +6,10 @@
         <page name='Control Flow'/>
         <page name='Functions and Closures'/>
         <page name='Optionals and Optional Chaining'/>
-        <page name='Classes and Objects'/>
         <page name='Enums and Structs'/>
+        <page name='Classes and Objects'/>
         <page name='Value vs Reference Types'/>
+        <page name='Static and Access'/>
         <page name='Generics'/>
         <page name='Extensions'/>
         <page name='Protocols'/>

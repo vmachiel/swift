@@ -36,6 +36,11 @@ class NamedShape {
 // self is not necessary except for init. You can call instance.sidelenght the same as
 // instance.name or numberOfSides  Use it at extensions en disambiuity.
 
+// You write a new self.yadayady for new properties. Once those are defined for the subclass,
+// you can make method calls. So next, you pass the values to the superclass init, which is 
+// 'name' in this case. After all has been inited, you can (if you want) change the default value
+// of a property, in this case numberOfSides defined by the superclass. 
+
 class Square: NamedShape {
     var sideLength: Double  // to be definied at init
     
@@ -187,7 +192,6 @@ In all other cases, define a class, and create instances of that class to be man
 and passed by reference. In practice, this means that most custom data constructs
 should be classes, not structures.
 */
-
 
 
 
