@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='raw'>
+<playground version='6.0' target-platform='ios' display-mode='raw' executeOnSourceChanges='false'>
     <pages>
         <page name='Variables and Data Types'/>
         <page name='Operators'/>
@@ -7,7 +7,8 @@
         <page name='Functions and Closures'/>
         <page name='Optionals and Optional Chaining'/>
         <page name='Enums and Structs'/>
-        <page name='Classes and Objects'/>
+        <page name='Classes'/>
+        <page name='Polymorph and Typecasting'/>
         <page name='Value vs Reference Types'/>
         <page name='Static and Access'/>
         <page name='Generics'/>
