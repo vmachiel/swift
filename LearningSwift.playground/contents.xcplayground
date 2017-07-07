@@ -15,5 +15,6 @@
         <page name='Extensions'/>
         <page name='Protocols'/>
         <page name='Error Handeling'/>
+        <page name='Random Test Code'/>
     </pages>
 </playground>

@@ -139,6 +139,7 @@ case let x where x.hasSuffix("pepper"):
 default:
     print("Everything tastes good in soup.")
 }
+
 // You can also use ranges
 var age = 29
 switch age{
@@ -151,6 +152,7 @@ case let decade where decade % 10 == 0:  // so again: temp constant decade, if d
 default:
     print("Happy birthday")
 }
+
 // You can also switch over multiple variables using tuples
 let userName = "admin"
 let passwordIsValid = true
