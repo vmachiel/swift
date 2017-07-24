@@ -16,14 +16,37 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     var selectedImage: String?
     
+    // When the view is loaded, if the selectedImage property exists and thus can be set to
+    // constant imageToLoad. It's a name from the array of file names in the case.
+    // UIImage is a class to display images. They can take a name and load the correct
+    // image from the contents. 
+    // imageView is created by dragging the storyboard thing. 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = selectedImage  // Notice this is a optional: both title and selectedImage.
+        
         if let imageToLoad = selectedImage {
             imageView.image  = UIImage(named: imageToLoad)
         }
         // Do any additional setup after loading the view.
     }
-
+    
+    // Again, super.blabla makes sure the normal stuff gets executed.
+    // viewWillAppear gets called right before this view (DetailView) is loaded.
+    // viewDidAppear gets called right before the view is dystored (user taps back)
+    // navigationContoller (get), if its there, sets its hidesBarsOnTap (get/set) property
+    // to true right before the view is loaded, and false again when destroyed.
+    // You don't want that active in the actual table, only the detail/picture.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.hidesBarsOnTap = true
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.hidesBarsOnTap = false
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

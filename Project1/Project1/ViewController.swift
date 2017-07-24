@@ -21,6 +21,8 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()  // Run default code before your own.
         
+        title = "Storm Viewer"  // Title property that'll appear in the title bar.
+        
         let fm = FileManager.default  // works with the filesystem
         let path = Bundle.main.resourcePath!  // The standard resource path. It's an
         // optional, but we forced unwrap it because we know it's there for sure.

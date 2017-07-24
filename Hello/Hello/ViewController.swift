@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        helloLabel.text = "What do you want to say?"
         // Do any additional setup after loading the view, typically from a nib.
     }
 

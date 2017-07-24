@@ -34,13 +34,46 @@ Now link the imageview to the pictures property using the assistant editor. Open
 next to it. Right click drag the into the class code: put it above all the methods and name it imageView\
 \
 \
-\
-\
 Make each detailview screen appear when the user taps on a picture title. In DetailViewController.swift, make an optional String property\
 that holds the name of the picture to load. It's optional, because when the view is first created, the name won't exist. \
 The DetailView as an id of "Detail" which allows us to load it in code using instantiateViewController(withIdentifier:). Each view has a optional\
 called storyboard which may or may not contain the storyboard it was loaded from. Both View and Detail are placed an thus loaded in the\
 main.storyboard. So the override tableview with didSelectRowAt code for details on how to load the detailview. It will run each time a \
 user selects a certain row. \
+The navigation controller is a stack of screens you navigate through. It creates and destroys views when necessary. \
 \
-The navigation controller is a stack of screens you navigate through. It creates and destroys views when necessary. }
+Finally in the DetailViewController code, make it actually show the picture using the UIImage class (see code)\
+\
+\
+Final cleanup:\
+Pictures are stretched to fill the screen when the are loaded. We don't want that: Storyboard: select the image view and go to the\
+attri inspector. Make scale to fit into aspect fit. Scale stretches, aspect fit fits the picture and cuts nothing off, aspect fill fills the screen\
+and may cut off either horizontal or vertical parts of the picture. \
+\
+Next, make the picture go fullscreen when tapping on it. Do this in detailview, and make sure it's undone when going back to the table\
+with picture names, or stuff will go wrong. Views have methods: viewWillAppear() (about to be shown), viewDidAppear() (has been\
+shown), viewWillDisappear() (will go away), viewDidDisappear() (has gone away). Use viewWillAppear() and viewWillDisappear() to\
+make sure the tab to hide menu bar is enabled and than disabled when the DetailView is loaded. \
+\
+Make the grey arrows appear on the each table cell so users will know to tap. In the table view in the main ViewController, go to Picture. \
+This is the ID we set to use in code. Give it an accessory of Disclosure indicator in the attri inspector.\
+\
+Finally titles for each view: In both View and DetailView add a title property in the viewDidLoad() method. In detail, it's dynamic. \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}
