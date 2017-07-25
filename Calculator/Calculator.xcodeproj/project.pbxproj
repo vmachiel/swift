@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E224FAE1F27AD3D0014D837 /* CalculatorBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E224FAD1F27AD3D0014D837 /* CalculatorBrain.swift */; };
 		3EFED2911F2665A0000FE89B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFED2901F2665A0000FE89B /* AppDelegate.swift */; };
 		3EFED2931F2665A0000FE89B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFED2921F2665A0000FE89B /* ViewController.swift */; };
 		3EFED2961F2665A0000FE89B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EFED2941F2665A0000FE89B /* Main.storyboard */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E224FAD1F27AD3D0014D837 /* CalculatorBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorBrain.swift; sourceTree = "<group>"; };
 		3EFED28D1F2665A0000FE89B /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EFED2901F2665A0000FE89B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EFED2921F2665A0000FE89B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			children = (
 				3EFED2921F2665A0000FE89B /* ViewController.swift */,
 				3EFED2941F2665A0000FE89B /* Main.storyboard */,
+				3E224FAD1F27AD3D0014D837 /* CalculatorBrain.swift */,
 				3E1383351F272E9700A34DCE /* Supporting Files */,
 			);
 			path = Calculator;
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E224FAE1F27AD3D0014D837 /* CalculatorBrain.swift in Sources */,
 				3EFED2931F2665A0000FE89B /* ViewController.swift in Sources */,
 				3EFED2911F2665A0000FE89B /* AppDelegate.swift in Sources */,
 			);

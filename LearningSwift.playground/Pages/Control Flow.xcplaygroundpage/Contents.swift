@@ -171,6 +171,19 @@ case (_, let isValid):
     print(isValid ? "Welcome to restricted area" : "Access Denied")
 }
 
+// Fallthrough can be used if you want the switch case to continue, even if
+// you find a match. 
+let integerToDescribe = 5
+var description = "The number \(integerToDescribe) is"
+switch integerToDescribe {
+case 2, 3, 5, 7, 11, 13, 17, 19:
+    description += " a prime number, and also"
+    fallthrough
+default:
+    description += " an integer."
+}
+print(description)
+
 
 
 
