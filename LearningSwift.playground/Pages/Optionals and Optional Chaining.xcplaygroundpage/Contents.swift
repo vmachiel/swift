@@ -148,6 +148,8 @@ let actualInt = convertedNumber!
 let possibleString: String? = "An optional string."
 let forcedString: String = possibleString! // requires an exclamation mark to unwrap/use
 
+// When a type is normally and optional (Like UILabel) But you know it's always there
+// You can unwrap it at declaration: implicitely unwrapping.
 let assumedString: String! = "An implicitly unwrapped optional string."
 let implicitString: String = assumedString // no need for an exclamation mark
 
