@@ -166,7 +166,6 @@ if let haterStatus = getHaterStatus(weather: .wind(speed: 15)) {
 
 
 // Structs! Basic struct syntax: no need for init like classes
-
 struct Card {
     var rank: Rank  // These are you self made enums!
     var suit: Suit
@@ -176,6 +175,21 @@ struct Card {
 }
 let theAceOfSpace = Card(rank: .ace, suit: .spades)
 let cardDescription = theAceOfSpace.simpleDescription()
+
+
+// If a method changes a property of a struct, it has to be marked mutating
+// Structs are pased by value and are copy on write, so if swift needs to 
+// know when to copy it, it needs to know when you change it.
+struct Point {
+    var x = 0
+    var y = 0
+    
+    mutating func changeLocation(moveXBy: Int, moveYBy: Int) {
+        x += moveXBy
+        y += moveYBy
+    }
+    
+}
 
 /* Classes vs structs
 Classes and structures in Swift have many things in common. Both can:

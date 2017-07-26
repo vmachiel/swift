@@ -45,21 +45,34 @@ class ViewController: UIViewController {
         }
     }
     
-    // If you can get a operation symbol (if let), check what they are
-    // If not in the switch case, do nothing.
-    // Users aren't typing a number as soon as you use one of these
-    // buttons.
+    // set the model to a private var that the view methods can use
+    // Initialize it, no arguments because the struct has no un inits vars
+    // The accumulator is optional, set to nil
+    private var brain = CalculatorBrain()
+    
+    // This method is changed to make use of the model built in CalculatorBrain.swift
+    // First off: if the user is typing ie has typed some numbers before you press
+    // an operation button, set that as the operand in the model. After that, user
+    // is done typing number
+    
+    // If you can succesfully extract a math symbol from the title of the button
+    // that was pressed, send it to the model using the brain var to let the model
+    // handle it.
+    
+    // The result coming back from the model is an optional double. If that double
+    // does return, set it as the display value. So if sqrt is pressed for instance
+    // something will return and assigned to the optional. If you press +, no result
+    // yet so no diplay update.
     @IBAction func performOperation(_ sender: UIButton) {
-        userIsTyping = false
+        if userIsTyping {
+            brain.setOperand(displayValue)
+            userIsTyping = false  // IMPORTANT!! This will ensure a new number after an operation. 
+        }
         if let mathmaticalSymbol = sender.currentTitle {
-            switch mathmaticalSymbol {
-            case "π":
-                displayValue = Double.pi
-            case "√":
-                displayValue = sqrt(displayValue)
-            default:
-                break
-            }
+            brain.performOperation(mathmaticalSymbol)
+        }
+        if let result = brain.result {
+            displayValue = result // no ! because if let unwraps the optional. 
         }
     }
 }
