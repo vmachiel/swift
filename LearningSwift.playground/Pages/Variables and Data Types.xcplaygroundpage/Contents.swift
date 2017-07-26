@@ -132,6 +132,9 @@ let personDay: String? = person["day"]
 if personDay == nil {
     print("no day was found")
 }
+// Specify what dictionary key and value types you want to use if you
+// want to init a empty dict of specific contents
+var operations: Dictionary<String, Double> 
 
 
 

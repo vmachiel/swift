@@ -38,6 +38,7 @@ class ViewController: UIViewController {
             let textCurrentlyInDisplay = display.text!
             // you have to unwrap display. But not its text property, since
             // it can be set, and is set. So compiler knows it has a value
+            // String cat.
             display.text = textCurrentlyInDisplay + digit
         } else {
             display.text = digit

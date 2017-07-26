@@ -58,13 +58,15 @@ sumOf(numbers: 4, 6, 123, 23)  // called with 4 arguments
 
 
 // Function types: specify a function as a type for a variable:
-func addTwoNumbers(_ a: Int, _ b:Int) -> Int {
+func addTwoNumbers(a: Int, b:Int) -> Int {
     return a + b
 }
-let mathFunction: (Int, Int) -> Int = addTwoNumbers
+let mathFunction: (Int, Int) -> Int
+mathFunction = addTwoNumbers
 // This variable can now be used like this:
-print("The result of adding 2 and 3 is: \(addTwoNumbers(2, 3))")
-
+print("The result of adding 2 and 3 is: \(mathFunction(2, 3))")
+// !!! NOTICE !!! you don't call it using external parameter.
+// because mathFunction is technically any constant that takes two int and returns one
 
 
 

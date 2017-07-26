@@ -8,8 +8,12 @@
 
 import Foundation
 
-// What does this model allow PUBLICLY? What does it allow the controller to do?
+// Global file functions for the struct to use:
+func changeSign(operand: Double) -> Double {
+    return -operand
+}
 
+// What does this model allow PUBLICLY? What does it allow the controller to do?
 // No need for inheritance. Will only be refferenced by one Controller. KISAS
 struct CalculatorBrain {
     
@@ -20,17 +24,41 @@ struct CalculatorBrain {
     // when you start.
     private var accumulator: Double?
     
+    // Data type to make the dictionary extensible to operations and not just doubles
+    // this type is private to the calcbrain struct.
+    // Assiate value Double with the constant, and function that takes and returns a double
+    // for the operation case:
+    private enum Operation {
+        case constant(Double)
+        case unaryOperation((Double) -> Double)
+    }
     
+    // Table of all operation to make it extensible.
+    // Functions are types so can be an associated value (as defined in the enum)
+    private var operations: Dictionary<String, Operation> = [
+        "π" : Operation.constant(Double.pi),
+        "e" : Operation.constant(M_E),
+        "√" : Operation.unaryOperation(sqrt),
+        "cos" : Operation.unaryOperation(cos),
+        "±" : Operation.unaryOperation(changeSign)
+    ]
+    
+    // If the symbol passed from the viewcontroller matches one in the dict,
+    // set the operand to the constant.
+    
+    // If constant, at it's as. value to constant using let and set the accumulator to it.
+    // if Operation: set the as. value to functon. Check if the accumulator has a value,
+    // if so, apply operation.
     mutating func performOperation(_ symbol: String) {
-        switch symbol {
-        case "π":
-            accumulator = Double.pi
-        case "√":
-            if let operand = accumulator {
-                accumulator = sqrt(operand)
+        if let operation = operations[symbol] {
+            switch operation {
+            case .constant(let value):
+                accumulator = value
+            case.unaryOperation(let function):
+                if accumulator != nil {
+                    accumulator = function(accumulator!)  // Force unwrap, already checked for nil
+                }
             }
-        default:
-            break
         }
     }
     
