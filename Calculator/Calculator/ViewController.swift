@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var display: UILabel!
     // is the user already typing something?
     // init false: user hasn't typed anything
-    var userIsTyping = false
+    var userIsInTheMiddleOfTyping = false
     // Make a var that tracks what's in the UILabel display, and tracks it 
     // as if it's a Double. 
     var displayValue: Double {
@@ -34,15 +34,26 @@ class ViewController: UIViewController {
         // If you have already typed numbers, add them.
         // if not, set the display to the first digit typed
         // and set userIsTyping to true for the next digits.
-        if userIsTyping {
+        // check for invalid number!
+        if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             // you have to unwrap display. But not its text property, since
             // it can be set, and is set. So compiler knows it has a value
             // String cat.
-            display.text = textCurrentlyInDisplay + digit
+            // Touched digit is not . or there is no . on screen yet:
+            if digit != "." || !textCurrentlyInDisplay.contains(".") {
+                display.text = textCurrentlyInDisplay + digit
+            }
+        // and for new numbers: is the digit a ., make screen 0.
+        // else, set the digit. 
+        // Make userIsInTheMiddleOfTyping bool.
         } else {
-            display.text = digit
-            userIsTyping = true
+            if digit == "." {
+                display.text = "0."
+            } else {
+                display.text = digit
+            }
+            userIsInTheMiddleOfTyping = true
         }
     }
     
@@ -65,9 +76,9 @@ class ViewController: UIViewController {
     // something will return and assigned to the optional. If you press +, no result
     // yet so no diplay update.
     @IBAction func performOperation(_ sender: UIButton) {
-        if userIsTyping {
+        if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)
-            userIsTyping = false  // IMPORTANT!! This will ensure a new number after an operation. 
+            userIsInTheMiddleOfTyping = false  // IMPORTANT!! This will ensure a new number after an operation. 
         }
         if let mathmaticalSymbol = sender.currentTitle {
             brain.performOperation(mathmaticalSymbol)

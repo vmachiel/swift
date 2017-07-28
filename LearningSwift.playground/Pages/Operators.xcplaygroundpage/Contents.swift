@@ -61,4 +61,19 @@ var both = songs + songs2
 songs += ["Snorsex"]
 
 
+// Ternary operator: Assign something if to var or constant if expression is true
+// or false. If true, assign what is before after ?, else assign what is after :
+let currentWeather = "Sunny"
+let currentMood = currentWeather == "Sunny" ? "Happy" : "Cranky"  // Happy
+
+
+
+
+
+
+
+
+
+
+
 
