@@ -132,6 +132,13 @@ struct CalculatorBrain {
         }
     }
     
+    // Keep track if a binary operation is pending:
+    var resultIsPending: Bool {
+        get {
+            return pendingBinaryOperation != nil
+        }
+    }
+    
 }
 
 
