@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// ViewController as a label for display, and computed property for its value, that is 
+// get and set by the CalCulatorBrain. 
 class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
@@ -48,6 +51,7 @@ class ViewController: UIViewController {
         // else, set the digit. 
         // Make userIsInTheMiddleOfTyping bool.
         } else {
+            // This could be: {display.text = digit == "." ? "0." : digit}
             if digit == "." {
                 display.text = "0."
             } else {

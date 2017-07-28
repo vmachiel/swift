@@ -37,18 +37,21 @@ struct CalculatorBrain {
     // Functions are types so can be an associated value (as defined in the enum)
     // Use those for unaryOps
     // For binary ops, use closures!
+    // No need for types, they are defined in the enum Operation
     private var operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
         "√" : Operation.unaryOperation(sqrt),
+        "x^2" : Operation.unaryOperation({$0 * $0}),
         "cos" : Operation.unaryOperation(cos),
-        // no need for types, they are defined in the enum Operation
-        // the function is cleanly and easily defined using closure syntax
+        "sin" : Operation.unaryOperation(sin),
+        "tan" : Operation.unaryOperation(tan),
         "±" : Operation.unaryOperation({ -$0 }),
         "*" : Operation.binaryOperation({ $0 * $1 }),
         "÷" : Operation.binaryOperation({ $0 / $1 }),
         "+" : Operation.binaryOperation({ $0 + $1 }),
         "-" : Operation.binaryOperation({ $0 - $1 }),
+        "x^y" : Operation.binaryOperation(pow),
         "=" : Operation.equals
     ]
     
