@@ -134,7 +134,19 @@ if personDay == nil {
 }
 // Specify what dictionary key and value types you want to use if you
 // want to init a empty dict of specific contents
-var operations: Dictionary<String, Double> 
+var operations: Dictionary<String, Double>
+
+
+
+// When dealing with tuple types, access their elements like this:
+let tupleType: (Int, String)
+tupleType = (29, "Machiel")
+print("My name is \(tupleType.1) and I'm \(tupleType.0) years old")
+// or name them:
+let tupleType2: (age: Int, name: String)
+tupleType2 = (23, "Barry")
+print("My name is \(tupleType2.name) and I'm \(tupleType2.age) years old")
+
 
 
 

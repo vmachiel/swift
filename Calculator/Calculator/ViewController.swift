@@ -13,8 +13,13 @@ import UIKit
 // get and set by the CalCulatorBrain. 
 class ViewController: UIViewController {
     
+    // The text in the display
     @IBOutlet weak var display: UILabel!
+    // Has the user typed a number already?
     var userIsInTheMiddleOfTyping = false
+    // This property is passed to the brain (the number in the display)
+    // This property is set to the result when the brain returns it.
+    // Is a Double to be used by brain, set to string to use as display.text
     var displayValue: Double {
         // Assume there's always a valid double
         get { 
@@ -25,8 +30,11 @@ class ViewController: UIViewController {
             display.text = String(newValue)
         }
     }
+    // The whole brain is set to this var to communicate with it.
     private var brain = CalculatorBrain()
-
+    
+    // Called when the user touches a button. Properties of the button are in the 
+    // sender parameter. You get the number from it's title. 
     @IBAction func touchDigit(_ sender: UIButton) {
         let digit = sender.currentTitle!
         // If you have already typed numbers, add them.
@@ -56,6 +64,9 @@ class ViewController: UIViewController {
         }
     }
     
+    // Run when the user touches a operation button, properties are send to the
+    // sender parameter. If there is a number typed, send the operand to the brain
+    // and reset the bool. Then, if the 
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)

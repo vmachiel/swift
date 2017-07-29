@@ -13,43 +13,77 @@ import Foundation
 // No need for inheritance. Will only be refferenced by one Controller. KISAS
 struct CalculatorBrain {
     
-    private var accumulator: Double?
+    // This will hold the current number, and the discription of the current operation.
+    private var accumulator: (Double, String)?
+    // What does each operation look like, and what does eacht discription look like.
+    // They discription functions can be used to build the string.
     private enum Operation {
         case constant(Double)
-        case unaryOperation((Double) -> Double)
-        case binaryOperation((Double, Double) -> Double)
+        case unaryOperation((Double) -> Double, (String) -> String)
+        case binaryOperation((Double, Double) -> Double, (String, String) -> String)
         case equals
     }
-
+    
+    // Called by the viewController when operation is pressed to set operand. Set the acc to the
+    // operand double and string disciption like:
+    mutating func setOperand(_ operand: Double) {
+        accumulator = (operand, "\(operand)")
+        
+    }
+    
+    // Returns the result to ViewController.
+    var result: Double? {
+        get {
+            if accumulator != nil {
+                // Return the actual number, force because checked.
+                return accumulator!.0
+            }
+            return nil
+        }
+    }
+    
+    // Dict built using the Operation enum. Constants can built in functions are used,
+    // as well as closures to perform the actual operations and build de description
+    // strings.
+    // It knows which $ should be doubles and which should be string because you
+    // defined it in the Operation enum
     private var operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
-        "√" : Operation.unaryOperation(sqrt),
-        "x^2" : Operation.unaryOperation({$0 * $0}),
-        "cos" : Operation.unaryOperation(cos),
-        "sin" : Operation.unaryOperation(sin),
-        "tan" : Operation.unaryOperation(tan),
-        "±" : Operation.unaryOperation({ -$0 }),
-        "*" : Operation.binaryOperation({ $0 * $1 }),
-        "÷" : Operation.binaryOperation({ $0 / $1 }),
-        "+" : Operation.binaryOperation({ $0 + $1 }),
-        "-" : Operation.binaryOperation({ $0 - $1 }),
-        "x^y" : Operation.binaryOperation(pow),
+        "√" : Operation.unaryOperation(sqrt, { "√(" + $0 + ")" }),
+        "x^2" : Operation.unaryOperation({ pow($0, 2) }, {"(" + $0 + ")²"}),
+        "cos" : Operation.unaryOperation(cos, { "cos(" + $0 + ")" }),
+        "sin" : Operation.unaryOperation(sin, { "sin(" + $0 + ")" }),
+        "tan" : Operation.unaryOperation(tan, { "tan(" + $0 + ")" }),
+        "±" : Operation.unaryOperation({ -$0 }, { "-(" + $0 + ")" }),
+        "*" : Operation.binaryOperation({ $0 * $1 }, { $0 + "*" + $1 }),
+        "÷" : Operation.binaryOperation({ $0 / $1 }, { $0 + "÷" + $1 }),
+        "+" : Operation.binaryOperation({ $0 + $1 }, { $0 + "+" + $1 }),
+        "-" : Operation.binaryOperation({ $0 - $1 }, { $0 + "-" + $1 }),
+        "x^y" : Operation.binaryOperation(pow, { $0 + "^" + $1 }),
         "=" : Operation.equals
     ]
-
+    
+    // Gets called when an operator button is pressed. 
+    // Checks the operations dict for a key match, and passes the value to
+    // operation parameter. Uses its enums ass. value to perform the action and
+    // add description to the accumulator.
     mutating func performOperation(_ symbol: String) {
         if let operation = operations[symbol] {
             switch operation {
+            // Constant? set it to the accumulator, so the ViewController can
+            // get it back to the display. Save the symbol as well.
             case .constant(let value):
-                accumulator = value
-            case .unaryOperation(let function):
+                accumulator = (value, symbol)
+            case .unaryOperation(let function, let description):
                 if accumulator != nil {
-                    accumulator = function(accumulator!)  // Force unwrap, already checked for nil
+                    accumulator = (function(accumulator!.0), description(accumulator!.1))
+                    // force! already nil checked
                 }
-            case .binaryOperation(let function):
+            // Again, the ass values of the enum stored in the dict can be set to constants.
+            case .binaryOperation(let function, let description):
                 if accumulator != nil {
-                    pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
+                    pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!)
                     accumulator = nil
                 }
             case .equals:
@@ -57,41 +91,35 @@ struct CalculatorBrain {
             }
         }
     }
-
+    
+    
+    // Takes a operation, a description to add to the description string, and a accumulator to
+    // set to the first operand. Is nil if nothing pending.
+    private var pendingBinaryOperation: PendingBinaryOperation?
+    
+    private struct PendingBinaryOperation {
+        // Store the acutal function, the description and the current (operand, description)
+        let function: (Double, Double) -> Double  // What binary op is being done? (passed by closure)
+        let description: (String, String) -> String
+        let firstOperand: (Double, String)
+        
+        // Called when the second operand is set and equals is passed
+        func perform(with secondOperand: (Double, String)) -> (Double, String) {
+            return (function(firstOperand.0, secondOperand.0), description(firstOperand.1, secondOperand.1))
+        }
+    }
+    // Is there a result pending? Checks if the pendingBinaryOperation var has data
+    var resultIsPending: Bool {
+        get {
+            return pendingBinaryOperation != nil
+        }
+    }
+    // If it does have data and equals is pressed and there is a new number in the accumulator,
+    // call its perform method.
     mutating private func performPendingBinaryOperation() {
         if pendingBinaryOperation != nil && accumulator != nil {
             accumulator = pendingBinaryOperation!.perform(with: accumulator!)
             pendingBinaryOperation = nil
-        }
-    }
-    
-
-    private var pendingBinaryOperation: PendingBinaryOperation?
-    
-    private struct PendingBinaryOperation {
-        // These aren't changed, they are used to temp hold value and function:
-        let function: (Double, Double) -> Double  // What binary op is being done? (passed by closure)
-        let firstOperand: Double
-        
-        func perform(with secondOperand: Double) -> Double {
-            return function(firstOperand, secondOperand)
-        }
-    }
- 
-    mutating func setOperand(_ operand: Double) {
-        accumulator = operand
-        
-    }
-    
-    var result: Double? {
-        get {
-            return accumulator
-        }
-    }
-
-    var resultIsPending: Bool {
-        get {
-            return pendingBinaryOperation != nil
         }
     }
     
