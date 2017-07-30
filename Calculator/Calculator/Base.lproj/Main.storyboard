@@ -109,19 +109,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kcm-oe-r6P">
                                                 <rect key="frame" x="0.0" y="116.5" width="343" height="106.5"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzm-AS-2Vm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="106.5"/>
-                                                        <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="±">
-                                                            <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XxU-63-u96"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34m-zm-LTD">
-                                                        <rect key="frame" x="59" y="0.0" width="48.5" height="106.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="106.5"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                         <state key="normal" title="x^y">
@@ -129,6 +118,17 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pAf-7i-B5H"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uzm-AS-2Vm">
+                                                        <rect key="frame" x="59" y="0.0" width="48.5" height="106.5"/>
+                                                        <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                        <state key="normal" title="x^3">
+                                                            <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XxU-63-u96"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3i-RE-XZc">
@@ -184,7 +184,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="107"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="±">
+                                                        <state key="normal" title="1/x">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
@@ -255,7 +255,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="106.5"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="±">
+                                                        <state key="normal" title="ln">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
@@ -326,7 +326,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="106.5"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="±">
+                                                        <state key="normal" title="log">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>

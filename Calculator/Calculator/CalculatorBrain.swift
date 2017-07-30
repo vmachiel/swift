@@ -28,7 +28,6 @@ struct CalculatorBrain {
     // operand double and string disciption like:
     mutating func setOperand(_ operand: Double) {
         accumulator = (operand, "\(operand)")
-        
     }
     
     // Returns the result to ViewController.
@@ -42,20 +41,36 @@ struct CalculatorBrain {
         }
     }
     
+    var description: String? {
+        get{
+            if resultIsPending {
+                return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
+            } else {
+                return accumulator?.1
+            }
+        }
+    }
+    
     // Dict built using the Operation enum. Constants can built in functions are used,
     // as well as closures to perform the actual operations and build de description
     // strings.
     // It knows which $ should be doubles and which should be string because you
-    // defined it in the Operation enum
+    // defined it in the Operation enum.
+    // In the description case, the new stuff is constantly added to the existing des-
+    // cription!!!
     private var operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
         "√" : Operation.unaryOperation(sqrt, { "√(" + $0 + ")" }),
-        "x^2" : Operation.unaryOperation({ pow($0, 2) }, {"(" + $0 + ")²"}),
+        "x^2" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")²" }),
+        "x^3" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")³"}),
         "cos" : Operation.unaryOperation(cos, { "cos(" + $0 + ")" }),
         "sin" : Operation.unaryOperation(sin, { "sin(" + $0 + ")" }),
         "tan" : Operation.unaryOperation(tan, { "tan(" + $0 + ")" }),
         "±" : Operation.unaryOperation({ -$0 }, { "-(" + $0 + ")" }),
+        "1/x" : Operation.unaryOperation({ 1/$0 }, { "1/(" + $0 + ")" } ),
+        "ln" : Operation.unaryOperation(log2, { "ln(" + $0 + ")" }),
+        "log" : Operation.unaryOperation(log10, { "log(" + $0 + ")" }),
         "*" : Operation.binaryOperation({ $0 * $1 }, { $0 + "*" + $1 }),
         "÷" : Operation.binaryOperation({ $0 / $1 }, { $0 + "÷" + $1 }),
         "+" : Operation.binaryOperation({ $0 + $1 }, { $0 + "+" + $1 }),
@@ -87,6 +102,9 @@ struct CalculatorBrain {
                     accumulator = nil
                 }
             case .equals:
+//                if description != nil {
+//                    print(description!)
+//                }
                 performPendingBinaryOperation()
             }
         }
@@ -122,7 +140,6 @@ struct CalculatorBrain {
             pendingBinaryOperation = nil
         }
     }
-    
 }
 
 
