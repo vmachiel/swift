@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     
     // The text in the display
     @IBOutlet weak var display: UILabel!
+    // The text in the description display
+    @IBOutlet weak var descriptionDisplay: UILabel!
     // Has the user typed a number already?
     var userIsInTheMiddleOfTyping = false
     // This property is passed to the brain (the number in the display)
@@ -66,20 +68,62 @@ class ViewController: UIViewController {
     
     // Run when the user touches a operation button, properties are send to the
     // sender parameter. If there is a number typed, send the operand to the brain
-    // and reset the bool. Then, if the 
+    // and reset the bool. Then the button that is pressed is send as the 
+    // symbol used to the brain using performOperation method.
+    // Finally, the result and descriptions are accessed from the brain, set and 
+    // formatted to their displays (display and descriptiondisplay)
+    // For des. display, call beautifynumbers, and check if resultIsPending. If it
+    // is add ... else add = because it's done. No description? Make it " "
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
-            brain.setOperand(displayValue)
+            brain.setOperand(displayValue)  // get is used here
             userIsInTheMiddleOfTyping = false  // IMPORTANT!! This will ensure a new number after an operation. 
         }
         if let mathmaticalSymbol = sender.currentTitle {
             brain.performOperation(mathmaticalSymbol)
         }
         if let result = brain.result {
-            displayValue = result // no ! because if let unwraps the optional. 
+            displayValue = result  // set is used here
+        }
+        if let description = brain.description {
+            descriptionDisplay.text = description.beautifyNumbers() + (brain.resultIsPending ? "..." : "=")
+        } else {
+            descriptionDisplay.text = " "
         }
     }
 }
+
+// Extend string to clean up the numbers for the discprition display
+// String will get some beautification code using Regex. Extention is used
+// because it might be needed again. 
+// Regex takes a pattern and options, can throw error.
+// Range is made by counting the caracters in the string the method is done
+// on
+// Finally, the result is return onto itself (this is a method)
+// The pattern (regex constant) is replaced with the provided replacement template. 
+// This will be used in cases where the full string needs to be replaced.. i think.
+extension String {
+    func replace(pattern: String, with replacement: String) -> String {
+        let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        let range = NSMakeRange(0, self.characters.count)
+        return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replacement)
+    }
+}
+
+// The extention that's used by the viewcontroller. It replaces the pattern with the
+// substring. So, \\. finds the dot, then none or one or more 0's, then either no number
+// at all [^0-9] or the end of the string. So it find .0 or .00 or .0000 etc
+// but not .00004 or .000423000243. It replaces that with $1, which is nothing so an
+// empty string. So it replaces it with an empty string, effectively deleting it.
+extension String {
+    func beautifyNumbers() -> String {
+        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "$1")
+    }
+}
+
+
+
+
 
 
 

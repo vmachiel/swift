@@ -16,5 +16,6 @@
         <page name='Protocols'/>
         <page name='Error Handeling'/>
         <page name='Random Test Code'/>
+        <page name='Regex Examples'/>
     </pages>
 </playground>
