@@ -115,7 +115,7 @@ class ViewController: UIViewController {
     @IBAction func backSpace(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping, var text = display.text {
             text.remove(at: text.index(before: text.endIndex))
-            if text.isEmpty {
+            if text.isEmpty || text == "0" {
                 text = "0"
                 userIsInTheMiddleOfTyping = false
             }
