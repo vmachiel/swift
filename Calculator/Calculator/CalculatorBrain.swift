@@ -62,8 +62,8 @@ struct CalculatorBrain {
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
         "√" : Operation.unaryOperation(sqrt, { "√(" + $0 + ")" }),
-        "x^2" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")²" }),
-        "x^3" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")³"}),
+        "x²" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")²" }),
+        "x³" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")³"}),
         "cos" : Operation.unaryOperation(cos, { "cos(" + $0 + ")" }),
         "sin" : Operation.unaryOperation(sin, { "sin(" + $0 + ")" }),
         "tan" : Operation.unaryOperation(tan, { "tan(" + $0 + ")" }),
@@ -71,11 +71,11 @@ struct CalculatorBrain {
         "1/x" : Operation.unaryOperation({ 1/$0 }, { "1/(" + $0 + ")" } ),
         "ln" : Operation.unaryOperation(log2, { "ln(" + $0 + ")" }),
         "log" : Operation.unaryOperation(log10, { "log(" + $0 + ")" }),
-        "*" : Operation.binaryOperation({ $0 * $1 }, { $0 + "*" + $1 }),
+        "x" : Operation.binaryOperation({ $0 * $1 }, { $0 + "x" + $1 }),
         "÷" : Operation.binaryOperation({ $0 / $1 }, { $0 + "÷" + $1 }),
         "+" : Operation.binaryOperation({ $0 + $1 }, { $0 + "+" + $1 }),
         "-" : Operation.binaryOperation({ $0 - $1 }, { $0 + "-" + $1 }),
-        "x^y" : Operation.binaryOperation(pow, { $0 + "^" + $1 }),
+        "xʸ" : Operation.binaryOperation(pow, { $0 + "^" + $1 }),
         "=" : Operation.equals
     ]
     

@@ -82,7 +82,7 @@
                                                         <rect key="frame" x="176.5" y="0.0" width="49" height="95"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="*">
+                                                        <state key="normal" title="x">
                                                             <color key="titleColor" red="0.08115870801072142" green="0.26859452360981728" blue="0.78232139565906733" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
@@ -120,7 +120,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="49" height="95"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="x^y">
+                                                        <state key="normal" title="xʸ">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
@@ -131,7 +131,7 @@
                                                         <rect key="frame" x="59" y="0.0" width="48.5" height="95"/>
                                                         <color key="backgroundColor" red="0.93086139899999998" green="0.57268119449999999" blue="0.15093274579999999" alpha="0.68906800180000005" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="x^3">
+                                                        <state key="normal" title="x³">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
@@ -142,7 +142,7 @@
                                                         <rect key="frame" x="117.5" y="0.0" width="49" height="95"/>
                                                         <color key="backgroundColor" red="0.93086139896373055" green="0.57268119450976651" blue="0.1509327458471128" alpha="0.68906800176056338" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                        <state key="normal" title="x^2">
+                                                        <state key="normal" title="x²">
                                                             <color key="titleColor" red="0.081158708009999997" green="0.26859452360000002" blue="0.78232139570000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
