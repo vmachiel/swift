@@ -108,7 +108,7 @@
                                                             <color key="titleColor" red="0.08115870801072142" green="0.26859452360981728" blue="0.78232139565906733" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o34-HY-rRF"/>
+                                                            <action selector="reset:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3Xw-An-wgx"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>

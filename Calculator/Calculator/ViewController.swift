@@ -52,14 +52,22 @@ class ViewController: UIViewController {
             if digit != "." || !textCurrentlyInDisplay.contains(".") {
                 display.text = textCurrentlyInDisplay + digit
             }
-        // and for new numbers: is the digit a ., make screen 0.
-        // else, set the digit. 
+        // And for new numbers: is the digit a ., make screen 0.
+        // If it's a 0, and the screen is set to 0, do nothing.
+        // If it's a 0, but there is a number from previous calc,
+        // fallthrough to default which is:
+        // Default: set screen to typed digit. In any case:
         // Make userIsInTheMiddleOfTyping bool.
         } else {
-            // This could be: {display.text = digit == "." ? "0." : digit
-            if digit == "." {
+            switch digit {
+            case ".":
                 display.text = "0."
-            } else {
+            case "0":
+                if display.text == "0" {
+                    return // exit switch
+                }
+                fallthrough
+            default:
                 display.text = digit
             }
             userIsInTheMiddleOfTyping = true
@@ -90,6 +98,15 @@ class ViewController: UIViewController {
         } else {
             descriptionDisplay.text = " "
         }
+    }
+    // Reset button. Reset everything by re-initializing the brain. 
+    // set display value to 0, set description to empty string and 
+    // user typing bool false
+    @IBAction func reset(_ sender: UIButton) {
+        brain = CalculatorBrain()
+        displayValue = 0
+        descriptionDisplay.text = " "
+        userIsInTheMiddleOfTyping = false
     }
 }
 
