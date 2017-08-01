@@ -108,6 +108,20 @@ class ViewController: UIViewController {
         descriptionDisplay.text = " "
         userIsInTheMiddleOfTyping = false
     }
+    // Backspace button. If user is typing, and the text has something in it,
+    // set current text to var. Remove it's last char. If it's now empty,
+    // set it to 0 and userIsInTheMiddleOfTyping to false. 
+    // Finally, set the display.text to the text var
+    @IBAction func backSpace(_ sender: UIButton) {
+        if userIsInTheMiddleOfTyping, var text = display.text {
+            text.remove(at: text.index(before: text.endIndex))
+            if text.isEmpty {
+                text = "0"
+                userIsInTheMiddleOfTyping = false
+            }
+            display.text = text
+        }
+    }
 }
 
 // Extend string to clean up the numbers for the discprition display
