@@ -411,7 +411,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backSpace" destination="eeu-oR-CQs" id="F8A-ii-9e7"/>
                         <outlet property="descriptionDisplay" destination="Zye-mv-oFn" id="1EB-lE-n5Q"/>
                         <outlet property="display" destination="x10-6m-PQt" id="P38-hg-4qR"/>
                     </connections>
