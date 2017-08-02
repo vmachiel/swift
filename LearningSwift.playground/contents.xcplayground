@@ -4,10 +4,12 @@
         <page name='Variables and Data Types'/>
         <page name='Operators'/>
         <page name='Control Flow'/>
+        <page name='Array and Range extra'/>
         <page name='Functions and Closures'/>
         <page name='Optionals and Optional Chaining'/>
         <page name='Tuples and Multiple Return Types'/>
-        <page name='Enums and Structs'/>
+        <page name='Enums'/>
+        <page name='Structs'/>
         <page name='Classes'/>
         <page name='Polymorph and Typecasting'/>
         <page name='Value vs Reference Types'/>
