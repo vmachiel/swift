@@ -14,7 +14,7 @@ import Foundation
 struct CalculatorBrain {
     
     // This will hold the current number, and the discription of the current operation.
-    private var accumulator: (Double, String)?
+    private var accumulator: (acc: Double, des: String)?
     // What does each operation look like, and what does eacht discription look like.
     // They discription functions can be used to build the string.
     private enum Operation {
@@ -35,7 +35,7 @@ struct CalculatorBrain {
         get {
             if accumulator != nil {
                 // Return the actual number, force because checked.
-                return accumulator!.0
+                return accumulator!.acc
             }
             return nil
         }
@@ -46,7 +46,7 @@ struct CalculatorBrain {
             if resultIsPending {
                 return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
             } else {
-                return accumulator?.1
+                return accumulator?.des
             }
         }
     }
@@ -91,7 +91,7 @@ struct CalculatorBrain {
                 accumulator = (value, symbol)
             case .unaryOperation(let function, let description):
                 if accumulator != nil {
-                    accumulator = (function(accumulator!.0), description(accumulator!.1))
+                    accumulator = (function(accumulator!.acc), description(accumulator!.des))
                     // force! already nil checked
                 }
             // Again, the ass values of the enum stored in the dict can be set to constants.

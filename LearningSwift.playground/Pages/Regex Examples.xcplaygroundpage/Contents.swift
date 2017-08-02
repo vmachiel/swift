@@ -27,7 +27,3 @@ extension String {
         return self.replace(pattern: "\\.0+([^0-9]|$)", with: "$1")
     }
 }
-
-
-let x = "0.0000"
-x.beautifyNumbers()

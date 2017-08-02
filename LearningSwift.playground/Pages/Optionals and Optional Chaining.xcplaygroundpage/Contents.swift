@@ -1,3 +1,39 @@
+// Optionals are a enum with two cases and a generic asso value:
+enum OptionalExample<T> {
+    case none
+    case some(T)
+}
+
+let optional1: String? = nil
+// equavalent to:
+let optional2 = OptionalExample<String>.none
+// and
+let optional3: String? = "Hello"
+// equavalent to:
+let optional4 = OptionalExample<String>.some("Hello")
+
+let unwrappedOptional1 = optional3!
+// Force unwrapping is equ to:
+switch optional4 {
+case .some(let value):
+    let y = value
+case .none:
+    print("This will raise an exception!!!")
+}
+
+// if let like this:
+if let value = optional3 {
+    print(value)
+}
+// is equ to this:
+switch optional4 {
+case .some(let value):
+    let z = value
+case .none:
+    break
+}
+
+
 // Optinal return types: write a ? after one or more of the return types to indicate it
 // might be nill. See this example, which returns a string if one string of the array has
 // the desired prefix, and returns nil if none are found.
@@ -91,7 +127,33 @@ let album = albumReleased(year: 2006)?.uppercased()
 let album2 = albumReleased(year: 2006) ?? "unknown"
 let album3 = albumReleased(year: 492) ?? "unknown"  //  -- > see!!
 
-
+// Some more examples of optional chaining:
+// Two  arrays of string optionals, and those are put into an array themselves.
+// That container's type is also optional.
+let arrayOfOptionals: [String?]
+let arrayOfOptionals2: [String?]
+arrayOfOptionals = ["hello", nil, "goodbye", "henk"]
+arrayOfOptionals2 = [nil, nil, "friet", nil]
+let arrayOfOptionalsContainer: [[String?]?]
+arrayOfOptionalsContainer = [arrayOfOptionals, arrayOfOptionals2, nil]
+// If you think the second array may be there, and it may have a string
+// at it's third index (2), you can check without crashing if it's not there.
+// And do something with it.
+if let arrayIsFound = arrayOfOptionalsContainer[1]{
+    if let elementIsFound = arrayIsFound[2] {
+        print(elementIsFound.uppercased())
+    }
+}
+// But you can also chain the optionals. So If the 2 array is found, and it's
+// third element is found, applay the method.
+let upperCasedStringFound = arrayOfOptionalsContainer[1]?[2]?.uppercased()
+// This is still an optional, you can also set it to a string directly:
+if let x = arrayOfOptionalsContainer[1]?[2]?.uppercased(){
+    let upperCasedStringFound2 = x
+}
+// Nothing will go wrong is value is missing, will just be nil.
+let upperCasedStringFound3 = arrayOfOptionalsContainer[1]?[3]?.uppercased()
+// Apply this in cases like: if a label is found, and is has text, uppercased it.
 
 
 

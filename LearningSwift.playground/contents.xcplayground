@@ -6,6 +6,7 @@
         <page name='Control Flow'/>
         <page name='Functions and Closures'/>
         <page name='Optionals and Optional Chaining'/>
+        <page name='Tuples and Multiple Return Types'/>
         <page name='Enums and Structs'/>
         <page name='Classes'/>
         <page name='Polymorph and Typecasting'/>
@@ -15,7 +16,7 @@
         <page name='Extensions'/>
         <page name='Protocols'/>
         <page name='Error Handeling'/>
-        <page name='Random Test Code'/>
         <page name='Regex Examples'/>
+        <page name='Random Test Code'/>
     </pages>
 </playground>
