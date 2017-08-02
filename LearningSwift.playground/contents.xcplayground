@@ -13,7 +13,7 @@
         <page name='Classes'/>
         <page name='Polymorph and Typecasting'/>
         <page name='Value vs Reference Types'/>
-        <page name='Static and Access'/>
+        <page name='Static, Lazy and Access'/>
         <page name='Generics'/>
         <page name='Extensions'/>
         <page name='Protocols'/>

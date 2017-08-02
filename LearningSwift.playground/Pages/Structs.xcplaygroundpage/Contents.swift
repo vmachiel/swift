@@ -73,8 +73,8 @@ let primes = NamedArray(name: "Prime Numbers", items: [2, 3, 5, 7, 11])
 
 // Structures can also have property getters, setters and observers just like classes.
 // You define them inside the variable {} block.
-// willSet is a special method run before a property is set to a new value and didSet is run
-// after a property has been set to a new value.
+// willSet is a special method run before a property is set to a new value and 
+// didSet is run after a property has been set to a new value.
 // In willSet, swift uses newValue to refer to the new value
 // in didSet,  swift uses oldValue to refer to the old value.
 

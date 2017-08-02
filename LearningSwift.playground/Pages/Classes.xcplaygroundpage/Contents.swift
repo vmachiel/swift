@@ -36,10 +36,11 @@ class NamedShape {
 // self is not necessary except for init. You can call instance.sidelenght the same as
 // instance.name or numberOfSides  Use it at extensions en disambiuity.
 
-// You write a new self.yadayady for new properties. Once those are defined for the subclass,
-// you can make method calls. So next, you pass the values to the superclass init, which is 
-// 'name' in this case. After all has been inited, you can (if you want) change the default value
-// of a property, in this case numberOfSides defined by the superclass. 
+// You write a new self.yadayady for new properties. Once those are defined for 
+// the subclass, you can make method calls. So next, you pass the values to 
+// the superclass init, which is 'name' in this case.
+// After all has been inited, you can (if you want) change
+// the default value of a property, in this case numberOfSides defined by the superclass.
 
 class Square: NamedShape {
     var sideLength: Double  // to be definied at init
@@ -61,6 +62,23 @@ test.area()
 test.simpleDescription()
 test.sideLength = 5.3  // access and change variables.
 test.area()
+
+// You can prevent overriding with final keyword:
+final class TestClass {
+    var firstVar: Int
+    
+    init(firstVar: Int) {
+        self.firstVar = firstVar
+    }
+    func printTheFirstVar() {
+        print(firstVar)
+    }
+}
+
+
+
+
+
 // So far, pretty similar to python. 
 
 // Getters and setters can also be used (encapsulation etc)
@@ -94,7 +112,8 @@ print(triangle.sideLength)
 // Property observers are called everytime the property is set, even if the same value
 // willSet is called before, and didSet is called after
 class TriangleAndSquare {
-    var triangle:EquilateralTriangle {  // remember, variables can be self made objects
+    var triangle:EquilateralTriangle {
+        // remember, variables can be self made objects
         // the following is run when the var triangle is set (first, new or same value)
         willSet {
             square.sideLength = newValue.sideLength  // Reversed of below
@@ -103,13 +122,16 @@ class TriangleAndSquare {
     var square: Square {
         // When square is set to a new, same of first value:
         willSet {
-            triangle.sideLength = newValue.sideLength  // New value = Square(sideLenght: 50, 
+            triangle.sideLength = newValue.sideLength
+            // New value = Square(sideLenght: 50,
             // name: "larger square"
-            // so the triangle.sideLength is set to the same value as the new square.sideLength
+            // so the triangle.sideLength is set to the same value 
+            // as the new square.sideLength
         }
     }
     // So square and triangle are instances of Square and Equiblabla
-    // When they are initialized, they are both passed a size and a name but before they are
+    // When they are initialized, they are both passed a size and a name but 
+    // before they are
     init(size: Double, name: String) {
         square = Square(sideLength: size, name: name)
         triangle = EquilateralTriangle(sideLength: size, name: name)
@@ -119,7 +141,8 @@ var triangleAndSquare = TriangleAndSquare(size: 10, name: "another test shape")
 print(triangleAndSquare.square.sideLength)
 print(triangleAndSquare.triangle.sideLength)
 triangleAndSquare.square = Square(sideLength: 50, name: "larger square")
-print(triangleAndSquare.triangle.sideLength)  // So if one gets set, the willSet method takes that 
+print(triangleAndSquare.triangle.sideLength)
+// So if one gets set, the willSet method takes that
 // new value and sets it to the other, so they're te same!!!!
 
 // Another example to better show explicitly stating names newVal instead of newValue
@@ -142,6 +165,7 @@ class family {
 // optional values work ond self defined classes as well:
 let optionalSquare: Square? = Square(sideLength: 4.4, name: "optional square")
 let sidelength = optionalSquare?.sideLength // does it exist? than assign.
+
 
 /* Classes vs structs
 Classes and structures in Swift have many things in common. Both can:
