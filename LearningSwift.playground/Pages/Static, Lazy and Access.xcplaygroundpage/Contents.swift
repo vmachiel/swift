@@ -59,6 +59,9 @@ harry2.basedOnThisPerson
 // That lazy property can't be accessed anyway until everything has been inited. And
 // lazy "count as inited" also, so you can use it on multiple vars!!
 
+// You can also lazy init with a closure, which is run when something access the var.
+// lazy var someProperty: Type = { closure code that returns value of type Type }()
+// NOTICE THE PARANTS!! Execute when access.
 
 
 

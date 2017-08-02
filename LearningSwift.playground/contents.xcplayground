@@ -4,7 +4,8 @@
         <page name='Variables and Data Types'/>
         <page name='Operators'/>
         <page name='Control Flow'/>
-        <page name='Array and Range extra'/>
+        <page name='Array, Dict and Range extra'/>
+        <page name='String Extra'/>
         <page name='Functions and Closures'/>
         <page name='Optionals and Optional Chaining'/>
         <page name='Tuples and Multiple Return Types'/>
