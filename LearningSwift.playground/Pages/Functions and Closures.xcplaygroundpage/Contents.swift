@@ -6,7 +6,8 @@ func greet(person: String, day: String) -> String {
 greet(person: "Bob", day: "Wednesday")
 
 // You can use custom parameter tags, so you can use a different parameter name inside
-// the function, and a different tag when you call the function for clarity. (2nd parameter)
+// the function, and a different tag when you call the function for clarity. 
+// (2nd parameter)
 // You can also add a _ before the parameter definition if you want to be able to 
 // omit it when you call the function. THIS IS ALL FOR CLARITY! (1st parameter)
 // Also, default values work similar to python (3rd parameter)
@@ -105,7 +106,8 @@ incrementer2(5)
 // You don't include () when passing a function: you're not executed it, just passing it
 // to the main function so it can use and execute it.
 
-// So for each item in the list, pas it to condition. If one of them returns true, return true
+// So for each item in the list, pas it to condition. If one of them returns true, 
+// return true
 // The lessThanTen function is passed, so each number in the list gets checked, if one
 // is smaller than 10, the whole thing returns true
 func hasAnyMatches(list: [Int], condition: (Int) -> Bool) -> Bool {
@@ -144,8 +146,8 @@ let evenNumbers = filterInts(numbers, divisibleByTwo)
 // Closure 1: closure expressions 1
 
 // Function are special closures. Closures have access to variables and function in
-// the scope they were created in, as well as their own, even if they are in a different scope
-// when executed!!
+// the scope they were created in, as well as their own, even if they are in 
+// a different scope when executed!!
 // You can write one (a closure that is) withouth a name by surrounding it with ({}).
 // seperate the arg/return type from the body with 'in'
 numbers.map({ (number: Int) -> Int in

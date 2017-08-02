@@ -16,7 +16,8 @@ func send(job: Int, toPrinter printerName: String) throws -> String {
 
 // To call code that may throw and error write a do block. Mark the part that can throw
 // the actual error with try, and what should be done if a error is raised with catch.
-// You can write several catch statements for different raised errors like a switch statement
+// You can write several catch statements for different raised errors like a switch
+// statement
 do {
     let printerResponse = try send(job: 1440, toPrinter: "Gutenberg")
     print(printerResponse)
@@ -35,7 +36,8 @@ let printerSuccess = try? send(job: 1234, toPrinter: "Snor Printer")
 let printerFailure = try? send(job: 394, toPrinter: "Never has toner")
 
 // And finally, you can write defer to specify code that is run at the end of a function,
-// regardless if any error is thrown. It's the "finally" in "try, except, finally" from python
+// regardless if any error is thrown. It's the "finally" in "try, except, finally" 
+// from python
 
 var fridgeIsOpen = false
 let fridgeContents = ["milk", "eggs", "leftovers"]

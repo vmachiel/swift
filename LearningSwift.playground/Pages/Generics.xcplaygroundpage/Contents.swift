@@ -1,4 +1,5 @@
-// Generics are functions that can be applied to different types, which are specified later.
+// Generics are functions that can be applied to different types, which are specified
+// later.
 // Take the filter ints function:
 func filterInts(_ numbers: [Int], _ includeNumber: (Int) -> Bool) -> [Int] {
     var result: [Int] = []

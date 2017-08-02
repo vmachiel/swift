@@ -2,10 +2,11 @@
 // First, structs and enums are value type and classes are reference type.
 // The previous sentence is horrendous. It doesn’t make sense for beginners. 
 // Okay let me explain. In Classes, when you make a
-//copy of a reference type variable, both variables are referring to the same object in memory. A
-//change to one of the variables will change the other. In Structs, however, you simply copy and
-//paste variables by creating a separate object. Again, think of the analogy I used: textbook answer
-//keys (Class) vs whole new textbooks (Struct)
+// copy of a reference type variable, both variables are referring to the same object 
+// in memory. A change to one of the variables will change the other. In Structs, 
+// however, you simply copy and paste variables by creating a separate object. 
+// Again, think of the analogy I used: textbook answer keys (Class) vs whole new 
+// textbooks (Struct)
 
 struct SomeStruct {
     var property = "original"

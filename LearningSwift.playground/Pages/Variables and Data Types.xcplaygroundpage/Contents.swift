@@ -4,17 +4,17 @@ import Foundation
 
 print("Hello World")
 print("😃")  // Unicode friendly! 
-/* Variables are declared once with "var" and constants with "let
- When you assign a new value to a variable it needs to be of the same type */
+// Variables are declared once with "var" and constants with "let
+// When you assign a new value to a variable it needs to be of the same type
 
 var myVariable = 42
 myVariable = 51
 print(myVariable)
 let myConstant = 51.2
 
-/* Compiler can infer the type at initialization. You can also 
- explicitely define it. You must also define conversion to another
- type if needed! */
+// Compiler can infer the type at initialization. You can also
+// explicitely define it. You must also define conversion to another
+// type if needed!
 
 let implicitDouble = 23.4
 let explicitDouble: Double = 22
@@ -31,9 +31,9 @@ print("I have \(apples) apples, and I have \(apples + oranges) pieces of fruit")
 print("Hello there: \(implicitDouble) + \(Double(explicitFloat))") // Look at this!!
 
 
-/*Arrays and Dicts are declared with [] any are both ordered.
-  Acces them with indecis, and a comma is allowed at the end. 
-  Again, types are inferred */
+// Arrays and Dicts are declared with [] any are both ordered.
+// Acces them with indecis, and a comma is allowed at the end.
+// Again, types are inferred
 var shoppingList = ["Bananas", "Yogurt", "More stuff",]
 var ammountOfCash = ["Wallet": 42, "Bank": 152]
 
@@ -52,13 +52,15 @@ ammountOfCash = [:]
 
 
 
-// declare variables with var and constants with let. Use var only when declaring, not reasigning.
+// Declare variables with var and constants with let. Use var only when declaring,
+// not reasigning.
 // Types can be stated at declaration or inferred, and check with the following syntax
 let testVar = 42
 var name = "Barry"
 name = "Machiel van Dorst"
 type(of: name)
-// Data Types and Classes start with a Capital letter, variables do not. They do have camelCase
+// Data Types and Classes start with a Capital letter, variables do not.
+// They do have camelCase
 
 // Initialize empty variables by stating their type:
 var age: Int
@@ -129,7 +131,8 @@ var person = [
 person["last"]  // retrieve value for key
 person["first"] = "Barry"  // change value
 person["age"] = "25" // has to be string
-// optional value of dictionary, maybe there is one, maybe there isn't
+
+// Optional value of dictionary, maybe there is one, maybe there isn't
 let personDay: String? = person["day"]
 if personDay == nil {
     print("no day was found")

@@ -24,7 +24,7 @@ for (kind, numbers) in interestingNumbers {
     }
 }
 print(largest)
-//Another for loop trick: use .. to make an half-closed range of indexes like this. 
+// Another for loop trick: use .. to make an half-closed range of indexes like this. 
 // 4 is not included.
 var total = 0
 for i in 0..<4 {  // for i = 0, 1, 2, 3 so four times.
@@ -82,7 +82,8 @@ while true {
     }
 }
 
-// continue skips just exits this iteration of the for or while loop and moves to the next one.
+// continue skips just exits this iteration of the for or while loop and moves 
+// to the next one.
 var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print("The odd numbers are: ")
 for x in numbers {
@@ -98,8 +99,8 @@ for x in numbers {
 var optionalString: String? = "Hello! "
 print(optionalString == nil)  // false
 // To perform an action if optionalString is not nil, use if let syntax
-if let greeting = optionalString{  //  if the optionalString exists (no nil) and thus can be
-    // set to greeting
+if let greeting = optionalString{
+    //  if the optionalString exists (no nil) and thus can be set to greeting
     print("You greeted me, thanks!")
     // You can use the new constant greeting in this case:
     print("You said: \(greeting)")
@@ -117,7 +118,8 @@ if let greeting = optionalString{
 // the default one is used.
 let nickName: String? = nil
 let fullName: String = "Machiel van Dorst"
-let informalGreeting = "Hi \(nickName ?? fullName)" // nickName is empty so fullName is used
+let informalGreeting = "Hi \(nickName ?? fullName)"
+// nickName is empty so fullName is used
 
 
 
@@ -132,8 +134,8 @@ case "celery":  // is it "celery"?
     print("Add some raisins and make ants on a log.")
 case "cucumber", "watercress":  // is it a list of "cucumber", "watercress"
     print("That would make a good tea sandwich.")
-// This one is interesting: if vegetable ends in pepper (it does), "red pepper" is assigened to local
-// variable x (let) and can be used in the following statement
+// This one is interesting: if vegetable ends in pepper (it does), "red pepper" 
+// is assigened to local variable x (let) and can be used in the following statement
 case let x where x.hasSuffix("pepper"):
     print("Is it a spicy \(x)?")
 default:
@@ -147,7 +149,8 @@ case 1:
     print("Happy first birthday")
 case 13...19:   // A range including 13, 14, 15, 16, 17, 18, 19
     print("Happy birthday teenager")
-case let decade where decade % 10 == 0:  // so again: temp constant decade, if decade % 10 == 0
+case let decade where decade % 10 == 0:
+    // so again: temp constant decade, if decade % 10 == 0
     print("Happy \(decade)th birthday!")
 default:
     print("Happy birthday")
@@ -163,8 +166,9 @@ case ("admin", true):
 // so this matches all "guest" userName, regardless of the value of passwordIsValid.
 case ("guest", _):
     print("Access denied, no guests allowed.")
-// this is interseting: use an _ for userName to match any and assign the second to variable
-// isValid. If it's true, return message after the ? if false, return after the :
+// this is interseting: use an _ for userName to match any and assign the 
+// second to variable isValid. 
+// If it's true, return message after the ? if false, return after the :
 // notice that admin, true and guest, true/false won't match here, because they've been
 // matched before.
 case (_, let isValid):
