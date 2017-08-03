@@ -13,6 +13,7 @@ import UIKit
 // get and set by the CalCulatorBrain. 
 class ViewController: UIViewController {
     
+    // MARK: - Properties
     // The text in the display
     @IBOutlet weak var display: UILabel!
     // The text in the description display
@@ -35,6 +36,7 @@ class ViewController: UIViewController {
     // The whole brain is set to this var to communicate with it.
     private var brain = CalculatorBrain()
     
+    // MARK: - Buttons
     // Called when the user touches a button. Properties of the button are in the 
     // sender parameter. You get the number from it's title. 
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -124,6 +126,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Extensions
 // Extend string to clean up the numbers for the discprition display
 // String will get some beautification code using Regex. Extention is used
 // because it might be needed again. 

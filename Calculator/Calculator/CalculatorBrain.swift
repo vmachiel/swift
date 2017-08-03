@@ -13,17 +13,9 @@ import Foundation
 // No need for inheritance. Will only be refferenced by one Controller. KISAS
 struct CalculatorBrain {
     
+    // MARK: - Properties
     // This will hold the current number, and the discription of the current operation.
     private var accumulator: (acc: Double, des: String)?
-    // What does each operation look like, and what does eacht discription look like.
-    // They discription functions can be used to build the string.
-    private enum Operation {
-        case constant(Double)
-        case unaryOperation((Double) -> Double, (String) -> String)
-        case binaryOperation((Double, Double) -> Double, (String, String) -> String)
-        case equals
-    }
-    
     // Called by the viewController when operation is pressed to set operand. Set the acc to the
     // operand double and string disciption like:
     mutating func setOperand(_ operand: Double) {
@@ -49,6 +41,15 @@ struct CalculatorBrain {
                 return accumulator?.des
             }
         }
+    }
+    // MARK: - Basic operations
+    // What does each operation look like, and what does eacht discription look like.
+    // They discription functions can be used to build the string.
+    private enum Operation {
+        case constant(Double)
+        case unaryOperation((Double) -> Double, (String) -> String)
+        case binaryOperation((Double, Double) -> Double, (String, String) -> String)
+        case equals
     }
     
     // Dict built using the Operation enum. Constants can built in functions are used,
@@ -109,7 +110,7 @@ struct CalculatorBrain {
         }
     }
     
-    
+    // MARK: - Pending operation
     // Takes a operation, a description to add to the description string, and a accumulator to
     // set to the first operand. Is nil if nothing pending.
     private var pendingBinaryOperation: PendingBinaryOperation?
