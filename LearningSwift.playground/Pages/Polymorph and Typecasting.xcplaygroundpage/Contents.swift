@@ -54,6 +54,7 @@ class LiveAlbum: Album {
 var masterOfPuppets = StudioAlbum(name: "Master of pupputs", studio: "No idea")
 var sAndM = LiveAlbum(name: "S and M", location: "San Fransisco")
 var stAnger = StudioAlbum(name: "St. Anger", studio: "Presidio")
+
 // These are a mix of StudioAlbums, and LiveAlbums: But you can cast them all in an
 // array as a Album type. 
 var allAlbums: [Album] = [masterOfPuppets, sAndM, stAnger]
@@ -65,6 +66,8 @@ for album in allAlbums {
     print(album.getPerformance())
     print(type(of: album))
 }
+
+
 
 // Now, this only works in some cases. Swift treats them al Album s but they are really
 // their subclasses. They happen to all have a getPerformance method. But if you loop 
@@ -80,6 +83,8 @@ for album in allAlbums {
 // So it's like optionals with the as? kind: if you can convert this type (or, 
 // if this type turns out to be this other type), it works and the optional has a value. 
 // If not it's nil. So you can use if let to unwrap it, or do nothing if nil
+
+// Optional Casting: 
 for album in allAlbums {
     // So if the current album in the loop can be downcasted ('converted') into a
     // StudioAlbum type (it's not nil), assign it to studioAlbum and run code.
@@ -91,6 +96,8 @@ for album in allAlbums {
         print(liveAlbum.location)
     }
 }
+// Force Casting:
+
 // Using as! will forcefully convert types: it will assume it's actually the type you
 // specify and convert. It won't return an optional because you are sure. It will crash
 // if you are wrong!

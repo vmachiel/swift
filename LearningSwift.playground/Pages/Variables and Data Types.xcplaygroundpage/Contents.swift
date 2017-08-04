@@ -47,6 +47,19 @@ ammountOfCash = [:]
 
 
 
+// Extra: Set is an unorderd collection of unique items of any type. Can be iterated
+// over. Basically, I see it as a dict with keys only. They need to be hashable as well.
+// Create one:
+let emptySet = Set<Int>()
+// or fill one directly:
+var setExample: Set = [4, 5, 2, 1]
+setExample.insert(3)
+for item in setExample {
+    print(item)  // random order.
+}
+setExample.contains(3)
+setExample.isEmpty
+
 
 
 
@@ -156,10 +169,27 @@ tupleType2 = (23, "Barry")
 print("My name is \(tupleType2.name) and I'm \(tupleType2.age) years old")
 
 
+// Any and AnyObject:
+// Are there for Obj-C compat, but their API have been updated in the mean time.
+// Any holds any type (also class) and AnyObject holds any class. Avoid these though: 
+// Swift is strongly typed, and Any/AnyObject need to be converted to types before 
+// you can invoke methods on them.
 
+// Any can be used for example with multiple ViewControllers: Any kind of type can cause a
+// change of viewController to happen. Might be a button, or a cell ect. So the method to
+// change must take any type. Any would be an optional in that cause, because the sender
+// might not be specified. AnyObject can be used to create an array with mixed types.
+// AVOID THIS: use an enum to specify what type etc. 
 
+// To use data of type Any, convert it by casting it to another type. 
+let unknown: Any = 5  // this is an Int
 
-
+if let stringExample = unknown as? String {
+    print(stringExample)
+}
+if let intExample = unknown as? Int {
+    print(intExample)
+}
 
 
 

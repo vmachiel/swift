@@ -55,6 +55,13 @@ func fridgeContainsFood(_ food: String) -> Bool {
 
 
 
+// Assertions: assert is a function that takes a closure, and a message. The closure 
+// must return a bool. If the bool is false, the message will be printed and app will
+// crash. Autoclosure so no {} necessary
+assert(printerSuccess == "Job Sent", "The job wasn't sent! ")
+// asserts can be left there, the version you submit to app store will NOT execute the
+// asserts' closure or crash or print message in ANY case. 
+
 
 
 
