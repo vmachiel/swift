@@ -23,9 +23,10 @@
         <page name='Protocols'/>
         <page name='Attributes'/>
         <page name='Error Handeling'/>
+        <page name='Interface Builder and Views'/>
         <page name='Handeling Data UD'/>
         <page name='Regex Examples'/>
-        <page name='Random Test Code'/>
         <page name='API Stuff'/>
+        <page name='Random Test Code'/>
     </pages>
 </playground>
