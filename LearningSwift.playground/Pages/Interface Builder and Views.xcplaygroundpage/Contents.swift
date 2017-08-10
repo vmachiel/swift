@@ -111,6 +111,58 @@ path.stroke()  // Stroke the red line.
 path.contains(CGPoint(x: 130, y: 100))
 
 
+// UIColor and transparency
+// UIcolor sets colors
+// UIViews have a background color property
+let green = UIColor.green
+let randomColor = UIColor.init(red: 0.3, green: 0.5, blue: 0.4, alpha: 1.0)
+let transparentYellow = UIColor.yellow.withAlphaComponent(0.5)  // 0 is transparent
+// If you want to use transparency, set the views opaque = false
+// Make the entire view transparent by setting alpha = 0.0
+// subviews are layered on top of each other. You can hide a layer with hidden = false
+
+
+// Text.
+// You can use UILabel to draw text, done with calculator. 
+// Or you use NSAttributedString, which is a string like object with attributes like
+// color etc. 
+// You can set the attributes of a attributedstring by sending it a dictionary with
+// attribute keys and their values, and an NSRange to apply them to.
+let attributes = [NSForegroundColorAttributeName: UIColor.green]
+let text = NSAttributedString(string: "Hello", attributes: attributes)
+
+
+text.draw(at: CGPoint(x: 40.0, y: 30.0))  // Draw it with that point at upperleft corner
+let textSize: CGSize = text.size()  // How much space it'll take up
+// It's an old style.. so you have to make it an
+let mutableText = NSMutableString(string: "Test")
+
+
+// Fonts  (mostly set in interface builder)
+// Get a font in code using a UIFfont Type Method. It takes an enum of availible
+// kinds of text. These give preferred fonts, for users to see.
+let chosenFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
+let chosenFont2 = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+// System fonts go on buttons etc.
+let systemFont = UIFont.systemFont(ofSize: 12.0)
+let boldSystemFont = UIFont.boldSystemFont(ofSize: 14.0)
+
+
+// Drawing images
+// Use UIImageView
+let image: UIImage? = UIImage(named: "July 2005 005.jpg")
+// This will (in a project) add it to Images.xcassets. You can also get them from the file
+// system or draw them yourself using Core Graphics.
+// Draw it at a point, inside a CGRect, or tile it into a CGRect
+image?.draw(at: point)  // etc
+// Whe UIView changes it size, it'll stretch or squich and image into the new size. Ask for
+// a redraw using UIView.contentMode.  You can ask it to put it somewhere or scale it.
+// OR Simply ask for a .redraw  This is possible in interface builder's inspector.
+
+
+
+
+
 
 
 
