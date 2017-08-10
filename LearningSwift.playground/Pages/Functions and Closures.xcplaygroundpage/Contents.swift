@@ -23,6 +23,9 @@ func greet(_ person: String, on day: String, shouting: Bool = false) -> String {
 greet("Henk", on:"Wednesday")  // easy to read later! : no person label, on instea of day,
 // and shouting can be omitted because of the default
 
+
+
+
 // Return multiple values using a tuple. They can be adressed with both name and index
 // Also assign the return value(s) to a variable
 func calculateStatistics(scores: [Int]) -> (min: Int, max: Int, sum: Int) {
@@ -44,6 +47,21 @@ let statistics = calculateStatistics(scores: [4, 130, 34, 9, 11, 94])
 statistics.sum  // access by name!
 statistics.2    // access by index!
 
+// Optional variant: exit early and return nil if array is empty:
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var currentMin = array[0]
+    var currentMax = array[0]
+    for value in array[1..<array.count] {
+        if value < currentMin {
+            currentMin = value
+        } else if value > currentMax {
+            currentMax = value
+        }
+    }
+    return (currentMin, currentMax)
+}
+
 // Variable number of arguments (*args) which are use as an array in the func
 func sumOf(numbers: Int...) -> Int {
     var sum = 0
@@ -54,6 +72,23 @@ func sumOf(numbers: Int...) -> Int {
 }
 sumOf()  // called with 0 argumens
 sumOf(numbers: 4, 6, 123, 23)  // called with 4 arguments
+
+
+
+// In Out parameters are NOT constant (all others are). They are fed to a function,
+// that changes them and their changes persist after the call. Function does not return
+// anything in this case. Basically, the nonlocal or global keyword in python.
+var a = 4
+var b = 9
+func swapInts(_ a: inout Int, _ b: inout Int) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+// You pass a "pointer" to the function when calling it, using &:
+swap(&a, &b)
+print(a)
+print(b)
 
 
 
@@ -71,6 +106,8 @@ print("The result of adding 2 and 3 is: \(mathFunction(2, 3))")
 
 
 
+
+
 // Nested functions: inner functions have access to variables of the outer.
 func returnFifteen() -> Int {
     var y = 10
@@ -81,9 +118,8 @@ func returnFifteen() -> Int {
     return y
 }
 returnFifteen()
-
 // And just like python, they are first class citizens, so they can be a return func and
-// be a closure
+// be a closure.
 func makeIncrementer() -> ((Int) -> Int) {
     func addOne(number: Int) -> Int {
         return 1 + number
@@ -101,6 +137,11 @@ func incrementBy(adder: Int) -> ((Int) -> Int) {
 }
 var incrementer2 = incrementBy(adder: 4)
 incrementer2(5)
+
+
+
+
+
 
 // Functions can take functions as one of their arguments, like the condition argument. 
 // You don't include () when passing a function: you're not executed it, just passing it
@@ -127,6 +168,7 @@ hasAnyMatches(list: numbers, condition: lessThanTen)
 func divisibleByTwo(_ number: Int) -> Bool {
     return number % 2 == 0
 }
+
 // And this function takes a list of numbers and a criteria, and any number that meets
 // the criteria gets added to a list that gets returned.
 func filterInts(_ numbers: [Int], _ includeNumber: (Int) -> Bool) -> [Int] {
@@ -139,7 +181,6 @@ func filterInts(_ numbers: [Int], _ includeNumber: (Int) -> Bool) -> [Int] {
     return result
 }
 let evenNumbers = filterInts(numbers, divisibleByTwo)
-
 
 
 
@@ -246,4 +287,51 @@ upperCaseNames
 // Or do them both, with . syntax
 let bothFilters = names.filter {$0.characters.count < 5}.map {name in name.uppercased()}
 bothFilters
+
+
+
+
+// Capturing values terminology: Closure can "capture" values like parameters passed
+// to a outer function, or variables set within that function. This function creates 
+// another function. The creator gets an argument passed, and set its own variable. Those
+// are captured by the returned closure and used when you call it later. 
+// NOTE This returns a function that returns an Int
+func makeIncrementer3(forIncrement ammount: Int) -> () -> Int {
+    var runningTotal = 0
+    func incrementer3() -> Int {
+        runningTotal += ammount
+        return runningTotal
+    }
+    return incrementer3
+}
+// So runningtotal (var) and ammount (parameter) are captured and used when called:
+let incrementByTen = makeIncrementer3(forIncrement: 10)
+// and whenever called, it holds it's runningtotal and increment value:
+incrementByTen()
+incrementByTen()
+incrementByTen()
+
+// You can make a new one, and the old ones hold their captured values
+let incrementBySeven = makeIncrementer3(forIncrement: 7)
+incrementBySeven()
+incrementByTen()
+// And they are !!!!reference types!!!!
+let alsoIncrementByTen = incrementByTen
+alsoIncrementByTen()  // 50
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

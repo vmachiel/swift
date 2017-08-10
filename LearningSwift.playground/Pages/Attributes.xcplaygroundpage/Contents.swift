@@ -1,0 +1,1 @@
+// Attributes provide info about a declaration or type

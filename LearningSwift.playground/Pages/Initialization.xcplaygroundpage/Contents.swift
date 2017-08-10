@@ -2,6 +2,27 @@
 // by lazy, = value, being an optional, executing a closure. 
 // There can be multiple inits: think of String. It has an init that takes a double,
 // an init that takes another String and so on.
+// Let's say you manage data, and you have to import some from time to time. If this
+// takes a lot of resources, you only want to init your extensive DataImporter class,
+// when necessary:
+
+class DataImporter {
+    
+    var filename = "data.txt"
+    
+}
+
+class DataManager {
+    
+    lazy var importer = DataImporter()
+    var data = [String]()
+    
+}
+let dataStorage = DataManager()
+dataStorage.data.append("Some data.txt")
+// Here, the DataImport class isn't used yet.
+dataStorage.data.append(dataStorage.importer.filename)
+// Now it is!
 
 
 // Callers use inits by using your type's name and arguments if needed

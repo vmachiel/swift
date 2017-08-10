@@ -14,15 +14,18 @@
         <page name='Classes'/>
         <page name='Polymorph and Typecasting'/>
         <page name='Value vs Reference Types'/>
-        <page name='Static, Lazy and Access'/>
+        <page name='Static, Lazy, Self, Access, Sub'/>
         <page name='Initialization'/>
+        <page name='ARC, Weak and Strong'/>
         <page name='Usefull Classes'/>
         <page name='Generics'/>
         <page name='Extensions'/>
         <page name='Protocols'/>
+        <page name='Attributes'/>
         <page name='Error Handeling'/>
         <page name='Handeling Data UD'/>
         <page name='Regex Examples'/>
         <page name='Random Test Code'/>
+        <page name='API Stuff'/>
     </pages>
 </playground>

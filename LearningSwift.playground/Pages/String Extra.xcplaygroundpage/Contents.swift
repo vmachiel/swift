@@ -66,7 +66,15 @@ let hello = "hello"
 var greeting = hello
 greeting += " there"
 
+// Some more stuff with UTF-8
+let dogString = "Dog‼🐶"
+dogString.characters.count  // 3 letter, one double ! and emoji
+for codeUnit in dogString.utf8 {
+    print("\(codeUnit) ", terminator: "")
+}
 
+
+// Insert the whole story of Substring and why it's there (ARC) when Swift 4 is final. 
 
 
 

@@ -167,6 +167,32 @@ let optionalSquare: Square? = Square(sideLength: 4.4, name: "optional square")
 let sidelength = optionalSquare?.sideLength // does it exist? than assign.
 
 
+// Classes are reference types, so when you say let instance = Class() you can still
+// change properties even though it's let. instance is only a pointer to the class data.
+// More than one reference can point to the same data. Check if they do like so:
+class TestClass2 {
+    
+    var doubleTheAmmount: Int
+    
+    init(inputAmmount: Int) {
+        self.doubleTheAmmount = inputAmmount * 2
+    }
+}
+let doubleOfTwenty = TestClass2(inputAmmount: 20)
+let anotherReference = doubleOfTwenty
+anotherReference.doubleTheAmmount = 80
+doubleOfTwenty.doubleTheAmmount
+
+// Check it with:
+if doubleOfTwenty === anotherReference {
+    print("They point to the same stuff!")
+}
+
+
+
+
+
+
 /* Classes vs structs
 Classes and structures in Swift have many things in common. Both can:
 
@@ -192,30 +218,32 @@ Structers are always passed around when copied, classed passed by reference!!!!
 
 
 /* Structure instances are always passed by value, and class instances are always passed by
-reference. This means that they are suited to different kinds of tasks. As you consider the
-data constructs and functionality that you need for a project, decide whether each data
-construct should be defined as a class or as a structure.
+ reference. This means that they are suited to different kinds of tasks.
+ As you consider the data constructs and functionality that you need for a project,
+ decide whether each data construct should be defined as a class or as a structure.
+ 
+ As a general guideline, consider creating a structure when one or more of these conditions apply:
+ 
+ - The structure’s primary purpose is to encapsulate a few relatively simple data values.
+ - It is reasonable to expect that the encapsulated values will be copied rather than
+ referenced when you assign or pass around an instance of that structure.
+ - Any properties stored by the structure are themselves value types, which would also be
+ expected to be copied rather than referenced.
+ - The structure does not need to inherit properties or behavior from another existing
+ type.
+ 
+ Examples of good candidates for structures include:
+ - The size of a geometric shape, perhaps encapsulating a width property and a height
+ property, both of type Double.
+ - A way to refer to ranges within a series, perhaps encapsulating a start property and
+ a length property, both of type Int.
+ - A point in a 3D coordinate system, perhaps encapsulating x, y and z properties, each
+ of type Double.
+ - In all other cases, define a class, and create instances of that class to be managed
+ and passed by reference. In practice, this means that most custom data constructs
+ should be classes, not structures.
+ */
 
-As a general guideline, consider creating a structure when one or more of these conditions apply:
-
-The structure’s primary purpose is to encapsulate a few relatively simple data values.
-It is reasonable to expect that the encapsulated values will be copied rather than
-referenced when you assign or pass around an instance of that structure.
-Any properties stored by the structure are themselves value types, which would also be
-expected to be copied rather than referenced.
-The structure does not need to inherit properties or behavior from another existing type.
-Examples of good candidates for structures include:
-
-The size of a geometric shape, perhaps encapsulating a width property and a height
-property, both of type Double.
-A way to refer to ranges within a series, perhaps encapsulating a start property and
-a length property, both of type Int.
-A point in a 3D coordinate system, perhaps encapsulating x, y and z properties, each
-of type Double.
-In all other cases, define a class, and create instances of that class to be managed
-and passed by reference. In practice, this means that most custom data constructs
-should be classes, not structures.
-*/
 
 
 
