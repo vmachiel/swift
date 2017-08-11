@@ -150,7 +150,7 @@ let boldSystemFont = UIFont.boldSystemFont(ofSize: 14.0)
 
 // Drawing images
 // Use UIImageView
-let image: UIImage? = UIImage(named: "July 2005 005.jpg")
+let image: UIImage? = UIImage(named: "Some Image.jpg")
 // This will (in a project) add it to Images.xcassets. You can also get them from the file
 // system or draw them yourself using Core Graphics.
 // Draw it at a point, inside a CGRect, or tile it into a CGRect

@@ -42,13 +42,14 @@ struct CalculatorBrain {
             }
         }
     }
-    // MARK: - Basic operations
+    // MARK: - Basic operation
     // What does each operation look like, and what does eacht discription look like.
     // They discription functions can be used to build the string.
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double, (String) -> String)
         case binaryOperation((Double, Double) -> Double, (String, String) -> String)
+        case nullaryOperation(() -> Double, String)
         case equals
     }
     
@@ -62,8 +63,11 @@ struct CalculatorBrain {
     private var operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
+        
         "√" : Operation.unaryOperation(sqrt, { "√(" + $0 + ")" }),
         "x²" : Operation.unaryOperation({ pow($0, 2) }, { "(" + $0 + ")²" }),
+        "x³" : Operation.unaryOperation({ pow($0, 3) }, { "(" + $0 + ")³" }),
+        "eˣ" : Operation.unaryOperation(exp, { "e^(" + $0 + ")" }),
         "cos" : Operation.unaryOperation(cos, { "cos(" + $0 + ")" }),
         "sin" : Operation.unaryOperation(sin, { "sin(" + $0 + ")" }),
         "tan" : Operation.unaryOperation(tan, { "tan(" + $0 + ")" }),
@@ -71,11 +75,15 @@ struct CalculatorBrain {
         "1/x" : Operation.unaryOperation({ 1/$0 }, { "1/(" + $0 + ")" } ),
         "ln" : Operation.unaryOperation(log2, { "ln(" + $0 + ")" }),
         "log" : Operation.unaryOperation(log10, { "log(" + $0 + ")" }),
+        
         "x" : Operation.binaryOperation({ $0 * $1 }, { $0 + "x" + $1 }),
         "÷" : Operation.binaryOperation({ $0 / $1 }, { $0 + "÷" + $1 }),
         "+" : Operation.binaryOperation({ $0 + $1 }, { $0 + "+" + $1 }),
         "-" : Operation.binaryOperation({ $0 - $1 }, { $0 + "-" + $1 }),
         "xʸ" : Operation.binaryOperation(pow, { $0 + "^" + $1 }),
+        
+        "Rand" : Operation.nullaryOperation({ Double(arc4random()) / Double(UInt32.max) }, "rand()"),
+        
         "=" : Operation.equals
     ]
     
@@ -106,6 +114,8 @@ struct CalculatorBrain {
 //                    print(description!)
 //                }
                 performPendingBinaryOperation()
+            case .nullaryOperation(let function, let description):
+                accumulator = (function(), description)
             }
         }
     }
