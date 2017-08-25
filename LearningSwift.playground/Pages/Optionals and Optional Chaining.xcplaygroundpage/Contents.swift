@@ -156,6 +156,24 @@ let upperCasedStringFound3 = arrayOfOptionalsContainer[1]?[3]?.uppercased()
 // Apply this in cases like: if a label is found, and is has text, uppercased it.
 
 
+// Using guard:
+// You can use a guard statement with optionals. The expression after the guard is 
+// executed, or at least tried. If it failed because of a nil value in an optional, the
+// else block is executed. You do this in a function, and the else block must exit the
+// function. So you "guard" the function from nil values being use and thus crashing it.
+var optionalNumber: Int?
+optionalNumber = 23
+
+func triplePossibleNumbers(maybeNumber: Int?) {
+    
+    guard let number = maybeNumber else {
+        print("number provided was nil")
+        return
+    }
+    print("\(number * 3)")
+}
+triplePossibleNumbers(maybeNumber: optionalNumber)
+
 
 
 
@@ -214,6 +232,89 @@ let forcedString: String = possibleString! // requires an exclamation mark to un
 // You can unwrap it at declaration: implicitely unwrapping.
 let assumedString: String! = "An implicitly unwrapped optional string."
 let implicitString: String = assumedString // no need for an exclamation mark
+
+
+
+// And another example of optional chaining: 
+class Room {
+    
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class Residence {
+    
+    var rooms = [Room]()
+    var numberOfRooms: Int {
+        return rooms.count
+    }
+    
+    subscript(i: Int) -> Room {
+        get {
+            return rooms[i]
+        }
+        set {
+            rooms[i] = newValue
+        }
+    }
+    
+    func printNumberOfRooms() {
+        print("The number of rooms is \(numberOfRooms)")
+    }
+    var address: Address?
+}
+
+class Address {
+    
+    var buildingName: String?
+    var buildingNumber: String?
+    var street: String?
+    
+    func buildingIdentifier() -> String? {
+        if let buildingNumber = buildingNumber, let street = street {
+            return "\(buildingNumber) \(street)"
+        } else if buildingName != nil {
+            return buildingName
+        } else {
+            return nil
+        }
+    }
+}
+
+class Person {
+    var residence: Residence?
+}
+
+
+let personExample = Person()
+var residenceExample = Residence()
+let addressExample = Address()
+
+addressExample.buildingName = "Henk Building"
+addressExample.buildingNumber = "45"
+addressExample.street = "Snor Street"
+let room1A = Room(name: "1A")
+let room1B = Room(name: "1B")
+let room2A = Room(name: "2A")
+let room2B = Room(name: "2B")
+
+residenceExample.rooms.append(room1A)
+residenceExample.rooms.append(room1B)
+residenceExample.rooms.append(room2A)
+residenceExample.rooms.append(room2B)
+residenceExample.address = addressExample
+personExample.residence = residenceExample
+
+// Here you go
+personExample.residence?.address?.buildingNumber
+personExample.residence?.rooms[2]
+
+
+
+
 
 
 

@@ -49,7 +49,8 @@ let pbo = PendingBinaryOperation(function: +, firstOperand: 3)
 // The free one is GONE if you init one yourself: then you write them for everything!
 
 
-
+// JUST REMEMBER, YOU CAN WRITE DIFFERENT INITS WITH DIFFERENT PARAMETERS. USER OF THE
+// CLASS/STRUCT CAN CHOSE WHICH TO USE TO INIT. 
 
 
 
@@ -323,6 +324,117 @@ enum TemperatureUnit {
         }
     }
 }
+
+let farhenheitUnit = TemperatureUnit(symbol: "F")
+let unknownUnit = TemperatureUnit(symbol: "X")
+
+// And with enums with raw values (characters in this case)
+// They have a default init?(){}
+enum TemperatureUnit2: Character {
+    
+    case kelvin = "K"
+    case fahrenheit = "F"
+    case celcius = "C"
+    
+}
+
+let celciusUnit = TemperatureUnit2(rawValue: "C")
+let someUnit = TemperatureUnit2(rawValue: "L")
+
+// With classes, you can propegate failible inits through sublclasses:
+class Product {
+    
+    var name: String
+    init?(name: String) {
+        if name.isEmpty {
+            return nil
+        }
+        self.name = name
+    }
+}
+
+class CartItem: Product {
+    
+    let quantity: Int
+    init?(name: String, quantity: Int) {
+        if quantity < 1 {
+            return nil
+        }
+        self.quantity = quantity
+        super.init(name: name)
+    }
+}
+// So now, if either an empty name is provided, or a negative/0 quantity, the object is
+// not inited.
+let twoSocks = CartItem(name: "Sock", quantity: 2)
+let nothing = CartItem(name: "", quantity: 8)
+let nothing2 = CartItem(name: "Something", quantity: -4)
+
+// You can override a failible init with a non-failible one:
+
+class Document {
+    
+    var name: String?
+    init() {}
+    
+    init?(name: String) {
+        if name.isEmpty {
+           return nil
+        }
+        self.name = name
+    }
+}
+// Override both the empty init (no argument provided) or the failible init with 1 arguemnt
+class ActualDocument: Document {
+    
+    override init() {
+        super.init()
+        self.name = "No Title"
+    }
+    // call the empty init as super!
+    override init(name: String) {
+        super.init()
+        if name.isEmpty {
+            self.name = "No Title"
+        }
+        self.name = name
+    }
+}
+
+// Set default values of a class or struct with a closure or function.
+// Instead of default value, or passing a parameter to init, provide a closuer/function
+// Chessboard that computes black and white squares:
+struct Chessboard {
+    
+    // Closure to init boardColors
+    let boardColors: [Bool] = {
+        var temporaryBoard = [Bool]()
+        var isBlack = false
+        for i in 1...8 {
+            for j in 1...8 {
+                temporaryBoard.append(isBlack)
+                isBlack = !isBlack
+            }
+            isBlack = !isBlack
+        }
+        return temporaryBoard
+    }()
+    
+    func squareIsBlackAt(row: Int, column: Int) -> Bool {
+        return boardColors[(row * 8) + column]
+    }
+}
+
+let board = Chessboard()
+board.squareIsBlackAt(row: 0, column: 1)
+board.squareIsBlackAt(row: 2, column: 6)
+
+
+
+
+
+
+
 
 
 
