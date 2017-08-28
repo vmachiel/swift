@@ -1,3 +1,4 @@
+import UIKit
 // Generics are functions that can be applied to different types, which are specified
 // later.
 // Take the filter ints function:
@@ -59,6 +60,71 @@ print(shortNames, shortNames2)
 
 // filter is actually a method which can be called on arrays containing standard
 // lib types. Map as well, both take closures as arguments see Functions and Closures. 
+
+
+
+
+
+// More Generics examples:
+// The swap function that uses inout parameters and "Pointers": 
+var a = 4
+var b = 9
+
+func swapInts(_ a: inout Int, _ b: inout Int) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+// You pass a "pointer" to the function when calling it, using &:
+swap(&a, &b)
+print(a)
+print(b)
+// And the Generic version
+func swapValues<T>(_ a: inout T, _ b: inout T) {
+    let tempA = a
+    a = b
+    b = tempA
+}
+var someString = "Hello"
+var someOtherString = "Snor"
+swapValues(&someString, &someOtherString)
+someString
+someOtherString
+
+
+// Another: Generic version of popping, and pushing stuff on/off the stack
+let image1 = UIImage(named: "stackPushPop_2x")
+struct Stack<Element> {
+    
+    var items = [Element]()
+    
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    mutating func pop() -> Element {
+        return items.removeLast()
+    }
+}
+var stackOfStrings = Stack<String>()
+stackOfStrings.push("Snor")
+stackOfStrings.push("Sex")
+stackOfStrings.push("Henk")
+stackOfStrings.push("Bert")
+
+stackOfStrings.pop()
+
+for element in stackOfStrings.items {
+    print(element)
+}
+
+// Extend generic:
+extension Stack {
+    var topItem: Element? {
+        return items.isEmpty ? nil : items[items.count - 1]
+    }
+}
+
+
 
 
 
