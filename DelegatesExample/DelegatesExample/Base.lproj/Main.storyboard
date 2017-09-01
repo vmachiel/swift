@@ -72,7 +72,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sO2-Uf-dFP">
                                 <rect key="frame" x="86" y="145" width="203" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="rebel.png"/>
+                                <state key="normal" image="rebel.png"/>
                                 <connections>
                                     <action selector="rebelButtonTapped:" destination="fnm-ef-rOx" eventType="touchUpInside" id="i02-F5-tCF"/>
                                 </connections>
@@ -80,7 +80,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSf-m8-2Yr">
                                 <rect key="frame" x="86" y="354" width="203" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="imperial.png"/>
+                                <state key="normal" image="imperial.png"/>
                                 <connections>
                                     <action selector="imperialButtonTapped:" destination="fnm-ef-rOx" eventType="touchUpInside" id="d1M-Dq-lhK"/>
                                 </connections>
