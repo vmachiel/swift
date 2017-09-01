@@ -8,8 +8,6 @@
 
 import UIKit
 
-// This is the "Intern" view: it gets told what to do.
-
 class BaseScreen: UIViewController {
 
     @IBOutlet weak var mainImageView: UIImageView!
@@ -22,24 +20,9 @@ class BaseScreen: UIViewController {
     }
 
     @IBAction func chooseButton(_ sender: UIButton) {
-        // When the button is passed, set up the SelectionVC
         let selectionVC = storyboard?.instantiateViewController(withIdentifier: "SelectionScreen") as! SelectionScreen
-        // This says: the selectionVC(Boss) has a variable called selectionDelegate (Which follows a protocol). Set
-        // "me" (the intern, this VC, self) as that delegate.
-        selectionVC.selectionDelegate = self
-        // Now the selectionVC (Boss) gets presented, and has this VC set as it's delegate
         present(selectionVC, animated: true, completion: nil)
         
-    }
-}
-
-// Put your conforming to the protocol in a seperate extention for clearity. 
-extension BaseScreen: SideSelectionDelegate {
-    
-    func didTapChoice(image: UIImage, name: String, color: UIColor) {
-        mainImageView.image = image
-        nameLabel.text = name
-        view.backgroundColor = color
     }
 }
 

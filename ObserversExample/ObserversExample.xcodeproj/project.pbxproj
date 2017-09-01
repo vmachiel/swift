@@ -78,8 +78,7 @@
 				3EBEB7801F53FA3F00DDFE24 /* Contents */,
 				3E5E5F991F5851D5002F2D49 /* Explain.rtf */,
 			);
-			name = ObserversExample;
-			path = DelegatesExample;
+			path = ObserversExample;
 			sourceTree = "<group>";
 		};
 		3EBEB7801F53FA3F00DDFE24 /* Contents */ = {
