@@ -36,7 +36,7 @@ class ViewController: UIViewController {
     // The whole brain is set to this var to communicate with it.
     private var brain = CalculatorBrain()
     
-    // MARK: - Buttons
+    // MARK: - Buttons 
     // Called when the user touches a button. Properties of the button are in the 
     // sender parameter. You get the number from it's title. 
     @IBAction func touchDigit(_ sender: UIButton) {
