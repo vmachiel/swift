@@ -51,10 +51,17 @@ class BaseScreen: UIViewController {
         // 2: selector: what method is called when the notification is received.
         // 3: name: what obsever to respond to. This name is send from the SelectionScreen.
         // 4: What object to pass to the selector, nil in this case.
+        
+        // #selector is an obje style selector that selects another method to use. Read more about that.
+        // I THINK: you simply select a method to use and
+        // you pass it nothing, the name is passed via 3rd parameter.. it looks like.
+        
+        // So now you have three observers setup that listen for a notification to be posted with the name
+        // com.vmachiel.lightSide (defined globally). And three for dark side. Each triggers a method that is 
+        // selected by the #selector, and passes the name or the posted notification, and passes no object (nil)
         NotificationCenter.default.addObserver(self, selector: #selector(BaseScreen.updateCharacterImage(notification:)), name: light, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(BaseScreen.updateNameLabel(notification:)), name: light, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(BaseScreen.updateBackground(notification:)), name: light, object: nil)
-        
         //Dark side observers.
         NotificationCenter.default.addObserver(self, selector: #selector(BaseScreen.updateCharacterImage(notification:)), name: dark, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(BaseScreen.updateNameLabel(notification:)), name: dark, object: nil)
@@ -63,7 +70,7 @@ class BaseScreen: UIViewController {
     
     // The methods that get called when the observer (self) gets the messages (notifications)
     // Each one checks if the name is light, and sets the image/name/background to light side, OR dark
-    // and sets everything 
+    // and sets everything  
     func updateCharacterImage(notification: NSNotification) {
         
         let isLight = notification.name == light
@@ -76,7 +83,6 @@ class BaseScreen: UIViewController {
         let isLight = notification.name == light
         let name = isLight ? "Luke Skywalker" : "Darth Vader"
         nameLabel.text = name
-        
     }
     
     func updateBackground(notification: NSNotification) {

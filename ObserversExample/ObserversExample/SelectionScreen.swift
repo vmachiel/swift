@@ -22,13 +22,15 @@ class SelectionScreen: UIViewController {
     // to be passed here. Just the notification needs to go out
     // Finally, dismiss this view.
     @IBAction func rebelButtonTapped(_ sender: UIButton) {
-        let name = Notification.Name(rawValue: darkNotificationKey)
+        let name = Notification.Name(rawValue: lightNotificationKey)
         NotificationCenter.default.post(name: name, object: nil)
         dismiss(animated: true, completion: nil)
     }
     
+    // So again, you post a notification which the name lightNotificationKey define in other file. 
+    // You have observers listening for a notification with that name. 
     @IBAction func imperialButtonTapped(_ sender: UIButton) {
-        let name = Notification.Name(rawValue: lightNotificationKey)
+        let name = Notification.Name(rawValue: darkNotificationKey)
         NotificationCenter.default.post(name: name, object: nil)
         dismiss(animated: true, completion: nil)
     }
