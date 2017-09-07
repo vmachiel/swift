@@ -80,8 +80,10 @@ class ViewController: UIViewController {
     // sender parameter. If there is a number typed, send the operand to the brain
     // and reset the bool. Then the button that is pressed is send as the 
     // symbol used to the brain using performOperation method.
-    // Finally, the result and descriptions are accessed from the brain, set and 
-    // formatted to their displays (display and descriptiondisplay)
+    // Finally, the brain calls its evaluate method to calulate the result.
+    // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
+    // (result, isPending, description)
+    // They are set and formatted to their displays (display and descriptiondisplay)
     // For des. display, call beautifynumbers, and check if resultIsPending. If it
     // is add ... else add = because it's done. No description? Make it " "
     @IBAction func performOperation(_ sender: UIButton) {
@@ -92,11 +94,15 @@ class ViewController: UIViewController {
         if let mathmaticalSymbol = sender.currentTitle {
             brain.performOperation(mathmaticalSymbol)
         }
-        if let result = brain.result {
+        
+        let evaluation = brain.evaluate()
+        
+        if let result = evaluation.result {
             displayValue = result  // set is used here
         }
-        if let description = brain.description {
-            descriptionDisplay.text = description.beautifyNumbers() + (brain.resultIsPending ? "..." : "=")
+        // If description is not empty:
+        if evaluation.description != "" {
+            descriptionDisplay.text = evaluation.description.beautifyNumbers() + (evaluation.isPending ? "..." : "=")
         } else {
             descriptionDisplay.text = " "
         }

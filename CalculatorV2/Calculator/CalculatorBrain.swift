@@ -18,13 +18,17 @@ struct CalculatorBrain {
     private var stack = [Element]()
     // Public properties that return the result is availible, wether an operation is pending, and
     // a description. All are taken from the return tuple of the evaluate() method. 
-    // description is not optional due to empty string possibility " "
+    // NOTICE: These are now deprecated as per the assignment inscructions. Searching online tells me
+    // I should use @availible
+    @available(*, deprecated, message: "Depricated, no longer useable")
     var result: Double? {
         return evaluate().result
     }
+    @available(*, deprecated, message: "Depricated, no longer useable")
     var resultIsPending: Bool {
         return evaluate().isPending
     }
+    @available(*, deprecated, message: "Depricated, no longer useable")
     var description: String? {
         return evaluate().description
     }
