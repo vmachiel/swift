@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         // If you have already typed numbers, add them.
         // if not, set the display to the first digit typed
         // and set userIsTyping to true for the next digits.
-        // check for invalid number!
+        // check for invalid number! 
         if userIsInTheMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             // you have to unwrap display. But not its text property, since

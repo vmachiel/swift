@@ -14,43 +14,37 @@ import Foundation
 struct CalculatorBrain {
     
     // MARK: - Properties
-    // This will hold the current number, and the discription of the current operation.
-    private var accumulator: (acc: Double, des: String)?
-    // Called by the viewController when operation is pressed to set operand. Set the acc to the
-    // operand double and string disciption like:
-    mutating func setOperand(_ operand: Double) {
-        accumulator = (operand, "\(operand)")
-    }
-    
-    // Returns the result to ViewController.
+    // A stack to collect operations on variables
+    private var stack = [Element]()
+    // Public properties that return the result is availible, wether an operation is pending, and
+    // a description. All are taken from the return tuple of the evaluate() method. 
+    // description is not optional due to empty string possibility " "
     var result: Double? {
-        get {
-            if accumulator != nil {
-                // Return the actual number, force because checked.
-                return accumulator!.acc
-            }
-            return nil
-        }
+        return evaluate().result
     }
-    
+    var resultIsPending: Bool {
+        return evaluate().isPending
+    }
     var description: String? {
-        get{
-            if resultIsPending {
-                return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
-            } else {
-                return accumulator?.des
-            }
-        }
+        return evaluate().description
     }
+
     // MARK: - Basic operation
     // What does each operation look like, and what does eacht discription look like.
     // They discription functions can be used to build the string.
+    // V2: Add cases for operands and variables
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double, (String) -> String)
         case binaryOperation((Double, Double) -> Double, (String, String) -> String)
         case nullaryOperation(() -> Double, String)
         case equals
+    }
+    // The options for to use in the evalute function, which handles variables ('x') as well.
+    private enum Element {
+        case operation(String)
+        case operand(Double)
+        case variable(String)
     }
     
     // Dict built using the Operation enum. Constants can built in functions are used,
@@ -86,71 +80,128 @@ struct CalculatorBrain {
         
         "=" : Operation.equals
     ]
-    
-    // Gets called when an operator button is pressed. 
-    // Checks the operations dict for a key match, and passes the value to
-    // operation parameter. Uses its enums ass. value to perform the action and
-    // add description to the accumulator.
+
+    // MARK: - Variable specific operations: New API in V2
+    // Version of set operand with a regular double
+    mutating func setOperand(_ operand: Double) {
+        stack.append(Element.operand(operand))
+    }
+    // Version of set operand for dealing with variables as operands. Set add them to the stack
+    mutating func setOperand(variable named: String) {
+        stack.append(Element.variable(named))
+    }
+    // Add the operation to be done onto the stack:
     mutating func performOperation(_ symbol: String) {
-        if let operation = operations[symbol] {
-            switch operation {
-            // Constant? set it to the accumulator, so the ViewController can
-            // get it back to the display. Save the symbol as well.
-            case .constant(let value):
-                accumulator = (value, symbol)
-            case .unaryOperation(let function, let description):
-                if accumulator != nil {
-                    accumulator = (function(accumulator!.acc), description(accumulator!.des))
-                    // force! already nil checked
-                }
-            // Again, the ass values of the enum stored in the dict can be set to constants.
-            case .binaryOperation(let function, let description):
-                if accumulator != nil {
-                    pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!)
-                    accumulator = nil
-                }
-            case .equals:
-//                if description != nil {
-//                    print(description!)
-//                }
-                performPendingBinaryOperation()
-            case .nullaryOperation(let function, let description):
-                accumulator = (function(), description)
+        stack.append(Element.operation(symbol))
+    }
+
+    // MARK: - Evaluate
+    // This method will perform the evaluation on the stack of operands, variables and instructions. 
+    // A lot of code (accu, pending etc.) has been moved inside this method.
+    func evaluate(using variables: Dictionary<String, Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
+        
+        // First, setup the accumulator and the pending binary operation stuff. 
+        // This is moved inside this method because because this method handles variables
+        var accumulator: (acc: Double, des: String)?
+        // Takes a operation, a description to add to the description string, and a accumulator to
+        // set to the first operand. Is nil if nothing pending.
+        var pendingBinaryOperation: PendingBinaryOperation?
+        
+        struct PendingBinaryOperation {
+            // Store the acutal function, the description and the current (operand, description)
+            let function: (Double, Double) -> Double  // What binary op is being done? (passed by closure)
+            let description: (String, String) -> String
+            let firstOperand: (Double, String)
+            
+            // Called when the second operand is set and equals is passed
+            func perform(with secondOperand: (Double, String)) -> (Double, String) {
+                return (function(firstOperand.0, secondOperand.0), description(firstOperand.1, secondOperand.1))
             }
         }
-    }
-    
-    // MARK: - Pending operation
-    // Takes a operation, a description to add to the description string, and a accumulator to
-    // set to the first operand. Is nil if nothing pending.
-    private var pendingBinaryOperation: PendingBinaryOperation?
-    
-    private struct PendingBinaryOperation {
-        // Store the acutal function, the description and the current (operand, description)
-        let function: (Double, Double) -> Double  // What binary op is being done? (passed by closure)
-        let description: (String, String) -> String
-        let firstOperand: (Double, String)
+        // If it does have data and equals is pressed and there is a new number in the accumulator,
+        // call its perform method.
+        func performPendingBinaryOperation() {
+            if pendingBinaryOperation != nil && accumulator != nil {
+                accumulator = pendingBinaryOperation!.perform(with: accumulator!)
+                pendingBinaryOperation = nil
+            }
+        }
         
-        // Called when the second operand is set and equals is passed
-        func perform(with secondOperand: (Double, String)) -> (Double, String) {
-            return (function(firstOperand.0, secondOperand.0), description(firstOperand.1, secondOperand.1))
+        // The result and description to be returned at the end, after the code that evals the stack.
+        // Check optionals so you only unwrap safely!
+        var result: Double? {
+            if accumulator != nil {
+                return accumulator!.0
+            }
+            return nil
         }
-    }
-    // Is there a result pending? Checks if the pendingBinaryOperation var has data
-    var resultIsPending: Bool {
-        get {
-            return pendingBinaryOperation != nil
+        // Check if pending operation, else return accu description, which can be an empty string
+        var description: String? {
+            if pendingBinaryOperation != nil {
+                return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
+            } else {
+                return accumulator?.1
+            }
         }
-    }
-    // If it does have data and equals is pressed and there is a new number in the accumulator,
-    // call its perform method.
-    mutating private func performPendingBinaryOperation() {
-        if pendingBinaryOperation != nil && accumulator != nil {
-            accumulator = pendingBinaryOperation!.perform(with: accumulator!)
-            pendingBinaryOperation = nil
+        
+        // The meat of the method: evaluation. The term stack is misleading here, it's not last in first
+        // out, but first in first out. For each element in the stack, check what it is. 
+        // Operand? set acc to it. 
+        // Operation? Check the dictionary for a match, and switch the value (which is an enum Operation)
+        // to perform the appropriate action, same as before. 
+        // If it's a variable, look it up in optional dictionary. TODO: Add more details
+        for element in stack {
+            switch element {
+            case .operand(let value):
+                accumulator = (value, "\(value)")
+            case .operation(let symbol):
+                if let operation = operations[symbol] {
+                    switch operation {
+                        // Constant? set it to the accumulator, so the ViewController can
+                    // get it back to the display. Save the symbol as well.
+                    case .constant(let value):
+                        accumulator = (value, symbol)
+                    case .unaryOperation(let function, let description):
+                        if accumulator != nil {
+                            accumulator = (function(accumulator!.acc), description(accumulator!.des))
+                            // force! already nil checked
+                        }
+                    // Again, the ass values of the enum stored in the dict value can be set to constants.
+                    case .binaryOperation(let function, let description):
+                        if accumulator != nil {
+                            pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!)
+                            accumulator = nil
+                        }
+                    case .equals:
+                        performPendingBinaryOperation()
+                    case .nullaryOperation(let function, let description):
+                        accumulator = (function(), description)
+                    }
+                }
+            case .variable(let symbol):
+                if let value = variables?[symbol] {
+                    accumulator = (value, "\(value)")
+                } else {
+                    accumulator = (0, "0")
+                }
+            }
         }
+    return (result, pendingBinaryOperation != nil, description ?? "")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,15 +1,15 @@
 import Foundation
 
-// Extend string to clean up the numbers for the discprition display
 // String will get some beautification code using Regex. Extention is used
 // because it might be needed again.
 // Regex takes a pattern and options, can throw error.
 // Range is made by counting the caracters in the string the method is done
-// on
+// on. This is the range the of the string that should be checked (all of it here)
 // Finally, the result is return onto itself (this is a method)
 // The pattern (regex constant) is replaced with the provided replacement template.
 // This will be used in cases where the full string needs to be replaced.. i think.
 extension String {
+    
     func replace(pattern: String, with replacement: String) -> String {
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let range = NSMakeRange(0, self.characters.count)
@@ -23,7 +23,38 @@ extension String {
 // but not .00004 or .000423000243. It replaces that with $1, which is nothing so an
 // empty string. So it replaces it with an empty string, effectively deleting it.
 extension String {
+    
     func beautifyNumbers() -> String {
-        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "$1")
+        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "")
     }
 }
+
+extension String {
+    
+    func removeNumbers() -> String {
+        return self.replace(pattern: "[0-9]+", with: "")
+    }
+}
+
+extension String {
+    
+    var isValidEmail: Bool {
+        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailFormat)
+        return emailPredicate.evaluate(with: self)
+    }
+}
+
+
+var testString = "Hello Snor Barry 23.000"
+testString.removeNumbers()
+testString.beautifyNumbers()
+
+
+
+
+
+
+
+
+
