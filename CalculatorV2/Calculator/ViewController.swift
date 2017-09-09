@@ -35,6 +35,9 @@ class ViewController: UIViewController {
     }
     // The whole brain is set to this var to communicate with it.
     private var brain = CalculatorBrain()
+    // The dict which can store variables like M (memory) to send to the evaluate method of the calc
+    // brain.
+    private var variables = Dictionary<String, Double>()
     
     // MARK: - Buttons 
     // Called when the user touches a button. Properties of the button are in the 
@@ -80,22 +83,26 @@ class ViewController: UIViewController {
     // sender parameter. If there is a number typed, send the operand to the brain
     // and reset the bool. Then the button that is pressed is send as the 
     // symbol used to the brain using performOperation method.
-    // Finally, the brain calls its evaluate method to calulate the result.
-    // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
-    // (result, isPending, description)
-    // They are set and formatted to their displays (display and descriptiondisplay)
-    // For des. display, call beautifynumbers, and check if resultIsPending. If it
-    // is add ... else add = because it's done. No description? Make it " "
+    // Finally, call the displayResults() method to eval en display resutls. This is 
+    // factored out into seperate private function because it's called from different places.
     @IBAction func performOperation(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping {
             brain.setOperand(displayValue)  // get is used here
             userIsInTheMiddleOfTyping = false  // IMPORTANT!! This will ensure a new number after an operation. 
         }
         if let mathmaticalSymbol = sender.currentTitle {
-            brain.performOperation(mathmaticalSymbol)
+            brain.performOperation(operation: mathmaticalSymbol)
         }
-        
-        let evaluation = brain.evaluate()
+        calcAndDisplayResult()
+    }
+    // The brain calls its evaluate method to calulate the result. It's passed the variables
+    // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
+    // (result, isPending, description)
+    // They are set and formatted to their displays (display and descriptiondisplay)
+    // For des. display, call beautifynumbers, and check if resultIsPending. If it
+    // is add ... else add = because it's done. No description? Make it " "
+    private func calcAndDisplayResult() {
+        let evaluation = brain.evaluate(using: variables)
         
         if let result = evaluation.result {
             displayValue = result  // set is used here
@@ -107,14 +114,16 @@ class ViewController: UIViewController {
             descriptionDisplay.text = " "
         }
     }
+    
     // Reset button. Reset everything by re-initializing the brain. 
     // set display value to 0, set description to empty string and 
-    // user typing bool false
+    // user typing bool false. Reset the variables
     @IBAction func reset(_ sender: UIButton) {
         brain = CalculatorBrain()
         displayValue = 0
         descriptionDisplay.text = " "
         userIsInTheMiddleOfTyping = false
+        variables = Dictionary<String, Double>()
     }
     // Backspace button. If user is typing, and the text has something in it,
     // set current text to var. Remove it's last char. If it's now empty,
@@ -129,6 +138,17 @@ class ViewController: UIViewController {
             }
             display.text = text
         }
+    }
+    //
+    @IBAction func callMemory(_ sender: UIButton) {
+        brain.setOperand(variable: "M")
+        userIsInTheMiddleOfTyping = false
+        calcAndDisplayResult()
+    }
+    @IBAction func storeToMemory(_ sender: UIButton) {
+        variables["M"] = displayValue
+        userIsInTheMiddleOfTyping = false
+        calcAndDisplayResult()
     }
 }
 
@@ -157,7 +177,7 @@ extension String {
 // empty string. So it replaces it with an empty string, effectively deleting it.
 extension String {
     func beautifyNumbers() -> String {
-        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "$1")
+        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "")
     }
 }
 

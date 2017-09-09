@@ -57,7 +57,8 @@ struct CalculatorBrain {
     // It knows which $ should be doubles and which should be string because you
     // defined it in the Operation enum.
     // In the description case, the new stuff is constantly added to the existing des-
-    // cription!!!
+    // cription!!! 
+    // TODO: Let
     private var operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
@@ -80,7 +81,7 @@ struct CalculatorBrain {
         "-" : Operation.binaryOperation({ $0 - $1 }, { $0 + "-" + $1 }),
         "xʸ" : Operation.binaryOperation(pow, { $0 + "^" + $1 }),
         
-        "Rand" : Operation.nullaryOperation({ Double(arc4random()) / Double(UInt32.max) }, "rand()"),
+        "Rnd" : Operation.nullaryOperation({ Double(arc4random()) / Double(UInt32.max) }, "rand()"),
         
         "=" : Operation.equals
     ]
@@ -95,13 +96,16 @@ struct CalculatorBrain {
         stack.append(Element.variable(named))
     }
     // Add the operation to be done onto the stack:
-    mutating func performOperation(_ symbol: String) {
+    mutating func performOperation(operation symbol: String) {
         stack.append(Element.operation(symbol))
     }
 
     // MARK: - Evaluate
     // This method will perform the evaluation on the stack of operands, variables and instructions. 
     // A lot of code (accu, pending etc.) has been moved inside this method.
+    // It takes a dictionary with all the variable names currently stored, with they values. 
+    // If none are stored, dict = nil. It returns a result if it can, weather an operation is pending, 
+    // and the description of the calculation, which defaults to an empty string. 
     func evaluate(using variables: Dictionary<String, Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
         
         // First, setup the accumulator and the pending binary operation stuff. 
@@ -135,7 +139,7 @@ struct CalculatorBrain {
         // Check optionals so you only unwrap safely!
         var result: Double? {
             if accumulator != nil {
-                return accumulator!.0
+                return accumulator!.acc
             }
             return nil
         }
@@ -144,7 +148,7 @@ struct CalculatorBrain {
             if pendingBinaryOperation != nil {
                 return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
             } else {
-                return accumulator?.1
+                return accumulator?.des 
             }
         }
         
@@ -153,7 +157,8 @@ struct CalculatorBrain {
         // Operand? set acc to it. 
         // Operation? Check the dictionary for a match, and switch the value (which is an enum Operation)
         // to perform the appropriate action, same as before. 
-        // If it's a variable, look it up in optional dictionary. TODO: Add more details
+        // If it's a variable, look it up in optional dictionary to see if it has a value associated with it
+        // If not, display 0
         for element in stack {
             switch element {
             case .operand(let value):
@@ -182,11 +187,12 @@ struct CalculatorBrain {
                         accumulator = (function(), description)
                     }
                 }
+            // If the variable has a value: display it. If not, show it as 0
             case .variable(let symbol):
                 if let value = variables?[symbol] {
-                    accumulator = (value, "\(value)")
+                    accumulator = (value, symbol)
                 } else {
-                    accumulator = (0, "0")
+                    accumulator = (0, symbol)
                 }
             }
         }
