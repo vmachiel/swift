@@ -177,7 +177,7 @@ extension String {
 // empty string. So it replaces it with an empty string, effectively deleting it.
 extension String {
     func beautifyNumbers() -> String {
-        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "")
+        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "$1")
     }
 }
 

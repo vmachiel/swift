@@ -148,7 +148,7 @@ struct CalculatorBrain {
             if pendingBinaryOperation != nil {
                 return pendingBinaryOperation!.description(pendingBinaryOperation!.firstOperand.1, accumulator?.1 ?? "")
             } else {
-                return accumulator?.des 
+                return accumulator?.1
             }
         }
         
@@ -177,6 +177,7 @@ struct CalculatorBrain {
                         }
                     // Again, the ass values of the enum stored in the dict value can be set to constants.
                     case .binaryOperation(let function, let description):
+                        performPendingBinaryOperation()
                         if accumulator != nil {
                             pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!)
                             accumulator = nil
@@ -196,7 +197,7 @@ struct CalculatorBrain {
                 }
             }
         }
-    return (result, pendingBinaryOperation != nil, description ?? "")
+        return (result, pendingBinaryOperation != nil, description ?? "")
     }
 }
 
