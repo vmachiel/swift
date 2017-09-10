@@ -25,14 +25,14 @@ extension String {
 extension String {
     
     func beautifyNumbers() -> String {
-        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "")
+        return self.replace(pattern: "\\.0+([^0-9]|$)", with: "S1")
     }
 }
 
 extension String {
     
     func removeNumbers() -> String {
-        return self.replace(pattern: "[0-9]+", with: "")
+        return self.replace(pattern: "[0-9]+", with: "S1")
     }
 }
 

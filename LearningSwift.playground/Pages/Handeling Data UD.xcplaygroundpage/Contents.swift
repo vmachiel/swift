@@ -21,7 +21,7 @@ defaults.set(nil, forKey: "Some Setting")
 
 // Why is this not working
 let numberPi = defaults.double(forKey: "Pi")
-
+numberPi
 
 
 

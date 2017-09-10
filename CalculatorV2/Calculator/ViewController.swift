@@ -13,11 +13,14 @@ import UIKit
 // get and set by the CalCulatorBrain. 
 class ViewController: UIViewController {
     
-    // MARK: - Properties
+    // MARK: - Properties and Outlets
     // The text in the display
     @IBOutlet weak var display: UILabel!
     // The text in the description display
     @IBOutlet weak var descriptionDisplay: UILabel!
+    // The text of the memory display
+    @IBOutlet weak var memoryDisplay: UILabel!
+    
     // Has the user typed a number already?
     var userIsInTheMiddleOfTyping = false
     // This property is passed to the brain (the number in the display)
@@ -36,8 +39,13 @@ class ViewController: UIViewController {
     // The whole brain is set to this var to communicate with it.
     private var brain = CalculatorBrain()
     // The dict which can store variables like M (memory) to send to the evaluate method of the calc
-    // brain.
-    private var variables = Dictionary<String, Double>()
+    // brain. One it has been updated, use didSet to update the screen. Map all the memory keys (variables),
+    // and their values using flatmap to format them, and joined() to make it into one string. Beautify!
+    private var variables = Dictionary<String, Double>() {
+        didSet {
+            memoryDisplay.text = variables.flatMap{$0+": \($1)"}.joined(separator: ", ").beautifyNumbers()
+        }
+    }
     
     // MARK: - Buttons 
     // Called when the user touches a button. Properties of the button are in the 
