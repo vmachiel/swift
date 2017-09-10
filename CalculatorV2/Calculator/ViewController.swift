@@ -133,11 +133,14 @@ class ViewController: UIViewController {
         userIsInTheMiddleOfTyping = false
         variables = Dictionary<String, Double>()
     }
-    // Backspace button. If user is typing, and the text has something in it,
+    // Undo button. If user is typing, and the text has something in it,
     // set current text to var. Remove it's last char. If it's now empty,
     // set it to 0 and userIsInTheMiddleOfTyping to false. 
     // Finally, set the display.text to the text var
-    @IBAction func backSpace(_ sender: UIButton) {
+    // If display is empty, userIsTyping will be false. 
+    // In that case: undo. This removes the last Element from the stack.
+    // After that, call calcAndDisplayResult to re-eval and update displays again.
+    @IBAction func undo(_ sender: UIButton) {
         if userIsInTheMiddleOfTyping, var text = display.text {
             text.remove(at: text.index(before: text.endIndex))
             if text.isEmpty || text == "0" {
@@ -145,14 +148,18 @@ class ViewController: UIViewController {
                 userIsInTheMiddleOfTyping = false
             }
             display.text = text
+        } else {
+            brain.undo()
+            calcAndDisplayResult()
         }
     }
-    //
+    // Add memory to the stack, and start typing new number. calc/update display
     @IBAction func callMemory(_ sender: UIButton) {
         brain.setOperand(variable: "M")
         userIsInTheMiddleOfTyping = false
         calcAndDisplayResult()
     }
+    // Set current value to memory, and start typing new number. calc/update display
     @IBAction func storeToMemory(_ sender: UIButton) {
         variables["M"] = displayValue
         userIsInTheMiddleOfTyping = false

@@ -14,7 +14,8 @@ import Foundation
 struct CalculatorBrain {
     
     // MARK: - Properties
-    // A stack to collect operations on variables
+    // A stack to collect all operations and operands and variables. Will keep everything, until you 
+    // press undo or clear
     private var stack = [Element]()
     // Public properties that return the result is availible, wether an operation is pending, and
     // a description. All are taken from the return tuple of the evaluate() method. 
@@ -98,6 +99,12 @@ struct CalculatorBrain {
     // Add the operation to be done onto the stack:
     mutating func performOperation(operation symbol: String) {
         stack.append(Element.operation(symbol))
+    }
+    // Undo, by removing the last Element from stack. VC calls evaluate and update display after this. 
+    mutating func undo() {
+        if !stack.isEmpty {
+            stack.removeLast()
+        }
     }
 
     // MARK: - Evaluate

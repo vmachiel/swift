@@ -79,8 +79,8 @@ let product = [1, 2, 3, 4].reduce(1, *)
 
 // Useful method of dictionary: flatmap!
 let dictTest = ["M": 4, "N": 5, "X": 48]
-let x = dictTest.flatMap{"\($0), \($1)"}
-x
+let joinedKeysAndValues = dictTest.flatMap{"\($0), \($1)"}
+let jKAVInOneString = joinedKeysAndValues.joined(separator: ", ")
 
 
 
