@@ -153,6 +153,7 @@ class ViewController: UIViewController {
             calcAndDisplayResult()
         }
     }
+    // Memory, is currently the only variable supported. A dict is used to more easily add more later. 
     // Add memory to the stack, and start typing new number. calc/update display
     @IBAction func callMemory(_ sender: UIButton) {
         brain.setOperand(variable: "M")
