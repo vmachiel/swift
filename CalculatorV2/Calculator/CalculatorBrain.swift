@@ -35,9 +35,14 @@ struct CalculatorBrain {
     }
 
     // MARK: - Basic operation
-    // What does each operation look like, and what does eacht discription look like.
-    // They discription functions can be used to build the string.
-    // V2: Add cases for operands and variables
+    // The options for to use in the evalute function, which handles variables ('x') as well.
+    // Use asso. values to pass actual values along, define types here.
+    private enum Element {
+        case operation(String)
+        case operand(Double)
+        case variable(String)
+    }
+    // The different kinds of operations the evaluatie method can handle. Defined types in asso. values.
     private enum Operation {
         case constant(Double)
         case unaryOperation((Double) -> Double, (String) -> String)
@@ -45,22 +50,21 @@ struct CalculatorBrain {
         case nullaryOperation(() -> Double, String)
         case equals
     }
-    // The options for to use in the evalute function, which handles variables ('x') as well.
-    private enum Element {
-        case operation(String)
-        case operand(Double)
-        case variable(String)
+    // The different kinds of error messages that can appear, one for unary and one for binary.
+    // The two values are passed, and an optional error message is returned.
+    private enum Errors {
+        case unaryError((Double) -> String?)
+        case binaryError((Double, Double) -> String?)
     }
-    
-    // Dict built using the Operation enum. Constants can built in functions are used,
+
+    // Dict built using the Operation enum as values, which are found by string keys passed from VC.
+    // Constants can built in functions are used,
     // as well as closures to perform the actual operations and build de description
     // strings.
-    // It knows which $ should be doubles and which should be string because you
-    // defined it in the Operation enum.
-    // In the description case, the new stuff is constantly added to the existing des-
-    // cription!!! 
-    // TODO: Let
-    private var operations: Dictionary<String, Operation> = [
+    // It knows which $ should be of what type because you defined it in the Operation enum.
+    // Note to self: In the description case, the new stuff is constantly added to the 
+    // existing description!!!
+    private let operations: Dictionary<String, Operation> = [
         "π" : Operation.constant(Double.pi),
         "e" : Operation.constant(M_E),
         
@@ -85,6 +89,16 @@ struct CalculatorBrain {
         "Rnd" : Operation.nullaryOperation({ Double(arc4random()) / Double(UInt32.max) }, "rand()"),
         
         "=" : Operation.equals
+    ]
+    // Dict built using the Errors enum as values , which are found by string keys passed from VC.
+    // For each error, test the conditions under which the error occurs as a closure. If true, set the
+    // error message that should return, and nil if not (no error)
+    private let errorsInOperation: Dictionary<String, Errors> = [
+        "√" : Errors.unaryError({ $0 < 0.0 ? "Root of negative number." : nil }),
+        "÷" : Errors.binaryError({$1 == 0.0 ? "Divide by 0" : nil}),
+        "1/x" : Errors.unaryError({$0 == 0.0 ? "Divide by 0" : nil}),
+        "ln" : Errors.unaryError({ $0 < 0.0 ? "Natural log of negative" : nil }),
+        "log" : Errors.unaryError({ $0 < 0.0 ? "10 log of negative" : nil })
     ]
 
     // MARK: - Variable specific operations: New API in V2
@@ -113,7 +127,7 @@ struct CalculatorBrain {
     // It takes a dictionary with all the variable names currently stored, with they values. 
     // If none are stored, dict = nil. It returns a result if it can, weather an operation is pending, 
     // and the description of the calculation, which defaults to an empty string. 
-    func evaluate(using variables: Dictionary<String, Double>? = nil) -> (result: Double?, isPending: Bool, description: String) {
+    func evaluate(using variables: Dictionary<String, Double>? = nil) -> (result: Double?, isPending: Bool, description: String, error: String?) {
         
         // First, setup the accumulator and the pending binary operation stuff. 
         // This is moved inside this method because because this method handles variables
@@ -121,6 +135,8 @@ struct CalculatorBrain {
         // Takes a operation, a description to add to the description string, and a accumulator to
         // set to the first operand. Is nil if nothing pending.
         var pendingBinaryOperation: PendingBinaryOperation?
+        // Has the evaluation produced an error?
+        var error: String?
         
         struct PendingBinaryOperation {
             // Store the acutal function, the description and the current (operand, description)
@@ -204,7 +220,7 @@ struct CalculatorBrain {
                 }
             }
         }
-        return (result, pendingBinaryOperation != nil, description ?? "")
+        return (result, pendingBinaryOperation != nil, description ?? "", error)
     }
 }
 

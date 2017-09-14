@@ -103,12 +103,12 @@ class ViewController: UIViewController {
         }
         calcAndDisplayResult()
     }
+    // Main method to eval result and update display
     // The brain calls its evaluate method to calulate the result. It's passed the variables
     // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
     // (result, isPending, description)
     // They are set and formatted to their displays (display and descriptiondisplay)
-    // For des. display, call beautifynumbers, and check if resultIsPending. If it
-    // is add ... else add = because it's done. No description? Make it " "
+    // For des. display, call beautifynumbers, and check if resultIsPending.
     private func calcAndDisplayResult() {
         let evaluation = brain.evaluate(using: variables)
         
