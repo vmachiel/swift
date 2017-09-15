@@ -12,6 +12,7 @@
 		3E852EB41F6BE282002C4988 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E852EB21F6BE282002C4988 /* Main.storyboard */; };
 		3E852EB61F6BE282002C4988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E852EB51F6BE282002C4988 /* Assets.xcassets */; };
 		3E852EB91F6BE282002C4988 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E852EB71F6BE282002C4988 /* LaunchScreen.storyboard */; };
+		3E852EC11F6BE2F3002C4988 /* FaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E852EC01F6BE2F3002C4988 /* FaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		3E852EB51F6BE282002C4988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3E852EB81F6BE282002C4988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E852EBA1F6BE282002C4988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E852EC01F6BE2F3002C4988 /* FaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				3E852EAE1F6BE282002C4988 /* AppDelegate.swift */,
 				3E852EB01F6BE282002C4988 /* ViewController.swift */,
+				3E852EC01F6BE2F3002C4988 /* FaceView.swift */,
 				3E852EB21F6BE282002C4988 /* Main.storyboard */,
 				3E852EB51F6BE282002C4988 /* Assets.xcassets */,
 				3E852EB71F6BE282002C4988 /* LaunchScreen.storyboard */,
@@ -139,6 +142,7 @@
 			files = (
 				3E852EB11F6BE282002C4988 /* ViewController.swift in Sources */,
 				3E852EAF1F6BE282002C4988 /* AppDelegate.swift in Sources */,
+				3E852EC11F6BE2F3002C4988 /* FaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

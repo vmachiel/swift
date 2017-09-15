@@ -160,8 +160,8 @@ image?.draw(at: point)  // etc
 // OR Simply ask for a .redraw  This is possible in interface builder's inspector.
 
 
-
-
+// Use convert to convert a point (like center) from one coor system to another.
+let skullCenter = convert(center, from: superview)
 
 
 
