@@ -46,7 +46,7 @@ class ViewController: UIViewController {
             memoryDisplay.text = variables.flatMap{$0+": \($1)"}.joined(separator: ", ").beautifyNumbers()
         }
     }
-    
+
     // MARK: - Buttons 
     // Called when the user touches a button. Properties of the button are in the 
     // sender parameter. You get the number from it's title. 
@@ -86,7 +86,6 @@ class ViewController: UIViewController {
             userIsInTheMiddleOfTyping = true
         }
     }
-    
     // Run when the user touches a operation button, properties are send to the
     // sender parameter. If there is a number typed, send the operand to the brain
     // and reset the bool. Then the button that is pressed is send as the 
@@ -103,26 +102,6 @@ class ViewController: UIViewController {
         }
         calcAndDisplayResult()
     }
-    // Main method to eval result and update display
-    // The brain calls its evaluate method to calulate the result. It's passed the variables
-    // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
-    // (result, isPending, description)
-    // They are set and formatted to their displays (display and descriptiondisplay)
-    // For des. display, call beautifynumbers, and check if resultIsPending.
-    private func calcAndDisplayResult() {
-        let evaluation = brain.evaluate(using: variables)
-        
-        if let result = evaluation.result {
-            displayValue = result  // set is used here
-        }
-        // If description is not empty:
-        if evaluation.description != "" {
-            descriptionDisplay.text = evaluation.description.beautifyNumbers() + (evaluation.isPending ? "..." : "=")
-        } else {
-            descriptionDisplay.text = " "
-        }
-    }
-    
     // Reset button. Reset everything by re-initializing the brain. 
     // set display value to 0, set description to empty string and 
     // user typing bool false. Reset the variables
@@ -165,6 +144,28 @@ class ViewController: UIViewController {
         variables["M"] = displayValue
         userIsInTheMiddleOfTyping = false
         calcAndDisplayResult()
+    }
+    // MARK: - Update Display
+    // Main method to eval result and update display
+    // The brain calls its evaluate method to calulate the result. It's passed the variables
+    // The result and descriptions are accessed from the evaluation, remember, it returns a tuple,
+    // (result, isPending, description)
+    // They are set and formatted to their displays (display and descriptiondisplay)
+    // For des. display, call beautifynumbers, and check if resultIsPending.
+    private func calcAndDisplayResult() {
+        let evaluation = brain.evaluate(using: variables)
+        
+        if let error = evaluation.error {
+            display.text = error 
+        } else if let result = evaluation.result {
+            displayValue = result  // set is used here
+        }
+        // If description is not empty:
+        if evaluation.description != "" {
+            descriptionDisplay.text = evaluation.description.beautifyNumbers() + (evaluation.isPending ? "..." : "=")
+        } else {
+            descriptionDisplay.text = " "
+        }
     }
 }
 

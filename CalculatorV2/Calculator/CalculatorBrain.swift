@@ -10,7 +10,7 @@ import Foundation
 
 
 // What does this model allow PUBLICLY? What does it allow the controller to do?
-// No need for inheritance. Will only be refferenced by one Controller. KISAS
+// No need for inheritance. Will only be refferenced by one Controller.
 struct CalculatorBrain {
     
     // MARK: - Properties
@@ -140,9 +140,11 @@ struct CalculatorBrain {
         
         struct PendingBinaryOperation {
             // Store the acutal function, the description and the current (operand, description)
+            // Also store the symbol or the operation, so it can be checked for errors in evalute()
             let function: (Double, Double) -> Double  // What binary op is being done? (passed by closure)
             let description: (String, String) -> String
             let firstOperand: (Double, String)
+            let symbol: String
             
             // Called when the second operand is set and equals is passed
             func perform(with secondOperand: (Double, String)) -> (Double, String) {
@@ -151,8 +153,13 @@ struct CalculatorBrain {
         }
         // If it does have data and equals is pressed and there is a new number in the accumulator,
         // call its perform method.
+        // Again error check: if the symbol is in the dict, set the asso. value function to errorFunction.
+        // Pass it the accu and operand, and if true (thus error) set message to optional var error.
         func performPendingBinaryOperation() {
             if pendingBinaryOperation != nil && accumulator != nil {
+                if let errorOperation = errorsInOperation[pendingBinaryOperation!.symbol], case .binaryError(let errorFunction) = errorOperation {
+                    error = errorFunction(pendingBinaryOperation!.firstOperand.0, accumulator!.0)
+                }
                 accumulator = pendingBinaryOperation!.perform(with: accumulator!)
                 pendingBinaryOperation = nil
             }
@@ -180,6 +187,8 @@ struct CalculatorBrain {
         // Operand? set acc to it. 
         // Operation? Check the dictionary for a match, and switch the value (which is an enum Operation)
         // to perform the appropriate action, same as before. 
+        // ADDED: Error operations, will check for error, and set the error message to var error: String?, 
+        // if one is found. If non is found, it'll remain nil and return as nil
         // If it's a variable, look it up in optional dictionary to see if it has a value associated with it
         // If not, display 0
         for element in stack {
@@ -189,20 +198,26 @@ struct CalculatorBrain {
             case .operation(let symbol):
                 if let operation = operations[symbol] {
                     switch operation {
-                        // Constant? set it to the accumulator, so the ViewController can
+                    // Constant? set it to the accumulator, so the ViewController can
                     // get it back to the display. Save the symbol as well.
                     case .constant(let value):
                         accumulator = (value, symbol)
                     case .unaryOperation(let function, let description):
                         if accumulator != nil {
+                            // If the symbol is found in the error dict, set it to errorOperation. 
+                            // This is unary, so to that errorOperation, and extrac the asso value.
+                            // Pass it the accumulator value, and set result (message or nil) to error.
+                            if let errorOperation = errorsInOperation[symbol], case .unaryError(let errorFunction) = errorOperation {
+                                error = errorFunction(accumulator!.0)
+                            }
                             accumulator = (function(accumulator!.acc), description(accumulator!.des))
-                            // force! already nil checked
                         }
                     // Again, the ass values of the enum stored in the dict value can be set to constants.
+                    // Pass symbol for erro
                     case .binaryOperation(let function, let description):
                         performPendingBinaryOperation()
                         if accumulator != nil {
-                            pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!)
+                            pendingBinaryOperation = PendingBinaryOperation(function: function, description: description, firstOperand: accumulator!, symbol: symbol)
                             accumulator = nil
                         }
                     case .equals:
