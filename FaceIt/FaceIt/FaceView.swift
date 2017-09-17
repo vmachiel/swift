@@ -13,8 +13,10 @@ import UIKit
 class FaceView: UIView {
     
     // MARK: Properties
-    // CGFloat to scale shape down a bit. Public, let others change it. 
+    // CGFloat to scale shape down a bit. Public, let others change it.
     var scale: CGFloat = 0.9
+    // Are the eyes open? Again, public
+    var eyesOpen = true
     
     // Skull dimensions relative to the bounds. Make them computed, so when the bounds change,
     // they do as well. Relate all other drawings to this for correct scaling. 
@@ -72,7 +74,17 @@ class FaceView: UIView {
         let eyeRadius = skullRadius / Ratios.skullRadiusToEyeRadius
         let eyeCenter = centerOfEye(eye)
         
-        let path = UIBezierPath(arcCenter: eyeCenter, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        // If eyes open, path is basic circle like skull. 
+        // If not, move to the middle in y direction (center of eye) and the edge of the x direction
+        // which is the left most point of the eye "circle". Draw a line to the right point
+        let path: UIBezierPath  // NOTE: Not inited, even though it's let, can be inited by either if or else
+        if eyesOpen {
+            path = UIBezierPath(arcCenter: eyeCenter, radius: eyeRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
+        } else {
+            path = UIBezierPath()
+            path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
+            path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
+        }
         path.lineWidth = 5.0
         return path
     }
