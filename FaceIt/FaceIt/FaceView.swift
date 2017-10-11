@@ -10,13 +10,31 @@ import UIKit
 
 // This app to learn about drawing in a view. Draw a face.
 // Remember to set to redraw in IB to redraw when orientation changes.
+// @IBDesignable makes it so that you can see and inspect it in interface builder
+@IBDesignable
 class FaceView: UIView {
     
     // MARK: Properties
+    // Make them IBInspectable to use in IB. TYPE THEM, IB can't infer like Swift can. 
     // CGFloat to scale shape down a bit. Public, let others change it.
+    @IBInspectable
     var scale: CGFloat = 0.9
+    
     // Are the eyes open? Again, public
-    var eyesOpen = true
+    @IBInspectable
+    var eyesOpen: Bool = true
+    
+    // Smilling or frowning? 1.0 = full smile, -1.0 is frown.
+    @IBInspectable
+    var mouthCurvature: Double = 1.0
+    
+    // Linewidth to use.
+    @IBInspectable
+    var lineWidth: CGFloat = 5.0
+    
+    // Color to draw in
+    @IBInspectable
+    var color: UIColor = UIColor.blue
     
     // Skull dimensions relative to the bounds. Make them computed, so when the bounds change,
     // they do as well. Relate all other drawings to this for correct scaling. 
@@ -52,7 +70,7 @@ class FaceView: UIView {
     // can't be a simple int and double. Also set width of line
     private func pathforSkull() -> UIBezierPath {
         let path = UIBezierPath(arcCenter: skullCenter, radius: skullRadius, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: false)
-        path.lineWidth = 5.0
+        path.lineWidth = lineWidth
         return path
     }
     // Eyes:
@@ -85,16 +103,49 @@ class FaceView: UIView {
             path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
             path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
         }
-        path.lineWidth = 5.0
+        
+        path.lineWidth = lineWidth
+        return path
+    }
+    // Mouth: use Beziercurve with control points to bend the smils. use the mouthCurvature to
+    // control how much
+    private func pathForMouth() -> UIBezierPath {
+        // Again, use the Ratios to calculate demensions and offsets
+        let mouthWidth = skullRadius / Ratios.skullRadiusToMouthWidth
+        let mouthHeight = skullRadius / Ratios.skullRadiusToMouthHeight
+        let mouthOffset = skullRadius / Ratios.skullRadiusToMouthOffset
+        // Rect where the mouth is gonna be, used to build actual smile. Will no be drawn,
+        // used as guid.
+        let mouthRectangle = CGRect(x: skullCenter.x - mouthWidth / 2,
+                                    y: skullCenter.y + mouthOffset / 2,
+                                    width: mouthWidth, height: mouthHeight)
+        
+        // Off set of the smile/frown. Restrict to -1, 1 using min and max.
+        let smileOffset: CGFloat = CGFloat(max(-1, min(mouthCurvature, 1))) * mouthRectangle.height
+        // Start of the mouth is to the left in the middle, end to the right in middle
+        let start = CGPoint(x: mouthRectangle.minX, y: mouthRectangle.midY)
+        let end = CGPoint(x: mouthRectangle.maxX, y: mouthRectangle.midY)
+        
+        // Use control points to guide the smile. 2 are used, both are 1/3 of the way from the left
+        // and right edge, and in y use the offset: 1.0 is full smile. Remember: down is + in y direction
+        let cp1 = CGPoint(x: start.x + mouthRectangle.width / 3, y: start.y + smileOffset)
+        let cp2 = CGPoint(x: end.x - mouthRectangle.width / 3, y: start.y + smileOffset)
+        
+        // Create path, and draw smile.
+        let path = UIBezierPath()
+        path.move(to: start)
+        path.addCurve(to: end, controlPoint1: cp1, controlPoint2: cp2)
+        path.lineWidth = lineWidth
         return path
     }
     
     override func draw(_ rect: CGRect) {
         // MARK: Draw the skull
-        UIColor.blue.set()
+        color.set()
         pathforSkull().stroke()
         pathForEye(.left).stroke()
         pathForEye(.right).stroke()
+        pathForMouth().stroke()
     }
 }
 

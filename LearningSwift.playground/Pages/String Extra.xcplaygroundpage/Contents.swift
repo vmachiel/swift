@@ -9,7 +9,7 @@ let testEmoji: String = "👨‍👩‍👧"
 testEmoji.characters.count  // 3
 
 // Swift 4:
-// testEmoji.count
+testEmoji.count  // 4
 
 // In swift 3, strings aren't collections/sequences. They are in swift 4!
 // So to access the caracters in 3, you do string.characters.whatever or
@@ -17,7 +17,10 @@ testEmoji.characters.count  // 3
 for char in testEmoji.characters {
     print(char)
 }
-
+// Swift 4:
+for char in testEmoji {
+    print(char)
+}
 
 
 // Examples Swift 3
@@ -25,20 +28,22 @@ var s = "hello there"
 for c in s.characters {
     print(c)
 }
-let count = s.characters.count
+let count3 = s.characters.count
 // Find the index of a certain char
-let firstSpace: String.Index = s.characters.index(of: " ")!
+let firstSpace3: String.Index = s.characters.index(of: " ")!
 // This returns an optional in case there is no space.
 
 // You can use this to perform useful actions actions
-if let firstSpace = s.characters.index(of: " ") {
+if let firstSpace3 = s.characters.index(of: " ") {
     // insert collection of characters at an index
-    s.insert(contentsOf: " you".characters, at: firstSpace)
+    s.insert(contentsOf: " you".characters, at: firstSpace3)
 }
 print(s)
 
 // Swift 4
-// CHANGE HERE!!
+for c in s {
+    print(c)
+}
 
 
 // Getting a char can be done with [] but the index is not an int!
