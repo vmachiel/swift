@@ -9,7 +9,8 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    // The face view. This is a conncection to the view from the controller. 
+    @IBOutlet weak var faceView: FaceView!
     
 }
 
