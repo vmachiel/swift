@@ -11,6 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     // The face view. This is a conncection to the view from the controller. 
     @IBOutlet weak var faceView: FaceView!
+    // The model of facialexpression, defined in FacialExpression.swift. connection from
+    // controller to model.
+    var expression = FacialExpression(eyes: .open, mouth: .grin)
     
 }
 
