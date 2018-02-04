@@ -1,49 +1,33 @@
 // Strings are made off Unicodes, but there are also Character s
 // Characters is what a human would see a a char. 
-// Swift 3, one character may be made up of different parts, so if you
-// count an emoji you get more than one somethings. In Swift 4, one char
-// counts as one.
+// In Swift 4, each char counts as one.
 
-// Swift 3:
+// Counting chars
 let testEmoji: String = "👨‍👩‍👧"
-testEmoji.characters.count  // 3
-
-// Swift 4:
 testEmoji.count  // 4
 
-// In swift 3, strings aren't collections/sequences. They are in swift 4!
-// So to access the caracters in 3, you do string.characters.whatever or
-// for char in string.characters
-for char in testEmoji.characters {
-    print(char)
-}
-// Swift 4:
 for char in testEmoji {
     print(char)
 }
 
-
-// Examples Swift 3
 var s = "hello there"
-for c in s.characters {
-    print(c)
+for c in s {
+    print(c)  // 11
 }
-let count3 = s.characters.count
+
+let count = s.count
 // Find the index of a certain char
-let firstSpace3: String.Index = s.characters.index(of: " ")!
+let firstSpace: String.Index = s.index(of: " ")!
 // This returns an optional in case there is no space.
 
-// You can use this to perform useful actions actions
-if let firstSpace3 = s.characters.index(of: " ") {
+// You can use this to perform useful actions actions: If space is found,
+// insert something there
+if let firstSpace = s.index(of: " ") {
     // insert collection of characters at an index
-    s.insert(contentsOf: " you".characters, at: firstSpace3)
+    s.insert(contentsOf: " you", at: firstSpace)
 }
 print(s)
 
-// Swift 4
-for c in s {
-    print(c)
-}
 
 
 // Getting a char can be done with [] but the index is not an int!
@@ -53,8 +37,8 @@ for c in s {
 // If string is empty, these are equal.
 // Types are added for clarity
 let s2: String = "hello"
-let firstIndex: String.Index = s2.startIndex
-let firstChar: Character = s2[firstIndex]  // NOT AN INT!
+let firstIndex: String.Index = s2.startIndex  // NOT AN INT!
+let firstChar: Character = s2[firstIndex]
 // Get a index after a certain one:
 let secondIndex: String.Index = s2.index(after: firstIndex)
 let secondChar: Character = s2[secondIndex]
@@ -73,13 +57,29 @@ greeting += " there"
 
 // Some more stuff with UTF-8
 let dogString = "Dog‼🐶"
-dogString.characters.count  // 3 letter, one double ! and emoji
+dogString.count  // 3 letter, one double ! and emoji
 for codeUnit in dogString.utf8 {
     print("\(codeUnit) ", terminator: "")
 }
 
 
-// Insert the whole story of Substring and why it's there (ARC) when Swift 4 is final. 
+
+
+// String slicing creates a new type!!
+let someStringToSlice = "One,Two,Three"
+let listOfSlices = someStringToSlice.split(separator: ",")
+// Its type is a substring:
+type(of: listOfSlices)
+// This is because of ARC: if it was a regular string you would have two refferences,
+// to the original string: one from someStringToSlice, and one from listOfSlices.
+// If the original strings goes out of scope, the whole string would be kept in
+// memory. This can be bad if you are slicing small parts out of HUGE strings. So you
+// can copy on write, but that has performance trade offs. So you use a new type
+// Substring. This cause you to use a String contructor if you want to use the
+// part you sliced. This will allow the original string to be destroyed, and the buffer
+// is freed.
+let firstSlice = listOfSlices[0]
+let firstWord = String(listOfSlices[0])  // now it's a string.
 
 
 
