@@ -1,0 +1,354 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E5E71822044885200ADCAB1 /* keighlystickers StickerPackExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3E5E71812044885200ADCAB1 /* keighlystickers StickerPackExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3E5E71862044885200ADCAB1 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = 3E5E71852044885200ADCAB1 /* Stickers.xcstickers */; };
+		3E5E71872044885200ADCAB1 /* Stickers.xcstickers in Resources */ = {isa = PBXBuildFile; fileRef = 3E5E71852044885200ADCAB1 /* Stickers.xcstickers */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E5E71832044885200ADCAB1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E5E71772044885100ADCAB1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E5E71802044885200ADCAB1;
+			remoteInfo = "keighlystickers StickerPackExtension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3E5E718D2044885200ADCAB1 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3E5E71822044885200ADCAB1 /* keighlystickers StickerPackExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		3E5E717D2044885100ADCAB1 /* keighlystickers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = keighlystickers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5E71812044885200ADCAB1 /* keighlystickers StickerPackExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "keighlystickers StickerPackExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5E71852044885200ADCAB1 /* Stickers.xcstickers */ = {isa = PBXFileReference; lastKnownFileType = folder.stickers; name = Stickers.xcstickers; path = "keighlystickers StickerPackExtension/Stickers.xcstickers"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		3E5E71762044885100ADCAB1 = {
+			isa = PBXGroup;
+			children = (
+				3E5E71852044885200ADCAB1 /* Stickers.xcstickers */,
+				3E5E717E2044885100ADCAB1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E5E717E2044885100ADCAB1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E5E717D2044885100ADCAB1 /* keighlystickers.app */,
+				3E5E71812044885200ADCAB1 /* keighlystickers StickerPackExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E5E717C2044885100ADCAB1 /* keighlystickers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5E718E2044885200ADCAB1 /* Build configuration list for PBXNativeTarget "keighlystickers" */;
+			buildPhases = (
+				3E5E717B2044885100ADCAB1 /* Resources */,
+				3E5E718D2044885200ADCAB1 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E5E71842044885200ADCAB1 /* PBXTargetDependency */,
+			);
+			name = keighlystickers;
+			productName = keighlystickers;
+			productReference = 3E5E717D2044885100ADCAB1 /* keighlystickers.app */;
+			productType = "com.apple.product-type.application.messages";
+		};
+		3E5E71802044885200ADCAB1 /* keighlystickers StickerPackExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5E718A2044885200ADCAB1 /* Build configuration list for PBXNativeTarget "keighlystickers StickerPackExtension" */;
+			buildPhases = (
+				3E5E717F2044885200ADCAB1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "keighlystickers StickerPackExtension";
+			productName = "keighlystickers StickerPackExtension";
+			productReference = 3E5E71812044885200ADCAB1 /* keighlystickers StickerPackExtension.appex */;
+			productType = "com.apple.product-type.app-extension.messages-sticker-pack";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E5E71772044885100ADCAB1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = vmachiel;
+				TargetAttributes = {
+					3E5E717C2044885100ADCAB1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					3E5E71802044885200ADCAB1 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3E5E717A2044885100ADCAB1 /* Build configuration list for PBXProject "keighlystickers" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E5E71762044885100ADCAB1;
+			productRefGroup = 3E5E717E2044885100ADCAB1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E5E717C2044885100ADCAB1 /* keighlystickers */,
+				3E5E71802044885200ADCAB1 /* keighlystickers StickerPackExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E5E717B2044885100ADCAB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5E71872044885200ADCAB1 /* Stickers.xcstickers in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5E717F2044885200ADCAB1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5E71862044885200ADCAB1 /* Stickers.xcstickers in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E5E71842044885200ADCAB1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E5E71802044885200ADCAB1 /* keighlystickers StickerPackExtension */;
+			targetProxy = 3E5E71832044885200ADCAB1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3E5E71882044885200ADCAB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3E5E71892044885200ADCAB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E5E718B2044885200ADCAB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9C6SZTXPM;
+				INFOPLIST_FILE = "keighlystickers StickerPackExtension/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.keighlystickers.StickerPackExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E5E718C2044885200ADCAB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9C6SZTXPM;
+				INFOPLIST_FILE = "keighlystickers StickerPackExtension/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.keighlystickers.StickerPackExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3E5E718F2044885200ADCAB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9C6SZTXPM;
+				INFOPLIST_FILE = keighlystickers/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.keighlystickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E5E71902044885200ADCAB1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z9C6SZTXPM;
+				INFOPLIST_FILE = keighlystickers/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.keighlystickers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E5E717A2044885100ADCAB1 /* Build configuration list for PBXProject "keighlystickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5E71882044885200ADCAB1 /* Debug */,
+				3E5E71892044885200ADCAB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E5E718A2044885200ADCAB1 /* Build configuration list for PBXNativeTarget "keighlystickers StickerPackExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5E718B2044885200ADCAB1 /* Debug */,
+				3E5E718C2044885200ADCAB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E5E718E2044885200ADCAB1 /* Build configuration list for PBXNativeTarget "keighlystickers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5E718F2044885200ADCAB1 /* Debug */,
+				3E5E71902044885200ADCAB1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E5E71772044885100ADCAB1 /* Project object */;
+}
