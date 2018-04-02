@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // The link between the controller and model: and instance of the model
+    var game = Concentration()
+    
     // The Label that displays the flip count
     @IBOutlet weak var flipCountLabel: UILabel!
     // Arrary of possible emojis. You connectd those with outletArray.
@@ -46,4 +49,26 @@ class ViewController: UIViewController {
     }
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

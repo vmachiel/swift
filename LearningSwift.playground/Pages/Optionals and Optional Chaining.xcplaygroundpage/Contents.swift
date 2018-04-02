@@ -17,6 +17,7 @@ let unwrappedOptional1 = optional3!
 switch optional4 {
 case .some(let value):
     let y = value
+    print(y)
 case .none:
     print("This will raise an exception!!!")
 }
@@ -29,6 +30,7 @@ if let value = optional3 {
 switch optional4 {
 case .some(let value):
     let z = value
+    print(z)
 case .none:
     break
 }
@@ -150,6 +152,7 @@ let upperCasedStringFound = arrayOfOptionalsContainer[1]?[2]?.uppercased()
 // This is still an optional, you can also set it to a string directly:
 if let x = arrayOfOptionalsContainer[1]?[2]?.uppercased(){
     let upperCasedStringFound2 = x
+    print(upperCasedStringFound2)
 }
 // Nothing will go wrong is value is missing, will just be nil.
 let upperCasedStringFound3 = arrayOfOptionalsContainer[1]?[3]?.uppercased()
