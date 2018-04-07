@@ -30,8 +30,7 @@ class Concentration {
     // Main public function: the method that gets called when a user picks a card.
     func chooseCard(at index: Int) {
         
-    }
-    
+    }    
 }
 
 

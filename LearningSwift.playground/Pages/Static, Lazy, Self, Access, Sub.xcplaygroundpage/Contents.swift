@@ -156,7 +156,8 @@ class SuperTaylorFan: TaylorFan {
 let harry2 = SuperTaylorFan(name: "Harry", age: 23)
 // Still not set. Now, if I do this:
 harry2.basedOnThisPerson
-// The property is set
+// The property is set.
+// YOU CANNOT USE PROPERTY OBSERVERS LIKE DIDSET{} WITH LAZY PROPERTIES.
 
 // You do this to delay expensive operations. Like calculator brain: let's set it's HUGE
 // and it's a value type as we know. Maybe don't set it in the viewController until it's
