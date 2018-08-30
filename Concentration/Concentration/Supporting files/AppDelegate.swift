@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Concentration
 //
-//  Created by Machiel van Dorst on 29-08-18.
+//  Created by Machiel van Dorst on 04-02-18.
 //  Copyright © 2018 vmachiel. All rights reserved.
 //
 
