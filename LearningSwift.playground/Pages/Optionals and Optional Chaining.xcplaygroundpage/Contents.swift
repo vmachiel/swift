@@ -79,7 +79,7 @@ areTheyHating = getHaterStatus(weather: "Sunny")  // may or may not be variable
 
 // Optional binding:
 if let haterStatus = getHaterStatus(weather: "Rainy") {
-    print("They hating..")
+    print("They hating.. \(haterStatus)")
 } else {
     print("Must be sunny outside")
 }

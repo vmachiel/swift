@@ -13,20 +13,21 @@ import Foundation
 
 class Concentration {
     
-    // The cards that are availible. Inited as empty array.
+    // MARK: Properties
+    // The cards that are availible (defined in Card file). Inited as empty array.
     var cards = [Card]()
     
     // Init for the Concentration class. Make a card with an ID and add two of them to cards array.
     // Do this for the number of pairs you want.
     init(numberOfPairsOfCards: Int) {
         for _ in 0..<numberOfPairsOfCards {
-            let card = Card()
+            let card = Card()   // The unique ID is made here! See Card.swift
             cards.append(card)
             cards.append(card)  // You do this because Card is a struct, and thus a seperate copy is made.
         }
         // TODO: Shuffle cards
     }
-    
+    // MARK: Methods
     // Main public function: the method that gets called when a user picks a card.
     func chooseCard(at index: Int) {
         
