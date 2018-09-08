@@ -8,7 +8,8 @@
 
 import UIKit
 
-// KEEP IN MIND: the difference between index in cardButtons, and identifier of a Card.
+// KEEP IN MIND: the difference between index in cardButtons/cards in the Concentration model
+// and identifier of a Card.
 class ViewController: UIViewController {
     // MARK: Outlets and properties
     // The Label that displays the flip count
@@ -50,7 +51,7 @@ class ViewController: UIViewController {
     // For each card button in the array, get their view state and model state
     // Check what the model state is, and update the view accordingly
     // !! You use index of cardButtons for the button/view of an object in the view. And
-    // you use that index to get a card object stored in the instance of the Constration model
+    // you use that index to get a card object stored in the array of the instance of the Constration model
     // (see Concentration.swift). Those will match because of how the model is inited. Each card
     // will have an identifier, equal to one other card)
     func updateViewFromModel() {
