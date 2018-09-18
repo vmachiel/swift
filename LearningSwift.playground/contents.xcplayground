@@ -10,7 +10,7 @@
         <page name='Optionals and Optional Chaining'/>
         <page name='Tuples and Multiple Return Types'/>
         <page name='Enums'/>
-        <page name='Structs'/>
+        <page name='Structs and get set'/>
         <page name='Classes'/>
         <page name='Polymorph and Typecasting'/>
         <page name='Value vs Reference Types'/>

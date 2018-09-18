@@ -16,14 +16,16 @@ class Concentration {
     
     // MARK: Properties
     // The cards that are availible (defined in Card file). Inited as empty array.
-    var cards = [Card]()
+    // Private set, because a UI needs to see it, but don't set.
+    private(set) var cards = [Card]()
     // variable that keeps track of the card that's currently faceup if one is faceup ready to be checked
     // for a match against a newly chosen card. Optional: of none, or two cards are faceup, set to nil
     // Make it a computed property: if get, look at all cards. If only one faceup, return that, else return nil
     //                              if set, pass an index and set the value to that. Turn that card up, all other
     //                              down. Use newValue (also the default local value) for the new value to use
     //                              in the compute.
-    var indexOfOneAndOnlyFaceUpCard: Int? {
+    // Private implemtation.
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
         get {
             // Go through all cards via index, if faceUp and no other is faceUp, set the index to the var
             // foundIndex. If another is found return nil right away. If only one is found, the foundIndex will
@@ -68,6 +70,8 @@ class Concentration {
     //                  3: one card face up: face up the new card and check if they match
     // Do nothing if a card has been matched already.
     func chooseCard(at index: Int) {
+        // Demo assert: check if the index passed is actually one of the indexes of the cards
+        assert(cards.indices.contains(index), "Concentration.chooseCard(at \(index): index not in cards")
         if !cards[index].isMatched{
             // Case if there is already one matched, not just one card/chose the same card again
             // (if you did this, it ignores and nothing happens and you need to tap another card)

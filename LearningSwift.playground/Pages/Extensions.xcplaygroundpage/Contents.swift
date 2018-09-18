@@ -17,3 +17,5 @@ extension Rectangle {
 }
 
 // You can extend standlib, foundation etc. See protocols as well. 
+// Can't have storage, or reimplement existing stuff.
+

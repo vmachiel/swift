@@ -22,13 +22,14 @@ struct Card {
     // !!No image or emoji: it's a model, and it's UI independent!!
     
     // MARK: Initing a new card with unique ID.
+    // Private: internal implementation.
     // The Card type's count of id numbers.
     // This is static, and applies to the type, not the instance. So throughout the app,
     // this number is the same of all cards (and used to create unique ones below here)
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     // Static function (works on the TYPE Card, not instance, that returns a unique ID)
     // Increments the Card type's unique number and returns it
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         identifierFactory += 1  // No Cards. is needed: you're in a static method so access static vars
         return identifierFactory
     }
