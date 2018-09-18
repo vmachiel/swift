@@ -16,12 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     // Arrary of possible emojis. You connectd those with outletArray.
     @IBOutlet var cardButtons: [UIButton]!
-    // The link between the controller and model: an instance of the model
-    // Lazy init, so it's not really init yet until used: necessay because you use
-    // another property to init it, which in swift can only be used if everything has been inited.
-    // Use this math to deal with odd number of cards. 
-    lazy var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-    
+    // Number of pairs of cards. Computed so it can be reused elsewhere. Read only, so no need for get/set
+    // just return the value. 
+    var numberOfPairsOfCards: Int {
+            return (cardButtons.count + 1) / 2
+    }
     // Number of times you've flipped a card, updates UILabel flipCountLabel when set
     var flipCount = 0 {
         didSet {
@@ -33,6 +32,11 @@ class ViewController: UIViewController {
     // Dictionaries that hold the match between the IDENTIFIER OF THE CARD, and the emoji
     // identifier can be use because two cards with same ID need to be the samen.
     var emoji = [Int: String]()
+    // The link between the controller and model: an instance of the model
+    // Lazy init, so it's not really init yet until used: necessay because you use
+    // another property to init it, which in swift can only be used if everything has been inited.
+    // Use this math to deal with odd number of cards.
+    lazy var game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
     
     // MARK: Interface Actions
     // Method that's called when a card is touched

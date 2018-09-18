@@ -19,7 +19,35 @@ class Concentration {
     var cards = [Card]()
     // variable that keeps track of the card that's currently faceup if one is faceup ready to be checked
     // for a match against a newly chosen card. Optional: of none, or two cards are faceup, set to nil
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    // Make it a computed property: if get, look at all cards. If only one faceup, return that, else return nil
+    //                              if set, pass an index and set the value to that. Turn that card up, all other
+    //                              down. Use newValue (also the default local value) for the new value to use
+    //                              in the compute.
+    var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            // Go through all cards via index, if faceUp and no other is faceUp, set the index to the var
+            // foundIndex. If another is found return nil right away. If only one is found, the foundIndex will
+            // have a value: return that. That index will be returned when this property is called for.
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        // Again if a one and only face up index is set, set all the faceUp properties to false EXCEPT the one
+        // corresponding to the index.
+        set(newValue) {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)  // true for only the right index, others will be false
+            }
+        }
+    }
     
     // Init for the Concentration class. Make a card with an ID and add two of them to cards array.
     // Do this for the number of pairs you want. This will create two identical cards (same emoji in the
@@ -50,16 +78,13 @@ class Concentration {
                     cards[index].isMatched = true
                 }
                 // Now the check is done, face up the card you just chose (so the controller can update view)
-                // and set indexOfOneAndOnOnlyFaceUpCard to nil, to set the model set to Not one card chosen
+                // the indexOfOneAndOnlyFaceUpCard DOESN'T need to be set to nil, because every time it is
+                // referenced, the property's value is computed based on the current state.
                 cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = nil
             } else {
-                // no or two cards face up so can't match, set all cards face down.
-                // Set the chosen card faceUP, and set indexOfOneAndOnlyFaceUpCard to the chose cards index
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
+                // none or two cards face up so can't match, so set the chosen index as
+                // indexOfOneAndOnlyFaceUpCard. The isFaceUp state of all the cards is updated
+                // because of the set method of indexOfOneAndOnlyFaceUpCard (computed property) 
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
