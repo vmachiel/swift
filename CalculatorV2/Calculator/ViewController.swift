@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     // and their values using flatmap to format them, and joined() to make it into one string. Beautify!
     private var variables = Dictionary<String, Double>() {
         didSet {
-            memoryDisplay.text = variables.flatMap{$0+": \($1)"}.joined(separator: ", ").beautifyNumbers()
+            memoryDisplay.text = variables.compactMap{$0+": \($1)"}.joined(separator: ", ").beautifyNumbers()
         }
     }
 
@@ -182,7 +182,7 @@ class ViewController: UIViewController {
 extension String {
     func replace(pattern: String, with replacement: String) -> String {
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSMakeRange(0, self.characters.count)
+        let range = NSMakeRange(0, self.count)
         return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replacement)
     }
 }
