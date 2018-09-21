@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         }
     }
     // All possible emojis. Private because you alter it.
-    private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+    private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"]
     // Dictionaries that hold the match between the IDENTIFIER OF THE CARD, and the emoji
     // identifier can be use because two cards with same ID need to be the samen.
     // private because you alter it. 
@@ -84,17 +84,28 @@ class ViewController: UIViewController {
     // Returns the emoji a particular Card.identifier. It first checks if the card id
     // has an entry in the dict that links Card.identifier with an emoji. If not,
     // it takes a random emoji out of the array, associates it with the Card.identifier and removes
-    // it from the array. It only works if there are still emojis in the emojiChoices array.
+    // it from the array. Uses the extention below.
     private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
-            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)  // returns the value it removed
+            // returns the value it removed
+            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
         }
         return emoji[card.identifier] ?? "?"
     }
 }
 
-
+// Extention to Int that gives a random number between 0 and the value of that Int. Use in emoji function.
+extension Int {
+    var arc4random: Int {
+        if self > 0 {
+            return Int(arc4random_uniform(UInt32(self)))
+        } else if self < 0 {
+            return Int(arc4random_uniform(UInt32(-self)))
+        } else {
+            return 0
+        }
+    }
+}
 
 
 

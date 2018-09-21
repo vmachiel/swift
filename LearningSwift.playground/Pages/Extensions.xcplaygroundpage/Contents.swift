@@ -19,3 +19,15 @@ extension Rectangle {
 // You can extend standlib, foundation etc. See protocols as well. 
 // Can't have storage, or reimplement existing stuff.
 
+extension String {
+    func reverseString() -> String {
+        var result = ""
+        for letter in self {
+            result.insert(letter, at: result.startIndex)
+        }
+        return result
+    }
+}
+
+let word = "Test"
+word.reverseString()

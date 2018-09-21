@@ -90,6 +90,7 @@ nextRaceState?.rawValue  // You need the ? in case there is no rawValue match. S
 // Here's one more example with the Rank enum
 if let convertedRank = Rank(rawValue: 3) {
     let threeDescription = convertedRank.simpleDescription()
+    print(threeDescription)
 }
 // Code for the Suit to be used in the struct later:
 enum Suit {
@@ -220,6 +221,9 @@ let cardDescription = theAceOfSpace.simpleDescription()
 
 
 
+
+
+// See slides for mutating func and computed var examples. 
 
 
 
