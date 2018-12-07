@@ -54,6 +54,8 @@ class ViewController: UIViewController {
             updateViewFromModel()
         }
     }
+    @IBAction func newGame(_ sender: UIButton) {
+    }
     // Mark: VC Methods
     // Looks at the current state of the cards (model) and updates the view
     // Call everytime a button from the array cardButtons is touched by the user.
