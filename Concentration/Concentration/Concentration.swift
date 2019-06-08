@@ -15,6 +15,8 @@ import Foundation
 class Concentration {
     
     // MARK: Properties
+    // Flipcout: how many cards you've flipped
+    var flipCount = 0
     // The cards that are availible (defined in Card file). Inited as empty array.
     // Private set, because a UI needs to see it, but don't set.
     private(set) var cards = [Card]()
@@ -58,8 +60,10 @@ class Concentration {
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()   // The unique ID is made here! See Card.swift
             cards.append(card)
-            cards.append(card)  // You do this because Card is a struct, and thus a seperate copy is made.
+            cards.append(card)
+            // You do this because Card is a struct, and thus a seperate copy is made (same id).
         }
+        flipCount = 0
         // TODO: Shuffle cards
     }
     // MARK: Methods

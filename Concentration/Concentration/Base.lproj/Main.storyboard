@@ -256,7 +256,7 @@
                                             <color key="titleColor" red="0.03343626856803894" green="0.17866602540016174" blue="0.9757811427116394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4oL-fx-Hcp"/>
+                                            <action selector="setup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KeG-1D-BV1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaQ-ZI-TEI">

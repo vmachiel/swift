@@ -22,13 +22,6 @@ class ViewController: UIViewController {
     var numberOfPairsOfCards: Int {
             return (cardButtons.count + 1) / 2
     }
-    // Number of times you've flipped a card, updates UILabel flipCountLabel when set
-    // Private set because people shouldn't set this.
-    private(set) var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
-    }
     // All possible emojis. Private because you alter it.
     private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"]
     // Dictionaries that hold the match between the IDENTIFIER OF THE CARD, and the emoji
@@ -48,13 +41,15 @@ class ViewController: UIViewController {
     // to the model's method chooseCard (using the var game). Update view
     // Private, only called by UI
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
+        game.flipCount += 1
         if let cardNumber = cardButtons.firstIndex(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
         }
     }
-    @IBAction func newGame(_ sender: UIButton) {
+    @IBAction func setup(_ sender: UIButton) {
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        updateViewFromModel()
     }
     // Mark: VC Methods
     // Looks at the current state of the cards (model) and updates the view
@@ -64,7 +59,7 @@ class ViewController: UIViewController {
     // !! You use index of cardButtons for the button/view of an object in the view. And
     // you use that index to get a card object stored in the array of the instance of the Constration model
     // (see Concentration.swift). Those will match because of how the model is inited. Each card
-    // will have an identifier, equal to one other card)
+    // will have an identifier, equal to one other card) INDEX IS NOT IDENTIFIER!!
     private func updateViewFromModel() {
         for index in cardButtons.indices {
             let button = cardButtons[index]  // View, index in cardButtons
@@ -81,6 +76,7 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)  // If matched, make it clear so you don't see
                 // them anymore.
             }
+        flipCountLabel.text = "Flips: \(game.flipCount)"
         }
     }
     // Returns the emoji a particular Card.identifier. It first checks if the card id
