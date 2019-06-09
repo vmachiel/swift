@@ -2,12 +2,14 @@
 
 ##### Made to train myself to use version control.
 
-*LearningSwift*: Playground with example code for future reference.
+*LearningSwift* : Playground with example code for future reference.
 
-*Project1*: First project from Hacking with Swift.
+*Project1* : First project from Hacking with Swift.
 
-*Delegates and Observers*: Two methods of communication example.
+*Delegates and Observers* : Two methods of communication example.
 
-*Calculator(2)*: Simple calculators in MVC style.
+*Calculator(2)* : Simple calculators in MVC style.
 
-*FaceIt*: Drawing in Views example.
+*FaceIt* : Drawing in Views example.
+
+*Concentration* : Memory game

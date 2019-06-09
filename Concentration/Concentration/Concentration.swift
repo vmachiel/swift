@@ -15,8 +15,9 @@ import Foundation
 class Concentration {
     
     // MARK: Properties
-    // Flipcout: how many cards you've flipped
+    // Flipcout: how many cards you've flipped, and score.
     var flipCount = 0
+    var score = 0
     // The cards that are availible (defined in Card file). Inited as empty array.
     // Private set, because a UI needs to see it, but don't set.
     private(set) var cards = [Card]()
@@ -55,7 +56,7 @@ class Concentration {
     
     // Init for the Concentration class. Make a card with an ID and add two of them to cards array.
     // Do this for the number of pairs you want. This will create two identical cards (same emoji in the
-    // view, same identifier here). 
+    // view, same identifier here). Set flipcount and score to 0
     init(numberOfPairsOfCards: Int) {
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()   // The unique ID is made here! See Card.swift
@@ -64,7 +65,16 @@ class Concentration {
             // You do this because Card is a struct, and thus a seperate copy is made (same id).
         }
         flipCount = 0
-        // TODO: Shuffle cards
+        score = 0
+        // Shuffle cards. Take random index using the Int extention
+        for _ in 1...100 {
+            for index in cards.indices {
+                let randomIndex = cards.count.arc4random
+                let tempCard = cards[index]
+                cards[index] = cards [randomIndex]
+                cards[randomIndex] = tempCard
+            }
+        }
     }
     // MARK: Methods
     // Main public function: the method that gets called when a user picks a card.
