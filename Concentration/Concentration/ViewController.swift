@@ -50,6 +50,8 @@ class ViewController: UIViewController {
     @IBAction func setup(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
         updateViewFromModel()
+        emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"]
+        emoji.removeAll()
     }
     // Mark: VC Methods
     // Looks at the current state of the cards (model) and updates the view
