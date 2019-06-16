@@ -23,7 +23,16 @@ class ViewController: UIViewController {
             return (cardButtons.count + 1) / 2
     }
     // All possible emojis. Private because you alter it.
-    private var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"]
+    private var emojiChoices = [1: ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"],
+                                2: ["🐶", "🐱", "🐭", "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯", "🦁", "🐮"],
+                                3: ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🎱", "🏓", "🏸", "🥅", "🏒"],
+                                4: ["🚗", "🚕", "🚙", "🚌", "🚎", "🏎", "🚓", "🚑", "🚒", "🚐", "🚚", "🚛"],
+                                5: ["🇹🇼", "🇯🇵", "🏳️", "🏴", "🏁", "🚩", "🏳️‍🌈", "🇱🇷", "🎌", "🇨🇦", "🇳🇵", "🇬🇪"],
+                                6: ["🍏", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🍈", "🍒", "🍑"]
+                               ]
+    
+    // Current emojis in use this game
+    private var currentEmojis = [String]()
     // Dictionaries that hold the match between the IDENTIFIER OF THE CARD, and the emoji
     // identifier can be use because two cards with same ID need to be the samen.
     // private because you alter it. 
@@ -47,13 +56,29 @@ class ViewController: UIViewController {
             updateViewFromModel()
         }
     }
-    @IBAction func setup(_ sender: UIButton) {
-        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
-        updateViewFromModel()
-        emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎", "💀", "👺", "🧛‍♂️"]
-        emoji.removeAll()
+    // New game button is pressed. 
+    @IBAction func newGame(_ sender: UIButton) {
+        setup()
     }
+    
     // Mark: VC Methods
+    // First setup
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup()
+    }
+    // Setup is run every time a new game is started. Even the first one.
+    // Set's up the model, updates the view, chooses a theme.
+    fileprivate func setup() {
+        game = Concentration(numberOfPairsOfCards: numberOfPairsOfCards)
+        emoji.removeAll()
+        if let themeNumber = emojiChoices.randomElement()?.key {
+            currentEmojis = emojiChoices[themeNumber]!  // If the key exists, the value must too!
+        }
+        // depracte this
+        updateViewFromModel()
+    }
+    
     // Looks at the current state of the cards (model) and updates the view
     // Call everytime a button from the array cardButtons is touched by the user.
     // For each card button in the array, get their view state and model state
@@ -86,9 +111,9 @@ class ViewController: UIViewController {
     // it takes a random emoji out of the array, associates it with the Card.identifier and removes
     // it from the array. Uses the extention below.
     private func emoji(for card: Card) -> String {
-        if emoji[card.identifier] == nil, emojiChoices.count > 0 {
+        if emoji[card.identifier] == nil, currentEmojis.count > 0 {
             // returns the value it removed
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+            emoji[card.identifier] = currentEmojis.remove(at: currentEmojis.count.arc4random)
         }
         return emoji[card.identifier] ?? "?"
     }
