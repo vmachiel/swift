@@ -12,7 +12,7 @@ import Foundation
 // Think about what your public API should be like: get into the public/private design.
 // Three states: none, one, or two cards face up (see methods)
 
-class Concentration {
+struct Concentration {
     
     // MARK: Properties
     // Flipcout: how many cards you've flipped, and score.
@@ -56,7 +56,7 @@ class Concentration {
     
     // Init for the Concentration class. Make a card with an ID and add two of them to cards array.
     // Do this for the number of pairs you want. This will create two identical cards (same emoji in the
-    // view, same identifier here). Set flipcount and score to 0
+    // view, same identifier here). Set flipcount and score to 0, and suffle the cards
     init(numberOfPairsOfCards: Int) {
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()   // The unique ID is made here! See Card.swift
@@ -82,27 +82,36 @@ class Concentration {
     //                  2: two cards face up (matching or not): face them both down and a new one up,
     //                  starting a new match
     //                  3: one card face up: face up the new card and check if they match
-    // Do nothing if a card has been matched already.
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         // Demo assert: check if the index passed is actually one of the indexes of the cards
         assert(cards.indices.contains(index), "Concentration.chooseCard(at \(index): index not in cards")
+        // Only act if card hasn't matched yet.
         if !cards[index].isMatched{
+            flipCount += 1
             // Case if there is already one matched, not just one card/chose the same card again
             // (if you did this, it ignores and nothing happens and you need to tap another card)
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
-                // check if match: if the index of the card up == the one you chose, mark them matched
+                // match? set isMatched and update score. (no need to update seenBefore.
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    score += 2
+                // not a match? Check if seen before and lower score. Set seen before for both
+                } else {
+                    if cards[matchIndex].seenBefore || cards[index].seenBefore {
+                        score -= 1
+                    }
+                    cards[matchIndex].seenBefore = true
+                    cards[index].seenBefore = true
                 }
                 // Now the check is done, face up the card you just chose (so the controller can update view)
                 // the indexOfOneAndOnlyFaceUpCard DOESN'T need to be set to nil, because every time it is
                 // referenced, the property's value is computed based on the current state.
                 cards[index].isFaceUp = true
+            // none or two cards face up so can't match, so set the chosen index as
+            // indexOfOneAndOnlyFaceUpCard. The isFaceUp state of all the cards is updated
+            // because of the set method of indexOfOneAndOnlyFaceUpCard (computed property)
             } else {
-                // none or two cards face up so can't match, so set the chosen index as
-                // indexOfOneAndOnlyFaceUpCard. The isFaceUp state of all the cards is updated
-                // because of the set method of indexOfOneAndOnlyFaceUpCard (computed property) 
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }

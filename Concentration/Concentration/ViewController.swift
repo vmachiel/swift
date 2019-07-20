@@ -13,6 +13,8 @@ import UIKit
 class ViewController: UIViewController {
     // MARK: Outlets and properties
     // All private.
+    // The Label that displays the current score.
+    @IBOutlet private weak var scoreLabel: UILabel!
     // The Label that displays the flip count
     @IBOutlet private weak var flipCountLabel: UILabel!
     // Arrary of possible emojis. You connectd those with outletArray.
@@ -50,7 +52,6 @@ class ViewController: UIViewController {
     // to the model's method chooseCard (using the var game). Update view
     // Private, only called by UI
     @IBAction private func touchCard(_ sender: UIButton) {
-        game.flipCount += 1
         if let cardNumber = cardButtons.firstIndex(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -103,8 +104,9 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)  // If matched, make it clear so you don't see
                 // them anymore.
             }
-        flipCountLabel.text = "Flips: \(game.flipCount)"
         }
+        flipCountLabel.text = "Flips: \(game.flipCount)"
+        scoreLabel.text = "Score: \(game.score)"
     }
     // Returns the emoji a particular Card.identifier. It first checks if the card id
     // has an entry in the dict that links Card.identifier with an emoji. If not,

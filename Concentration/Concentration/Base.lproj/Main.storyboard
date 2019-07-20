@@ -247,11 +247,11 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="q9I-I0-HPf">
-                                <rect key="frame" x="40.666666666666657" y="730" width="294" height="48"/>
+                                <rect key="frame" x="20.666666666666657" y="739" width="334" height="39"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhZ-jW-kAk">
-                                        <rect key="frame" x="0.0" y="0.0" width="143" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="0.03343626856803894" green="0.17866602540016174" blue="0.9757811427116394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
@@ -260,8 +260,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UaQ-ZI-TEI">
-                                        <rect key="frame" x="151" y="0.0" width="143" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <rect key="frame" x="114" y="0.0" width="106" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <color key="textColor" red="0.03343626856803894" green="0.17866602540016174" blue="0.9757811427116394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NWq-K1-Tvv">
+                                        <rect key="frame" x="228" y="0.0" width="106" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" red="0.03343626856803894" green="0.17866602540016174" blue="0.9757811427116394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -280,6 +286,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="UaQ-ZI-TEI" id="pvo-lj-mnf"/>
+                        <outlet property="scoreLabel" destination="NWq-K1-Tvv" id="Qxr-h9-kLR"/>
                         <outletCollection property="cardButtons" destination="V3U-bs-IMt" collectionClass="NSMutableArray" id="c3C-tD-uXs"/>
                         <outletCollection property="cardButtons" destination="zK5-Of-BoI" collectionClass="NSMutableArray" id="AUM-Cq-y3w"/>
                         <outletCollection property="cardButtons" destination="dC6-Tp-tOW" collectionClass="NSMutableArray" id="gTX-Bd-wp8"/>

@@ -15,10 +15,11 @@ import Foundation
 struct Card {
     
     // MARK: Card properties
-    // Is a card Face up? Is it matched? What's its ID
+    // Is a card Face up? Is it matched? Is it been seen before? What's its ID
     var isFaceUp = false
     var isMatched = false
-    var identifier: Int
+    var seenBefore = false
+    private(set) var identifier: Int
     // !!No image or emoji: it's a model, and it's UI independent!!
     
     // MARK: Initing a new card with unique ID.
