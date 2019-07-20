@@ -32,9 +32,18 @@ class ViewController: UIViewController {
                                 5: ["🇹🇼", "🇯🇵", "🏳️", "🏴", "🏁", "🚩", "🏳️‍🌈", "🇱🇷", "🎌", "🇨🇦", "🇳🇵", "🇬🇪"],
                                 6: ["🍏", "🍎", "🍐", "🍊", "🍋", "🍌", "🍉", "🍇", "🍓", "🍈", "🍒", "🍑"]
                                ]
-    
-    // Current emojis in use this game
+    // Themes corresponding with the different emoji choices
+    private var themes = [1: (#colorLiteral(red: 1, green: 0.5750408173, blue: 0, alpha: 1),#colorLiteral(red: 0.9999071956, green: 1, blue: 0.999881804, alpha: 1)),
+                          2: (#colorLiteral(red: 0.4717273712, green: 0.9074952602, blue: 0.5236093998, alpha: 1),#colorLiteral(red: 0.9104843736, green: 0.8983680606, blue: 0.3937922418, alpha: 1)),
+                          3: (#colorLiteral(red: 0.04171297699, green: 0.9893924594, blue: 0.04674313962, alpha: 1),#colorLiteral(red: 1, green: 0, blue: 0.1731372178, alpha: 1)),
+                          4: (#colorLiteral(red: 0.9745418429, green: 0.9851904511, blue: 0.949783504, alpha: 1),#colorLiteral(red: 0.04403994232, green: 0.01425747946, blue: 0.04526167363, alpha: 1)),
+                          5: (#colorLiteral(red: 0.9922263026, green: 0.008666427806, blue: 0.1016208902, alpha: 1),#colorLiteral(red: 0.05371703953, green: 0.01102141291, blue: 0.9976071715, alpha: 1)),
+                          6: (#colorLiteral(red: 0.1961097419, green: 0.9128655791, blue: 0.04837539792, alpha: 1),#colorLiteral(red: 1, green: 0, blue: 0.2067118287, alpha: 1))
+                         ]
+    // Current emojis in use this game The
     private var currentEmojis = [String]()
+    // Current theme in use this game
+    private var currentTheme = (#colorLiteral(red: 1, green: 0.5750408173, blue: 0, alpha: 1),#colorLiteral(red: 0.9999071956, green: 1, blue: 0.999881804, alpha: 1))
     // Dictionaries that hold the match between the IDENTIFIER OF THE CARD, and the emoji
     // identifier can be use because two cards with same ID need to be the samen.
     // private because you alter it. 
@@ -75,8 +84,8 @@ class ViewController: UIViewController {
         emoji.removeAll()
         if let themeNumber = emojiChoices.randomElement()?.key {
             currentEmojis = emojiChoices[themeNumber]!  // If the key exists, the value must too!
+            currentTheme = themes[themeNumber]!
         }
-        // depracte this
         updateViewFromModel()
     }
     
@@ -96,13 +105,13 @@ class ViewController: UIViewController {
             // The emoji method is based on card.identifier, since it is the same for the pair.
             if card.isFaceUp {
                 button.setTitle(emoji(for: card), for: UIControl.State.normal)
-                button.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                button.backgroundColor = currentTheme.1
             // If card is facedown, make it orang with no title, or transparant if already matched.
             // matching and done are not implemented yet. 
             } else {
                 button.setTitle("", for: UIControl.State.normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)  // If matched, make it clear so you don't see
-                // them anymore.
+                // If matched, make it clear so you don't see them anymore.
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : currentTheme.0
             }
         }
         flipCountLabel.text = "Flips: \(game.flipCount)"
