@@ -11,8 +11,10 @@ import Foundation
 
 // Part of model: defines that card. Mainly referenced by Concentration. Make it a struct:
 // It's a simple data type that doesn't change very much.
+// Also make it conform to hashable, to use als dict keys in VC
+// Use static method to get unique identifieres.
 
-struct Card {
+struct Card: Hashable {
     
     // MARK: Card properties
     // Is a card Face up? Is it matched? Is it been seen before? What's its ID
@@ -28,12 +30,6 @@ struct Card {
     // This is static, and applies to the type, not the instance. So throughout the app,
     // this number is the same of all cards (and used to create unique ones below here)
     private static var identifierFactory = 0
-    // Static function (works on the TYPE Card, not instance, that returns a unique ID)
-    // Increments the Card type's unique number and returns it
-    private static func getUniqueIdentifier() -> Int {
-        identifierFactory += 1  // No Cards. is needed: you're in a static method so access static vars
-        return identifierFactory
-    }
     // MARK: Init
     // Now, structs are inited automatically, but you want to init the ID seperate.
     // Create an init that takes a parameter to init identifier. The rest are auto inited.
@@ -43,8 +39,17 @@ struct Card {
     init() {
         self.identifier = Card.getUniqueIdentifier()
     }
-    
     // MARK: Methods
+    // Static function (works on the TYPE Card, not instance, that returns a unique ID)
+    // Increments the Card type's unique number and returns it
+    private static func getUniqueIdentifier() -> Int {
+        identifierFactory += 1  // No Cards. is needed: you're in a static method so access static vars
+        return identifierFactory
+    }
+    // make it hashable. 
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identifier)
+    }
 }
 
 

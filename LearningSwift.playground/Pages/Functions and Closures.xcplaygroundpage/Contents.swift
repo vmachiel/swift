@@ -278,14 +278,14 @@ usingClosures(closure: someClosure, devider: 3)
 // Example of the filter method: generic method that can be called on the arrays
 // of standard lib types. It takes a closure as an argument
 let names = ["snor", "barry", "Machiel", "kaljdflkasdjf", "kees"]
-let shortNames = names.filter{$0.characters.count < 5}
+let shortNames = names.filter{$0.count < 5}
 shortNames
 
 // Example of the map method: it maps a given closure to each element of the array:
 let upperCaseNames = names.map {name in name.uppercased()}
 upperCaseNames
 // Or do them both, with . syntax
-let bothFilters = names.filter {$0.characters.count < 5}.map {name in name.uppercased()}
+let bothFilters = names.filter {$0.count < 5}.map {name in name.uppercased()}
 bothFilters
 
 

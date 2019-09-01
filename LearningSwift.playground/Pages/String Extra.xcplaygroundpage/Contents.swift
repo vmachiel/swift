@@ -9,20 +9,24 @@ testEmoji.count  // 4
 for char in testEmoji {
     print(char)
 }
-
+// Basic string stuff
 var s = "hello there"
 for c in s {
     print(c)  // 11
 }
-
 let count = s.count
+// Put characters of string in an Array:
+let charArray = Array(s)
+
+
+// Indexing
 // Find the index of a certain char
-let firstSpace: String.Index = s.index(of: " ")!
+let firstSpace: String.Index = s.firstIndex(of: " ")!
 // This returns an optional in case there is no space.
 
 // You can use this to perform useful actions actions: If space is found,
 // insert something there
-if let firstSpace = s.index(of: " ") {
+if let firstSpace = s.firstIndex(of: " ") {
     // insert collection of characters at an index
     s.insert(contentsOf: " you", at: firstSpace)
 }
@@ -84,8 +88,10 @@ let firstWord = String(listOfSlices[0])  // now it's a string.
 
 
 
-
-
-
-
+// Range is generic, it doesn't have to be over strings. Can be over String.Index
+let pizzaPlace = "Je moeders eettent"
+if let someindex = pizzaPlace.firstIndex(of: "m") {
+    let partOfPizzaPlace = pizzaPlace[someindex..<pizzaPlace.endIndex]
+    print(partOfPizzaPlace)
+}
 

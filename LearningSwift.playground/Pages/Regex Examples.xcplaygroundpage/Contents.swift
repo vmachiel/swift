@@ -12,7 +12,7 @@ extension String {
     
     func replace(pattern: String, with replacement: String) -> String {
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSMakeRange(0, self.characters.count)
+        let range = NSMakeRange(0, self.count)
         return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: replacement)
     }
 }

@@ -29,21 +29,11 @@ struct Concentration {
     //                              in the compute.
     // Private implemtation.
     private var indexOfOneAndOnlyFaceUpCard: Int? {
+        // Use a closure to get all the indexes of faceup cards. If there's one, one is faceup
+        // and you return that. If not, return nil
         get {
-            // Go through all cards via index, if faceUp and no other is faceUp, set the index to the var
-            // foundIndex. If another is found return nil right away. If only one is found, the foundIndex will
-            // have a value: return that. That index will be returned when this property is called for.
-            var foundIndex: Int?
-            for index in cards.indices {
-                if cards[index].isFaceUp {
-                    if foundIndex == nil {
-                        foundIndex = index
-                    } else {
-                        return nil
-                    }
-                }
-            }
-            return foundIndex
+            let faceUpCardIndexes = cards.indices.filter{ cards[$0].isFaceUp }  // trailing closure syntax!
+            return faceUpCardIndexes.count == 1 ? faceUpCardIndexes.first : nil
         }
         // Again if a one and only face up index is set, set all the faceUp properties to false EXCEPT the one
         // corresponding to the index.

@@ -128,8 +128,15 @@ let transparentYellow = UIColor.yellow.withAlphaComponent(0.5)  // 0 is transpar
 // color etc. 
 // You can set the attributes of a attributedstring by sending it a dictionary with
 // attribute keys and their values, and an NSRange to apply them to.
-let attributes = [NSForegroundColorAttributeName: UIColor.green]
+let attributes = [NSAttributedString.Key.foregroundColor: UIColor.green]
 let text = NSAttributedString(string: "Hello", attributes: attributes)
+// If you use different attributes, you need to set the value of the attributes dict
+// to ANY (Obj-c legacy)
+let attribbutes2: [NSAttributedString.Key: Any] =
+    [NSAttributedString.Key.foregroundColor: UIColor.green,
+     NSAttributedString.Key.strokeWidth: 4.0
+    ]
+let text2 = NSAttributedString(string: "Snor", attributes: attribbutes2)
 
 
 text.draw(at: CGPoint(x: 40.0, y: 30.0))  // Draw it with that point at upperleft corner
@@ -141,8 +148,8 @@ let mutableText = NSMutableString(string: "Test")
 // Fonts  (mostly set in interface builder)
 // Get a font in code using a UIFfont Type Method. It takes an enum of availible
 // kinds of text. These give preferred fonts, for users to see.
-let chosenFont = UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline)
-let chosenFont2 = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+let chosenFont = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.headline)
+let chosenFont2 = UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
 // System fonts go on buttons etc.
 let systemFont = UIFont.systemFont(ofSize: 12.0)
 let boldSystemFont = UIFont.boldSystemFont(ofSize: 14.0)
@@ -160,8 +167,6 @@ image?.draw(at: point)  // etc
 // OR Simply ask for a .redraw  This is possible in interface builder's inspector.
 
 
-// Use convert to convert a point (like center) from one coor system to another.
-let skullCenter = convert(center, from: superview)
 
 
 
