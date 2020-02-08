@@ -40,7 +40,31 @@ statistics.2    // access by index!
 
 
 
+// You can use tuples to tests multiple values
+let somePoint = (1, 1)
+switch somePoint {
+case (0, 0):
+    print("It's on the origin")
+case (_, 0):
+    print("It's somewhere on the x asis")
+case (0, _):
+    print("It's somewhere on the y asis")
+case (-2...2, -2...2):
+    print("I'ts inside or one the box")
+default:
+    print("I'ts outside of the box")
+}
 
+// Using where in tuples:
+let yetAnotherPoint = (1, -1)
+switch yetAnotherPoint {
+case let (x, y) where x == y:
+    print("(\(x), \(y)) is on the line x == y")
+case let (x, y) where x == -y:
+    print("(\(x), \(y)) is on the line x == -y")
+case let (x, y):
+    print("(\(x), \(y)) is just some arbitrary point")
+}
 
 
 

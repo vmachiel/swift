@@ -105,6 +105,15 @@ print("The result of adding 2 and 3 is: \(mathFunction(2, 3))")
 // because mathFunction is technically any constant that takes two int and returns one
 
 
+// Functions as parameter types
+func addTwoInts(_ a: Int, _ b: Int) -> Int {
+    return a + b
+}
+func printMathResult(_ mathFunction: (Int, Int) -> Int, _ a: Int, _ b: Int) {
+    print("Result: \(mathFunction(a, b))")
+}
+printMathResult(addTwoInts, 3, 5)
+// Prints "Result: 8
 
 
 
