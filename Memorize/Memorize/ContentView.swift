@@ -14,14 +14,42 @@ struct ContentView: View {
     // Views aren't stored but computed: everytime body is request its contents
     // get executed and returned. When type of view it is, depends on execution
     var body: some View {
-        // Puts contents (VIEWS!) over each other and alligns them.
-        // stroke doesn't do the default fill, but just the edge.
-        ZStack(content: {
-            RoundedRectangle(cornerRadius: 10.0).stroke()
-            Text("👻")
-        })
-            .foregroundColor(Color.orange) // Every view inside gets this method
+        // A horizontal stack
+        HStack {
+            // For each makes a number of views, but doesn't do the layout
+            // That's the level above. This makes a number of CardViews
+            ForEach(0..<4) { index in
+                CardView(isFaceUp: false)
+            }
+        }
+            
+            // Every view inside all of the stracks get these methods
+            .padding()  // Space between the edge and object.
+            .foregroundColor(Color.orange) // default color.
+            .font(Font.largeTitle)  // default font size by using largeTitle
+    }
+}
 
+// The Card.
+struct CardView: View {
+    // is it faceup.
+    var isFaceUp: Bool
+    
+    // the actual card view with different layouts for faceup/down
+    var body: some View {
+        ZStack{
+            if isFaceUp {
+                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
+                // stroke doesn't do the default fill, but just the edge.
+                // accent the edge
+                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
+                // The actual emoji.
+                Text("👻")
+            } else {
+                // Black back off card, with default color set in contentview.
+                RoundedRectangle(cornerRadius: 10.0).fill()
+            }
+        }
     }
 }
 
