@@ -19,7 +19,7 @@ struct ContentView: View {
             // For each makes a number of views, but doesn't do the layout
             // That's the level above. This makes a number of CardViews
             ForEach(0..<4) { index in
-                CardView(isFaceUp: false)
+                CardView(isFaceUp: true)
             }
         }
             

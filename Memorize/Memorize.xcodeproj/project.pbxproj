@@ -13,6 +13,8 @@
 		3E23E39E24815C0500A60846 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E23E39D24815C0500A60846 /* Assets.xcassets */; };
 		3E23E3A124815C0500A60846 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E23E3A024815C0500A60846 /* Preview Assets.xcassets */; };
 		3E23E3A424815C0500A60846 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E23E3A224815C0500A60846 /* LaunchScreen.storyboard */; };
+		3E3FCFC824B4C210001EFF35 /* EmojiMemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E3FCFC724B4C210001EFF35 /* EmojiMemoryGame.swift */; };
+		3E669B8C24B37A1C00130F21 /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E669B8B24B37A1C00130F21 /* MemoryGame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		3E23E3A024815C0500A60846 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3E23E3A324815C0500A60846 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E23E3A524815C0500A60846 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E3FCFC724B4C210001EFF35 /* EmojiMemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiMemoryGame.swift; sourceTree = "<group>"; };
+		3E669B8B24B37A1C00130F21 /* MemoryGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				3E23E39724815C0300A60846 /* AppDelegate.swift */,
 				3E23E39924815C0300A60846 /* SceneDelegate.swift */,
 				3E23E39B24815C0300A60846 /* ContentView.swift */,
+				3E669B8B24B37A1C00130F21 /* MemoryGame.swift */,
+				3E3FCFC724B4C210001EFF35 /* EmojiMemoryGame.swift */,
 				3E23E39D24815C0500A60846 /* Assets.xcassets */,
 				3E23E3A224815C0500A60846 /* LaunchScreen.storyboard */,
 				3E23E3A524815C0500A60846 /* Info.plist */,
@@ -148,7 +154,9 @@
 			files = (
 				3E23E39824815C0300A60846 /* AppDelegate.swift in Sources */,
 				3E23E39A24815C0300A60846 /* SceneDelegate.swift in Sources */,
+				3E669B8C24B37A1C00130F21 /* MemoryGame.swift in Sources */,
 				3E23E39C24815C0300A60846 /* ContentView.swift in Sources */,
+				3E3FCFC824B4C210001EFF35 /* EmojiMemoryGame.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +297,7 @@
 				DEVELOPMENT_TEAM = Z9C6SZTXPM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Memorize/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +318,7 @@
 				DEVELOPMENT_TEAM = Z9C6SZTXPM;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Memorize/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
