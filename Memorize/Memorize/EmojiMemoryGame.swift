@@ -42,8 +42,10 @@ class EmojiMemoryGame {
         // So take a array of emojies, and for the lenght of the array, return a string with than emoji
         // the model uses that emoji as content, since the game property sets it the String.
         // The model loops until all the emojis are use because it's equal to numbberOfPairsOfCards.
-        let emojis: Array<String> = ["🎃", "👻"]
-        return MemoryGame<String>(numberOfPairsOfCards: 2) {pairIndex in
+        // The model puts every index up until the numberOfPairsofCards in the closure that is passed
+        // So 0 -> emojis[0], the first emoji. then 1 -> emojis[1] etc. 
+        let emojis: Array<String> = ["🎃", "👻", "🕷"]
+        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) {pairIndex in
             return emojis[pairIndex]
         }
     }

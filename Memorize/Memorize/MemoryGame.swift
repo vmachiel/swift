@@ -23,27 +23,33 @@ struct MemoryGame<CardContent> {
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         // empty arry of cards
         cards = Array<Card>()
-        // Loop that creates the cards
+        // Loop that creates the cards. The numberOfPairsOfCards is the upper bound 0..<N.
+        // For each, the function cardContentFactory is defined in the ViewModel. There, the array
+        // with possible emojis is defined and the closure that returns one eacht time you loop.
+        // append two cards with the content set to the emoji that gets returned
+        // THAT IS IN THIS CASE: the model is actual still generic and could contain any content. 
         for pairIndex in 0..<numberOfPairsOfCards {
             let content = cardContentFactory(pairIndex)
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
-            cards.append(Card(isFaceUp: false, isMatched: false, content: content))
+            // ids need to be unique
+            cards.append(Card(content: content, id: pairIndex * 2))
+            cards.append(Card(content: content, id: pairIndex * 2 + 1))
         }
     }
     
     // MARK: - Methods
     // Function that handles when a card is chosen
     func choose(card: Card) {
-        print("card chosen")
+        print("card chosen: \(card)")
     }
     
     // MARK: - Nested Struct!
-    // The Card object. Used by the memory game.
-    struct Card {
-        // Properties that define the Card. Content is the emoji.
+    // The Card object. Used by the memory game. Make it identifiable
+    struct Card: Identifiable {
+        // Properties that define the Card. Content is the emoji. id makes it identifiable
         // Its Generic: when you init the MemoryGame struct (parent), you define it's type
-        var isFaceUp: Bool
-        var isMatched: Bool
+        var isFaceUp: Bool = true
+        var isMatched: Bool = false
         var content: CardContent
+        var id: Int
     }
 }

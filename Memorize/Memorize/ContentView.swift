@@ -13,13 +13,21 @@ struct ContentView: View {
     // It can be a combination of all sorts of Views, as long as it's a View. (Lego analogy).
     // Views aren't stored but computed: everytime body is request its contents
     // get executed and returned. When type of view it is, depends on execution
+    
+    // The viewmodel: the connection to the model!!  Pointer to the EmojiMemoryGame
+    // The actual game is inited in SceneDelegate!!!!
+    var viewModel: EmojiMemoryGame
+    
     var body: some View {
         // A horizontal stack
         HStack {
             // For each makes a number of views, but doesn't do the layout
             // That's the level above. This makes a number of CardViews
-            ForEach(0..<4) { index in
-                CardView(isFaceUp: true)
+            // cards need to be made indenfiable 
+            ForEach(viewModel.cards) { card in
+                // ontap makes the choose method run for each card.
+                CardView(card: card).onTapGesture {
+                    self.viewModel.choose(card: card)}
             }
         }
             
@@ -32,19 +40,20 @@ struct ContentView: View {
 
 // The Card.
 struct CardView: View {
-    // is it faceup.
-    var isFaceUp: Bool
+    // The card
+    var card: MemoryGame<String>.Card
     
     // the actual card view with different layouts for faceup/down
     var body: some View {
         ZStack{
-            if isFaceUp {
+            if card.isFaceUp {
                 RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
                 // stroke doesn't do the default fill, but just the edge.
                 // accent the edge
                 RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                // The actual emoji.
-                Text("👻")
+                // The actual emoji. Type string because card is defined as
+                // MemoryGame<String>.Card
+                Text(card.content)
             } else {
                 // Black back off card, with default color set in contentview.
                 RoundedRectangle(cornerRadius: 10.0).fill()
@@ -75,6 +84,7 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        // Create one on the fly for testing
+        ContentView(viewModel: EmojiMemoryGame())
     }
 }
