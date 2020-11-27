@@ -19,7 +19,7 @@ struct MemoryGame<CardContent> {
     // MARK: - Init
     // Takes number of cards and uses a method and the <Type> in the ViewModel to create the cards.
     // The cardContentFactory method uses the index which we are currently at en returns something
-    // of type CardContend of the type CardConent
+    // of type CardContend of the type CardConent (String in this assignment)
     init(numberOfPairsOfCards: Int, cardContentFactory: (Int) -> CardContent) {
         // empty arry of cards
         cards = Array<Card>()
@@ -40,6 +40,7 @@ struct MemoryGame<CardContent> {
     // Function that handles when a card is chosen
     func choose(card: Card) {
         print("card chosen: \(card)")
+        print(card.id)
     }
     
     // MARK: - Nested Struct!

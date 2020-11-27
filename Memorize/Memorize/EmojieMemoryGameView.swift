@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojieMemoryGameView.swift
 //  Memorize
 //
 //  Created by Machiel van Dorst on 29/05/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct EmojieMemoryGameView: View {
     // The some is to indicate it needs to be some kind of view.
     // It can be a combination of all sorts of Views, as long as it's a View. (Lego analogy).
     // Views aren't stored but computed: everytime body is request its contents
@@ -85,6 +85,6 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         // Create one on the fly for testing
-        ContentView(viewModel: EmojiMemoryGame())
+        EmojieMemoryGameView(viewModel: EmojiMemoryGame())
     }
 }
