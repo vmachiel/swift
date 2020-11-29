@@ -19,14 +19,22 @@ import SwiftUI
 // !!!!!This class is built for a specific implementation of the model: MemoryGame<String>
 // !!!!!So the MemoryGame.Card.content is a Sring
 
-class EmojiMemoryGame {
+// ObservableObject needs to be a class. Gains an objectWillChange var behind the scenes
+// This way, the View know that the data in the model can update via this ViewModel.
+// So it starts checking for changes. This var has a method 'send'. When it's called,
+// The viewmodel tells the world that SOMETHING WILL CHANGE, pay attention.
+// Views know it's time to check and update
+
+class EmojiMemoryGame: ObservableObject {
     
     
     // MARK: - Properties.
     // The model of the MemoryGame. It's private Prevents one view from changing the model
     // when you don't want it.
-    
-    private var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    // @Published makes it objectWillChange.send() is called every time the models changes
+    // This way, the ViewModel is telling al the views that are looking at it that changes
+    // Are made and redraws are needed. The view needs code to redraw on publish.
+    @Published private var game: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
     // The cards of the model. Used to let views see the model. You implement it this way
     // so the model can have functionality to present the data in an optiomal way for the View
@@ -45,7 +53,7 @@ class EmojiMemoryGame {
         // The model puts every index up until the numberOfPairsofCards in the closure that is passed
         // So 0 -> emojis[0], the first emoji. then 1 -> emojis[1] etc. 
         let emojis: Array<String> = ["🎃", "👻", "🕷"]
-        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) {pairIndex in
+        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { pairIndex in
             return emojis[pairIndex]
         }
     }

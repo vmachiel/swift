@@ -37,10 +37,24 @@ struct MemoryGame<CardContent> {
     }
     
     // MARK: - Methods
-    // Function that handles when a card is chosen
-    func choose(card: Card) {
-        print("card chosen: \(card)")
-        print(card.id)
+    // Function that handles when a card is chosen. Mutating because struct. Changes the model
+    // uses the index method to get the index of the passed card and flip it.
+    mutating func choose(card: Card) {
+        // TODO: remove this debug
+        print("card chose: \(card)")
+        let chosenIndex: Int = index(of: card)
+        cards[chosenIndex].isFaceUp = !cards[chosenIndex].isFaceUp
+    }
+    
+    // Takes a card. Loops through the array of cards and checks if the ID of the passed
+    // card matches. If so, return its index
+    func index(of card: Card) -> Int {
+        for index in 0..<cards.count {
+            if cards[index].id == card.id {
+                return index
+            }
+        }
+        return 0 // TODO: Remove this, makes no sense
     }
     
     // MARK: - Nested Struct!

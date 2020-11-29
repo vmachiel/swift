@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         // Init the actual game, and let conentView point in the ContentView file point to this game. 
         let game = EmojiMemoryGame()
-        let contentView = EmojieMemoryGameView(viewModel: game)
+        let contentView = EmojiMemoryGameView(viewModel: game)
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

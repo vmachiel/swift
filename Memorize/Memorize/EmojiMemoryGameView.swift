@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct EmojieMemoryGameView: View {
+struct EmojiMemoryGameView: View {
     // The some is to indicate it needs to be some kind of view.
     // It can be a combination of all sorts of Views, as long as it's a View. (Lego analogy).
     // Views aren't stored but computed: everytime body is request its contents
@@ -16,7 +16,11 @@ struct EmojieMemoryGameView: View {
     
     // The viewmodel: the connection to the model!!  Pointer to the EmojiMemoryGame
     // The actual game is inited in SceneDelegate!!!!
-    var viewModel: EmojiMemoryGame
+    // ObservedObject property wrapper says: this contains an observableobject (view of type: EmojiMemoryGame)
+    // So keep track of that observableoject and redraw when it calls a objectWillChange.send()
+    // ONLY the changed card is redrawn: it's Identifiable, so swiftUI knows which one has
+    // changed. 
+    @ObservedObject var viewModel: EmojiMemoryGame
     
     var body: some View {
         // A horizontal stack
@@ -38,7 +42,7 @@ struct EmojieMemoryGameView: View {
     }
 }
 
-// The Card.
+// The Card. Redrawn when needed by the EmojiMemoryGameView that contains these cards.
 struct CardView: View {
     // The card
     var card: MemoryGame<String>.Card
@@ -85,6 +89,6 @@ struct CardView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         // Create one on the fly for testing
-        EmojieMemoryGameView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(viewModel: EmojiMemoryGame())
     }
 }
