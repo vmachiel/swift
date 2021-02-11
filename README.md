@@ -13,3 +13,5 @@
 *FaceIt* : Drawing in Views example.
 
 *Concentration* : Memory game
+
+*Memorize* : Memory game in SwiftUI
