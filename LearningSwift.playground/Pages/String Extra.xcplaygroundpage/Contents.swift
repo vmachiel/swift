@@ -1,10 +1,10 @@
 // Strings are made off Unicodes, but there are also Character s
 // Characters is what a human would see a a char. 
-// In Swift 4, each char counts as one.
+// In Swift 4+, each char counts as one.
 
 // Counting chars
 let testEmoji: String = "👨‍👩‍👧"
-testEmoji.count  // 4
+testEmoji.count  // 4+
 
 for char in testEmoji {
     print(char)

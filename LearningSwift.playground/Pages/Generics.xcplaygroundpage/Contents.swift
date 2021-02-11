@@ -18,7 +18,7 @@ func divisibleByTwo(_ number: Int) -> Bool {
 // Let's say you want to filter strings based on their lenght
 // Strings shorter than lenght 5 should be returned. A filter may look like
 func shortName(name: String) -> Bool {
-    return name.characters.count < 5
+    return name.count < 5
 }
 // You can rewrite the filterInts function to filterStrings, where you can put in an array
 // of strings and desired string filter:
@@ -54,7 +54,7 @@ let evenNumbers2 = filter(numbers) {$0 % 2 == 0}
 // And:
 let shortNames = filter(names, shortName)
 // or
-let shortNames2 = filter(names) {$0.characters.count < 5}
+let shortNames2 = filter(names) {$0.count < 5}
 print(shortNames, shortNames2)
 
 

@@ -70,7 +70,7 @@ class Car: Moveable {
 }
 
 let prius = Car(name: "Car 1")
-var somethingElse: Moveable
+var somethingElse: Moveable //Protocols are types
 somethingElse = prius  //TYPE IS Moveable
 
 // somethingElse.name = "Car2"    Can't be done, it's not Car, its Moveable
@@ -119,7 +119,51 @@ protocol Hashable: Equatable {
 
 
 
-// Protocolos can define a default implemtation by using an Extention
-// Example: Sequences implements a lot of its default method using extentions
+// Protocol extentions!
+// Thus you GAIN something if you confirm to that protocol
+let pythons = ["Eric", "Graham", "John", "Michael", "Terry", "Terry"]
+let beatles = Set(["John", "Paul", "George", "Ringo"])
+// These are of type Array and Set, both confirm to protocol Collection
+extension Collection {
+    func summarize() {
+        print("There are \(self.count) of us.")
+        
+        for name in self {
+            print(name)
+        }
+    }
+}
+pythons.summarize()
+beatles.summarize()
 
+
+
+// Protocolos can define a default implemtation by using an Extention
+protocol Movable2 {
+    func move(by: Int)
+    var hasMoved: Bool {get}
+    var distanceFromStart: Int {get set}
+}
+// Default implementation
+extension Movable2 {
+    var hasMoved: Bool {
+        return distanceFromStart != 0
+    }
+}
+// Now you can implement only the other two requirements
+class Car2: Movable2 {
+    var distanceFromStart = 0
+    
+    func move(by amount: Int) {
+        distanceFromStart += amount
+    }
+}
+
+// So now you can make an instance, without have to implement the distanceFromStart
+var car2 = Car2()
+car2.hasMoved // False
+car2.move(by: -8)
+car2.distanceFromStart // -8
+car2.hasMoved //True
+// You CAN override the default implemtation
 

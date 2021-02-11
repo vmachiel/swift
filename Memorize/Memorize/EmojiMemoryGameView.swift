@@ -31,37 +31,46 @@ struct EmojiMemoryGameView: View {
             ForEach(viewModel.cards) { card in
                 // ontap makes the choose method run for each card.
                 CardView(card: card).onTapGesture {
-                    self.viewModel.choose(card: card)}
+                     viewModel.choose(card: card)}
             }
         }
             
             // Every view inside all of the stracks get these methods
             .padding()  // Space between the edge and object.
             .foregroundColor(Color.orange) // default color.
-            .font(Font.largeTitle)  // default font size by using largeTitle
     }
 }
 
 // The Card. Redrawn when needed by the EmojiMemoryGameView that contains these cards.
 struct CardView: View {
-    // The card
+    // MARK: - Drawing constants of the CardView
+    let cornerRadius: CGFloat = 10.0
+    let edgeLineWidth: CGFloat = 3
+    let fontScaleFactor: CGFloat = 0.75
+    // MARK: - The card
     var card: MemoryGame<String>.Card
     
     // the actual card view with different layouts for faceup/down
     var body: some View {
-        ZStack{
-            if card.isFaceUp {
-                RoundedRectangle(cornerRadius: 10.0).fill(Color.white)
-                // stroke doesn't do the default fill, but just the edge.
-                // accent the edge
-                RoundedRectangle(cornerRadius: 10.0).stroke(lineWidth: 3)
-                // The actual emoji. Type string because card is defined as
-                // MemoryGame<String>.Card
-                Text(card.content)
-            } else {
-                // Black back off card, with default color set in contentview.
-                RoundedRectangle(cornerRadius: 10.0).fill()
+        // Geometry reader. You wrap this around the cards so you can set things
+        // like font size based on system parameters.
+        GeometryReader {geometry in
+            ZStack{
+                if card.isFaceUp {
+                    RoundedRectangle(cornerRadius: cornerRadius).fill(Color.white)
+                    // stroke doesn't do the default fill, but just the edge.
+                    // accent the edge
+                    RoundedRectangle(cornerRadius: cornerRadius).stroke(lineWidth: edgeLineWidth)
+                    // The actual emoji. Type string because card is defined as
+                    // MemoryGame<String>.Card
+                    Text(card.content)
+                } else {
+                    // Black back off card, with default color set in contentview.
+                    RoundedRectangle(cornerRadius: cornerRadius).fill()
+                }
             }
+            // Set font of the cards (emojis) based on the system.
+            .font(Font.system(size: min(geometry.size.width, geometry.size.height) * fontScaleFactor))
         }
     }
 }

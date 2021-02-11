@@ -29,5 +29,6 @@
         <page name='API Stuff'/>
         <page name='Random Test Code'/>
         <page name='Useful Extensions'/>
+        <page name='SwiftUI'/>
     </pages>
 </playground>
