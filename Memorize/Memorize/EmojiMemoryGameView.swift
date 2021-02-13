@@ -21,6 +21,8 @@ struct EmojiMemoryGameView: View {
     // ONLY the changed card is redrawn: it's Identifiable, so swiftUI knows which one has
     // changed. 
     @ObservedObject var viewModel: EmojiMemoryGame
+    // MARK: Constants of the EmojieMemoryGameView
+    let aspectRatio: CGFloat = 2/3
     
     var body: some View {
         // A horizontal stack
@@ -38,6 +40,7 @@ struct EmojiMemoryGameView: View {
             // Every view inside all of the stracks get these methods
             .padding()  // Space between the edge and object.
             .foregroundColor(Color.orange) // default color.
+        .aspectRatio(aspectRatio, contentMode: .fit)
     }
 }
 
