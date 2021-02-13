@@ -40,7 +40,7 @@ class EmojiMemoryGame: ObservableObject {
     // so the model can have functionality to present the data in an optiomal way for the View
     // Defined for MemoryGame with String as the MemoryGame.Card.content
     var cards: Array<MemoryGame<String>.Card> {
-        return game.cards
+        return game.cards.shuffled()    
     }
     
     // MARK: - Init method To pass to model init!!!
