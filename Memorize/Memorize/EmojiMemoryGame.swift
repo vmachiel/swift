@@ -52,8 +52,8 @@ class EmojiMemoryGame: ObservableObject {
         // The model loops until all the emojis are use because it's equal to numbberOfPairsOfCards.
         // The model puts every index up until the numberOfPairsofCards in the closure that is passed
         // So 0 -> emojis[0], the first emoji. then 1 -> emojis[1] etc. 
-        let emojis: Array<String> = ["🎃", "👻", "🕷"]
-        return MemoryGame<String>(numberOfPairsOfCards: emojis.count) { pairIndex in
+        let emojis: Array<String> = ["🎃", "👻", "🕷", "💀", "😈", "🙀", "🧛"]
+        return MemoryGame<String>(numberOfPairsOfCards: Int.random(in: 2...5)) { pairIndex in
             return emojis[pairIndex]
         }
     }

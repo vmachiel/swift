@@ -16,7 +16,7 @@ let interestingNumbers = [
     "Square": [1, 4, 9, 16, 25]
 ]
 var largest = 0
-for (kind, numbers) in interestingNumbers {
+for (_, numbers) in interestingNumbers {
     for number in numbers {
         if number > largest {
             largest = number
@@ -27,13 +27,13 @@ print(largest)
 // Another for loop trick: use .. to make an half-closed range of indexes like this. 
 // 4 is not included.
 var total = 0
-for i in 0..<4 {  // for i = 0, 1, 2, 3 so four times.
+for _ in 0..<4 {  // for i = 0, 1, 2, 3 so four times.
     total += 1
 }
 print(total)
 // make a closed range like this
 var sum = 0
-for i in 0...5 {  // for i = 0, 1, 2, 3, 4, 5 so six times.
+for _ in 0...5 {  // for i = 0, 1, 2, 3, 4, 5 so six times.
     sum += 1
 }
 print(sum)
@@ -66,7 +66,8 @@ while n < 100 {
     n *= 2
 }
 print(n)
-// Check condition after
+// Check condition after. Condition is checked at the END of the run, not before
+// the first run
 var m = 2
 repeat {
     m *= 2
@@ -81,6 +82,10 @@ while true {
         break
     }
 }
+
+
+
+
 
 // continue skips just exits this iteration of the for or while loop and moves 
 // to the next one.
