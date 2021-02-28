@@ -33,13 +33,13 @@ struct EmojiMemoryGameView: View {
             ForEach(viewModel.cards) { card in
                 // ontap makes the choose method run for each card.
                 CardView(card: card).onTapGesture {
-                     viewModel.choose(card: card)}
+                    viewModel.choose(card: card)}
             }
         }
-            
-            // Every view inside all of the stracks get these methods
-            .padding()  // Space between the edge and object.
-            .foregroundColor(Color.orange) // default color.
+        
+        // Every view inside all of the stracks get these methods
+        .padding()  // Space between the edge and object.
+        .foregroundColor(Color.orange) // default color.
         .aspectRatio(aspectRatio, contentMode: .fit)
     }
 }
