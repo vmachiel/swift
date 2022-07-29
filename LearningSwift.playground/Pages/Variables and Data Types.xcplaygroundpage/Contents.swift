@@ -1,6 +1,6 @@
 import Foundation
 
-// Hello world is easy, complete with autonewline!
+// Hello world is easy, complete with autonewline! 
 
 print("Hello World")
 print("😃")  // Unicode friendly! 
