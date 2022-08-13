@@ -45,6 +45,8 @@ let emptyDictionary = [String: Float]()
 shoppingList = []
 ammountOfCash = [:]
 
+//
+
 
 
 // Extra: Set is an unorderd collection of unique items of any type. Can be iterated

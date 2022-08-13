@@ -30,6 +30,23 @@ for index in stride(from: 0.5, to: 15.21, by: 0.3) {
 // important: a stringsubrange is NOT Range<Int> but technically Range<String.Index>
 
 
+// Remove items from array
+var characters = ["Lana", "Pam", "Ray", "Sterling"]
+print(characters.count)
+
+characters.remove(at: 2)
+print(characters.count)
+
+characters.removeAll()
+print(characters.count)
+
+// Sort and reverse
+let cities = ["London", "Tokyo", "Rome", "Budapest"]
+let citiesSorted = cities.sorted()
+let citiesBackwards = cities.reversed()  // Special type!
+
+
+
 // Arrays are sequences that can be iterated over:
 let animals = ["Giraffe", "Cow", "Doggie", "Bird"]
 for animal in animals {
@@ -44,6 +61,9 @@ for (key, value) in pac12teamRankings {
 // in case the key isn't in the dict.
 let test1 = pac12teamRankings["Cal"]   // Int? with value 12
 let test2 = pac12teamRankings["Snor"]  // Int? with value nil
+// User a default value:
+let test3 = pac12teamRankings["blabla", default: 0]  // THIS IS NOT AN OPTIONAL ANYMORE
+// There will either be a value, or the default int. 
 
 // Arrays have closure method like filter:
 // def filter is : filter(includeElement: (T) -> Bool) -> [T]
