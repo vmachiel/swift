@@ -75,9 +75,13 @@ let currentMood = currentWeather == "Sunny" ? "Happy" : "Cranky"  // Happy
 
 
 
+let firstName = "Paul"
+let secondName = "Sophie"
 
-
-
+print(firstName == secondName)
+print(firstName != secondName)
+print(firstName < secondName)
+print(firstName >= secondName)
 
 
 

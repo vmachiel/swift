@@ -199,6 +199,29 @@ func evaluate(_ expression: ArithmeticExpression) -> Int {
 evaluate(product)
 
 
+// Comparable Enums and inside structs
+enum Sizes: Comparable {
+    case small
+    case medium
+    case large
+}
+
+let first = Sizes.small
+let second = Sizes.large
+print(first < second)
+
+struct Car {
+    
+    var brand: String
+    var size: Sizes
+}
+
+var car1 = Car(brand: "Honda", size: .small)
+var car2 = Car(brand: "Hyundai", size: .medium)
+
+car1.size < car2.size
+
+
 
 
 
