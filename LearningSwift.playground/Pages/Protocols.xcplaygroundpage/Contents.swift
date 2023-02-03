@@ -167,3 +167,19 @@ car2.distanceFromStart // -8
 car2.hasMoved //True
 // You CAN override the default implemtation
 
+
+
+// Protocol extentions
+// You can override a larger protocol that different types adhere to
+// So it has certain behavior that all types that adhere to the protocol inherit
+extension Collection {
+    var isNotEmpty: Bool {
+        return isEmpty == false
+    }
+}
+// Simple example that adds a nicer isNotEmpty attribute to all collections
+// dict, array ect.
+
+if beatles.isNotEmpty {
+    print("Let's play!")
+}
