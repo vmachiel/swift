@@ -164,6 +164,10 @@ let upperCasedStringFound3 = arrayOfOptionalsContainer[1]?[3]?.uppercased()
 // executed, or at least tried. If it failed because of a nil value in an optional, the
 // else block is executed. You do this in a function, and the else block must exit the
 // function. So you "guard" the function from nil values being use and thus crashing it.
+// If you use guard to check a function’s inputs are valid,
+// Swift will always require you to use return if the check fails.
+// Use guard at the start of your function to check input for example. If the else block
+// is triggered, exit early. If not, proceed with actual function
 var optionalNumber: Int?
 optionalNumber = 23
 
@@ -220,6 +224,13 @@ if let firstNumber = Int("4") {
             print("\(firstNumber) < \(secondNumber) < 100")
         }
     }
+}
+// Could even be done with the same variable name, that only exists in the conditional
+var number: Int?
+if let number = number {
+    print("The number is \(number)")
+} else {
+    print("No number found")
 }
 
 // Forced unwrapping: If you are sure there is a valid int in there you can force unwarp it
@@ -316,8 +327,9 @@ personExample.residence?.address?.buildingNumber
 personExample.residence?.rooms[2]
 
 
-
-
+// Small chaining example
+let names = ["Vincent": "van Gogh", "Pablo": "Picasso", "Claude": "Monet"]
+let surnameLetter = names["Vincent"]?.first?.uppercased()
 
 
 

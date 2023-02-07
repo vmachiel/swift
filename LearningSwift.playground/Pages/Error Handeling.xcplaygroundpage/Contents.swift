@@ -54,6 +54,30 @@ func fridgeContainsFood(_ food: String) -> Bool {
 }
 
 
+// Optional trys
+// Let's say to wanted to see just IF a function returns an error.
+// Doesn't matter what the error is, just that it trown and error.
+// Consider the following:
+enum UserError: Error {
+    case badID, networkFailed, iedereenOntploft
+}
+
+func returnUser(id: Int) throws -> String {
+    print("doing some stuff, but o NO an error for demonstration purposes")
+    throw UserError.networkFailed
+}
+// I want to know: does this give an error
+if let user = try? returnUser(id: 33) {
+    print(user)
+}
+// Nothing happes because it DID throw and error so no action taken.
+// You write it like this if you just want to skip in case of error.
+// You could also use ?? to provide a default value if an error is thrown
+let user2 = (try? returnUser(id: 33)) ?? "No one"
+// the point is: You DONT have to handle the errors, just move on if one is thrown or use default value
+
+
+
 
 // Assertions: assert is a function that takes a closure, and a message. The closure 
 // must return a bool. If the bool is false, the message will be printed and app will
