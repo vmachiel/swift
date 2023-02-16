@@ -77,6 +77,108 @@ import SwiftUI
 // .aspectRatio Views + 10 points on each size.
 
 
+// Navigation view Creates a navigation bar on the top (modified with title and smaller text in this case
+// Form is used for data entry
+// Section sections off a certain part of your view (if you want a lot of sub views)
+// Vstacl with text devided.
+
+struct ContentView: View {
+    
+    var body: some View {
+        NavigationView{
+            Form {
+                Section {
+                    VStack {
+                        Text("Hello, world!")
+                        Divider()
+                        Text("Hallo Barry!")
+                    }
+                    
+                }
+            }
+            .navigationTitle("SwiftUI")
+            .navigationBarTitleDisplayMode(/*@START_MENU_TOKEN@*/.inline/*@END_MENU_TOKEN@*/)
+        }
+    }
+}
+
+
+// State
+// So computed properties like the manditory body property can't modify state of a struct:
+// you can't mark them as mutating. So in SwiftUI you wrap the var in State.
+// Now this is changable with the Button. Every time it's tapped, self.tapCount (the tapCount of the
+// whole struct) is changed. State is for properties used in THIS VIEW ONLY. So they are
+// recommended to be marked as private.
+struct ContentView2: View {
+    @State private var tapCount = 0
+    
+    var body: some View {
+        Button("Tap count: \(tapCount)") {
+            self.tapCount += 1
+        }
+    }
+}
+// Two way Binding
+// @State makes sure the the value of the property is shown (same as above)
+// The $ sign makes sure the State is updated if the text in the TextField is changed
+struct ContentView3: View {
+    @State private var name = ""
+    
+    var body: some View {
+        
+        Form {
+            TextField("Enter your name", text: $name)
+            Text("Your name is \(name)")
+        }
+    }
+}
+// You see the name get updated! So dollar sign means: The property can be updated here!
+
+
+// Simple loop (without and with closure syntax
+struct ContentView4: View {
+    var body: some View {
+        Form {
+            ForEach(0..<100) {number in
+                Text("This is row \(number)")
+            }
+        }
+        Form {
+            ForEach(0 ..< 100) {
+                Text("Row \($0)")
+            }
+        }
+    }
+}
+// Complicated loop with more stuff:
+// students is static so it doesn't neem the @State wrapper. The selected student can change, so @State
+// Picker has a label, and a selected field. It's set to selectedStudent and marked
+// with $ because it can write back to the property
+// For each needs a unique identifier. If your custom data doesn't comform to Identifiable,
+// there is no need for the \.self. But here it's used to keep track of selectedStudents as State,
+// so it track when things change (declarative design). 
+// See that the text updates! Because of the $, the property or State selectedStudent,
+// is updated. This is reflected in the Text! Because State wrapped objects trigger a re-evoking
+// of the body property
+struct ContentView5: View {
+    let students = ["Henk", "Fred", "Ur Mom"]
+    @State private var selectedStudent = "Henk"
+    
+    var body: some View {
+        NavigationView{
+            VStack {
+                Picker("Select Student please!", selection: $selectedStudent) {
+                    ForEach(students, id: \.self) {
+                        Text($0)
+                    }
+                }
+                HStack {
+                    Text("The current student is \(selectedStudent)")
+                }
+            }
+        }
+    }
+}
 
 
 // Custom Views
@@ -99,6 +201,9 @@ protocol GeometryProxy {
 // Containers offer space using .frame() and position it using .position()
 
 
+
+// Test
+Locale.current.currency?.identifier
 
 
 
