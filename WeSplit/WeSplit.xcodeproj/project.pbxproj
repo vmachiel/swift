@@ -6,23 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		3EAC8D552993F2A10092D3B1 /* WeSplitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC8D542993F2A10092D3B1 /* WeSplitApp.swift */; };
-		3EAC8D572993F2A10092D3B1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC8D562993F2A10092D3B1 /* ContentView.swift */; };
-		3EAC8D592993F2A10092D3B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EAC8D582993F2A10092D3B1 /* Assets.xcassets */; };
-		3EAC8D5C2993F2A10092D3B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EAC8D5B2993F2A10092D3B1 /* Preview Assets.xcassets */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		3EAC8D512993F2A10092D3B1 /* WeSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EAC8D542993F2A10092D3B1 /* WeSplitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeSplitApp.swift; sourceTree = "<group>"; };
-		3EAC8D562993F2A10092D3B1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		3EAC8D582993F2A10092D3B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3EAC8D5B2993F2A10092D3B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3EB6E9A42CFB36610014DF84 /* WeSplit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeSplit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3EB6E9A62CFB36610014DF84 /* WeSplit */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WeSplit;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
-		3EAC8D4E2993F2A10092D3B1 /* Frameworks */ = {
+		3EB6E9A12CFB36610014DF84 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -32,125 +29,107 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3EAC8D482993F2A10092D3B1 = {
+		3EB6E99B2CFB36610014DF84 = {
 			isa = PBXGroup;
 			children = (
-				3EAC8D532993F2A10092D3B1 /* WeSplit */,
-				3EAC8D522993F2A10092D3B1 /* Products */,
+				3EB6E9A62CFB36610014DF84 /* WeSplit */,
+				3EB6E9A52CFB36610014DF84 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		3EAC8D522993F2A10092D3B1 /* Products */ = {
+		3EB6E9A52CFB36610014DF84 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3EAC8D512993F2A10092D3B1 /* WeSplit.app */,
+				3EB6E9A42CFB36610014DF84 /* WeSplit.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3EAC8D532993F2A10092D3B1 /* WeSplit */ = {
-			isa = PBXGroup;
-			children = (
-				3EAC8D542993F2A10092D3B1 /* WeSplitApp.swift */,
-				3EAC8D562993F2A10092D3B1 /* ContentView.swift */,
-				3EAC8D582993F2A10092D3B1 /* Assets.xcassets */,
-				3EAC8D5A2993F2A10092D3B1 /* Preview Content */,
-			);
-			path = WeSplit;
-			sourceTree = "<group>";
-		};
-		3EAC8D5A2993F2A10092D3B1 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				3EAC8D5B2993F2A10092D3B1 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3EAC8D502993F2A10092D3B1 /* WeSplit */ = {
+		3EB6E9A32CFB36610014DF84 /* WeSplit */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3EAC8D5F2993F2A10092D3B1 /* Build configuration list for PBXNativeTarget "WeSplit" */;
+			buildConfigurationList = 3EB6E9B22CFB36610014DF84 /* Build configuration list for PBXNativeTarget "WeSplit" */;
 			buildPhases = (
-				3EAC8D4D2993F2A10092D3B1 /* Sources */,
-				3EAC8D4E2993F2A10092D3B1 /* Frameworks */,
-				3EAC8D4F2993F2A10092D3B1 /* Resources */,
+				3EB6E9A02CFB36610014DF84 /* Sources */,
+				3EB6E9A12CFB36610014DF84 /* Frameworks */,
+				3EB6E9A22CFB36610014DF84 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
+			fileSystemSynchronizedGroups = (
+				3EB6E9A62CFB36610014DF84 /* WeSplit */,
+			);
 			name = WeSplit;
+			packageProductDependencies = (
+			);
 			productName = WeSplit;
-			productReference = 3EAC8D512993F2A10092D3B1 /* WeSplit.app */;
+			productReference = 3EB6E9A42CFB36610014DF84 /* WeSplit.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		3EAC8D492993F2A10092D3B1 /* Project object */ = {
+		3EB6E99C2CFB36610014DF84 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
-					3EAC8D502993F2A10092D3B1 = {
-						CreatedOnToolsVersion = 14.2;
+					3EB6E9A32CFB36610014DF84 = {
+						CreatedOnToolsVersion = 16.1;
 					};
 				};
 			};
-			buildConfigurationList = 3EAC8D4C2993F2A10092D3B1 /* Build configuration list for PBXProject "WeSplit" */;
+			buildConfigurationList = 3EB6E99F2CFB36610014DF84 /* Build configuration list for PBXProject "WeSplit" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				nl,
 			);
-			mainGroup = 3EAC8D482993F2A10092D3B1;
+			mainGroup = 3EB6E99B2CFB36610014DF84;
+			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 3EAC8D522993F2A10092D3B1 /* Products */;
+			productRefGroup = 3EB6E9A52CFB36610014DF84 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3EAC8D502993F2A10092D3B1 /* WeSplit */,
+				3EB6E9A32CFB36610014DF84 /* WeSplit */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3EAC8D4F2993F2A10092D3B1 /* Resources */ = {
+		3EB6E9A22CFB36610014DF84 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EAC8D5C2993F2A10092D3B1 /* Preview Assets.xcassets in Resources */,
-				3EAC8D592993F2A10092D3B1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3EAC8D4D2993F2A10092D3B1 /* Sources */ = {
+		3EB6E9A02CFB36610014DF84 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EAC8D572993F2A10092D3B1 /* ContentView.swift in Sources */,
-				3EAC8D552993F2A10092D3B1 /* WeSplitApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		3EAC8D5D2993F2A10092D3B1 /* Debug */ = {
+		3EB6E9B02CFB36610014DF84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -184,7 +163,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -198,21 +177,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		3EAC8D5E2993F2A10092D3B1 /* Release */ = {
+		3EB6E9B12CFB36610014DF84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -246,7 +226,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -254,17 +234,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		3EAC8D602993F2A10092D3B1 /* Debug */ = {
+		3EB6E9B32CFB36610014DF84 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -272,7 +252,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeSplit/Preview Content\"";
-				DEVELOPMENT_TEAM = Z9C6SZTXPM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -288,12 +267,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.WeSplit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		3EAC8D612993F2A10092D3B1 /* Release */ = {
+		3EB6E9B42CFB36610014DF84 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -301,7 +280,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WeSplit/Preview Content\"";
-				DEVELOPMENT_TEAM = Z9C6SZTXPM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -317,7 +295,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.vmachiel.WeSplit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 6.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -325,25 +303,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3EAC8D4C2993F2A10092D3B1 /* Build configuration list for PBXProject "WeSplit" */ = {
+		3EB6E99F2CFB36610014DF84 /* Build configuration list for PBXProject "WeSplit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3EAC8D5D2993F2A10092D3B1 /* Debug */,
-				3EAC8D5E2993F2A10092D3B1 /* Release */,
+				3EB6E9B02CFB36610014DF84 /* Debug */,
+				3EB6E9B12CFB36610014DF84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3EAC8D5F2993F2A10092D3B1 /* Build configuration list for PBXNativeTarget "WeSplit" */ = {
+		3EB6E9B22CFB36610014DF84 /* Build configuration list for PBXNativeTarget "WeSplit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3EAC8D602993F2A10092D3B1 /* Debug */,
-				3EAC8D612993F2A10092D3B1 /* Release */,
+				3EB6E9B32CFB36610014DF84 /* Debug */,
+				3EB6E9B42CFB36610014DF84 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 3EAC8D492993F2A10092D3B1 /* Project object */;
+	rootObject = 3EB6E99C2CFB36610014DF84 /* Project object */;
 }

@@ -15,3 +15,5 @@
 *Concentration* : Memory game
 
 *Memorize* : Memory game in SwiftUI
+
+*WeSplit* : Split a bill
